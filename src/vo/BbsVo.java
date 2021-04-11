@@ -1,7 +1,6 @@
-package bbs;
+package vo;
 
-public class Bbs {
-	
+public class BbsVo {
 	private int bbsID;
 	private String bbsTitle;
 	private String logId;
@@ -45,6 +44,4 @@ public class Bbs {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
-	
-	
 }

@@ -74,15 +74,15 @@ public class BbsDAO {
 		return -1; // 데이터 베이스 오류
 	}
 
-	public ArrayList<Bbs> getList(int pageNumber) {
+	public ArrayList<vo.BbsVo> getList(int pageNumber) {
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
-		ArrayList<Bbs> list = new ArrayList<Bbs>();
+		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Bbs bbs = new Bbs();
+				vo.BbsVo bbs = new vo.BbsVo();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setLogId(rs.getString(3));
@@ -113,14 +113,14 @@ public class BbsDAO {
 		return false; // 데이터 베이스 오류
 	}
 
-	public Bbs getBbs(int bbsID) {
+	public vo.BbsVo getBbs(int bbsID) {
 		String SQL = "select * from bbs where bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				Bbs bbs = new Bbs();
+				vo.BbsVo bbs = new vo.BbsVo();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setLogId(rs.getString(3));

@@ -47,7 +47,7 @@ public class MemberDAO {
 		return -2; // 데이터베이스 오류
 	}
 	
-	public int join(Member member) {
+	public int join(vo.MemberVo member) {
 		String SQL = "INSERT INTO MEMBER VALUES (?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="member.MemberDAO"%>
+<%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
+<%@ page import="dao.BbsDAO"%>
+<%@ page import="vo.BbsVo"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -95,7 +95,7 @@ a, a:hover {
 				<tbody>
 					<%
 					BbsDAO bbsDAO = new BbsDAO();
-					ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+					ArrayList<BbsVo> list = bbsDAO.getList(pageNumber);
 
 					for (int i = 0; i < list.size(); i++) {
 					%>

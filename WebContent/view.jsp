@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="bbs.Bbs"%>
-<%@ page import="bbs.BbsDAO"%>
+<%@ page import="vo.BbsVo"%>
+<%@ page import="dao.BbsDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@
 		script.println("location.href ='bbs.jsp'");
 		script.println("</script>");
 	}
-	Bbs bbs = new BbsDAO().getBbs(bbsID);
+	BbsVo bbs = new BbsDAO().getBbs(bbsID);
 	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">

@@ -19,20 +19,36 @@ html, body {
 	height: 15%;
 	background: skyblue;
 	color: white;
+	display: flex;
+   justify-content: center;
+   align-items: center;
 }
+
 .side {
 	width: 20%;
 	height: 85%;
 	background: pink;
 	color: white;
-	float:left;	
+	float: left;
+	text-align: center;
 }
 
 .inaside {
-   width: 100%;
-   height: 40%;
-   float: left;
-   background: olivedrab;
+	width: 100%;
+	height: 40%;
+	float: left;
+	background: olivedrab;
+}
+
+#profile {
+	margin-top: 300px;
+}
+
+
+#menubtn{
+	height:50px;
+	width:130px;
+
 }
 
 
@@ -41,48 +57,48 @@ html, body {
 <title>Insert title here</title>
 </head>
 <body>
-	<header class="header">
-		헤드
-	</header>
-	
-	  <aside class="side">
+	<% request.setCharacterEncoding("UTF-8"); %>
 
-      <inaside class="inaside"> 
-       사진 영역
-       </inaside>
-       
-        <h1>댕댕님 프로필</h1>
+	<header class="header"> 헤드 
+	
+	<input type="button" id="menubtn" value="강아지에 의한 지출">
+	<input type="button" id="menubtn" value="강아지를 위한 일기">
+	<input type="button" id="menubtn" value="강아지의 친구">
+	</header>
+
+	<aside class="side">
+
+		<inaside class="inaside"> 사진 영역 </inaside>
+		<div id="profile">
+			<h1>프로필</h1>
+			<br>
 			<%
 					
 			
 					MemberDAO profile = new MemberDAO();
-					ArrayList<MemberVo> list = profile.getproFile("test");
+					ArrayList<MemberVo> list = profile.getproFile("pink");
 
 					for (int i = 0; i < list.size(); i++) {
 					%>
-					<%System.out.println("출력"); %>
-					<%=list.get(i).getDogname()%>
-					
-					<%=list.get(i).getAge()%>
-					<%=list.get(i).getGender()%>
-					<%=list.get(i).getEmail()%>
-					
+			<%System.out.println("출력"); %>
+			댕댕님 존함:
+			<%=list.get(i).getDogname()%>
+			<br> <br> 댕댕님 나이:
+			<%=list.get(i).getAge()%>
+			<br>
+			<br> 댕댕님 성별:
+			<%=list.get(i).getGender()%>
+			<br>
+			<br> 집사 이메일:
+			<%=list.get(i).getEmail()%>
 
-					<%
+
+			<%
 					}
 					%>
-      
-         <!--  사이드바 -->
 
-         <div id="profile">
+		</div>
 
-           이름: PINK<br>
-           나이: 핑크입니다<br>
-        	성별: 여자<br>
-        	이메일: 이메일<br>
-         
-            </div>
-
-   </aside>
+	</aside>
 </body>
 </html>

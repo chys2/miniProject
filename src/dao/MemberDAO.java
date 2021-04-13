@@ -79,7 +79,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.MemberVo memberpro = new vo.MemberVo();
-				memberpro.setLogid(rs.getString(1));
+				memberpro.setDogname(rs.getString(1));
 				memberpro.setAge(rs.getString(2));
 				memberpro.setGender(rs.getString(3));
 				memberpro.setEmail(rs.getString(4));

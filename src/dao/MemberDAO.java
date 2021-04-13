@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class MemberDAO {
 	private Connection conn;
@@ -66,5 +67,28 @@ public class MemberDAO {
 		}
 		return -1; //데이터베이스 오류
 		
+	}
+	
+	public ArrayList<vo.MemberVo> getproFile(String logId) {
+		//프로필 메소드
+		String SQL = "select dogname, age,gender, email  from member where logid= ? ";
+		ArrayList<vo.MemberVo> pro = new ArrayList<vo.MemberVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.MemberVo memberpro = new vo.MemberVo();
+				memberpro.setDogname(rs.getString(1));
+				memberpro.setAge(rs.getString(2));
+				memberpro.setGender(rs.getString(3));
+				memberpro.setEmail(rs.getString(4));
+				pro.add(memberpro);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pro; 
 	}
 }

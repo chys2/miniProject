@@ -78,6 +78,7 @@ public class BbsDAO {
 	}
 
 	public ArrayList<vo.BbsVo> getList(int pageNumber) {
+		// 게시글 1번 10번까지 출력
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
 		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {

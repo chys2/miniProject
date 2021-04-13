@@ -51,6 +51,12 @@ html, body {
 
 }
 
+#menuform{
+	height:100px;
+	width:900px;
+background: olivedrab;
+
+}
 
 </style>
 <meta charset="UTF-8">
@@ -60,10 +66,11 @@ html, body {
 	<% request.setCharacterEncoding("UTF-8"); %>
 
 	<header class="header"> 헤드 
-	
+	<form id ="menuform">
 	<input type="button" id="menubtn" value="강아지에 의한 지출">
 	<input type="button" id="menubtn" value="강아지를 위한 일기">
 	<input type="button" id="menubtn" value="강아지의 친구">
+	</form>
 	</header>
 
 	<aside class="side">

@@ -18,6 +18,13 @@ a, a:hover {
 	color: #000000;
 	text-decoration: none;
 }
+#bbsForm {
+	height: 100%;
+	width: 900px;
+	
+	background: yellow;
+
+}
 </style>
 
 </head>
@@ -33,7 +40,8 @@ a, a:hover {
 	}
 	%>
 <jsp:include page="../include/st.jsp" flush="false"/>
-	<div class="container">
+
+	<div class="container" style=" width:70%">
 		<div class="row">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
@@ -85,6 +93,7 @@ a, a:hover {
 		</div>
 
 	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

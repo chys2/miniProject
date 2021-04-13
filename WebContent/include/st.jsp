@@ -17,11 +17,11 @@ html, body {
 .header {
 	width: 100%;
 	height: 15%;
-	background: skyblue;
+	background: #FDF5E6;
 	color: white;
 	display: flex;
-   justify-content: center;
-   align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .side {
@@ -44,33 +44,36 @@ html, body {
 	margin-top: 300px;
 }
 
-
-#menubtn{
-	height:50px;
-	width:130px;
-
+#menubtn {
+	height: 50px;
+	width: 200px;
+	margin-top:25px;
+	margin-left: 70px;
 }
 
-#menuform{
-	height:100px;
-	width:900px;
-background: olivedrab;
+#menuform {
+	height: 100%;
+	width: 900px;
+	
+	background: #FDCD8C;
 
 }
-
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<% request.setCharacterEncoding("UTF-8"); %>
+	<%
+	request.setCharacterEncoding("UTF-8");
+	%>
 
-	<header class="header"> 헤드 
-	<form id ="menuform">
-	<input type="button" id="menubtn" value="강아지에 의한 지출">
-	<input type="button" id="menubtn" value="강아지를 위한 일기">
-	<input type="button" id="menubtn" value="강아지의 친구">
-	</form>
+	<header class="header">
+		헤드
+		<form id="menuform">
+			<input type="button" id="menubtn" value="강아지에 의한 지출"> <input
+				type="button" id="menubtn" value="강아지를 위한 일기"> <input
+				type="button" id="menubtn" value="강아지의 친구">
+		</form>
 	</header>
 
 	<aside class="side">
@@ -80,29 +83,27 @@ background: olivedrab;
 			<h1>프로필</h1>
 			<br>
 			<%
-					
-			
-					MemberDAO profile = new MemberDAO();
-					ArrayList<MemberVo> list = profile.getproFile("pink");
+			MemberDAO profile = new MemberDAO();
+			ArrayList<MemberVo> list = profile.getproFile("pink");
 
-					for (int i = 0; i < list.size(); i++) {
-					%>
-			<%System.out.println("출력"); %>
+			for (int i = 0; i < list.size(); i++) {
+			%>
+			<%
+			System.out.println("출력");
+			%>
 			댕댕님 존함:
 			<%=list.get(i).getDogname()%>
 			<br> <br> 댕댕님 나이:
 			<%=list.get(i).getAge()%>
-			<br>
-			<br> 댕댕님 성별:
+			<br> <br> 댕댕님 성별:
 			<%=list.get(i).getGender()%>
-			<br>
-			<br> 집사 이메일:
+			<br> <br> 집사 이메일:
 			<%=list.get(i).getEmail()%>
 
 
 			<%
-					}
-					%>
+			}
+			%>
 
 		</div>
 

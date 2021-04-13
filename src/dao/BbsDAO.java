@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,14 +19,14 @@ public class BbsDAO {
 			String dbPassword = "root";
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-			System.out.println("¿¬°á¿Ï·á");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
 		}
 	}
 
-//	public String getDate() { //ÇöÀç ½Ã°£ ³Ö±â
+//	public String getDate() { //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ö±ï¿½
 //		String SQL="select to_char(sysdate, 'YYYY/MM/DD HH24:MI:SS') from dual;";
 //		
 //		try {
@@ -41,7 +42,7 @@ public class BbsDAO {
 //		return"";
 //	}
 
-	public int getNext() { // °Ô½ÃÆÇ ¹øÈ£ ³Ö±â
+	public int getNext() { // ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½Ö±ï¿½
 		String SQL = "select bbsID from bbs order by bbsID DESC";
 
 		try {
@@ -50,15 +51,15 @@ public class BbsDAO {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; // Ã¹ ¹øÂ° °Ô½Ã¹°ÀÎ °æ¿ì
+			return 1; // Ã¹ ï¿½ï¿½Â° ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
-	public int write(String bbsTitle, String logId, String bbsContent) {
-		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?)";
+	public int write(String bbsTitle, String logId, String bbsContent, FileInputStream bbsimages) {
+		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -67,12 +68,13 @@ public class BbsDAO {
 			pstmt.setString(3, logId);
 			pstmt.setString(4, bbsContent);
 			pstmt.setInt(5, 1);
+			pstmt.setBinaryStream(6, bbsimages);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍ º£ÀÌ½º ¿À·ù
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
 	public ArrayList<vo.BbsVo> getList(int pageNumber) {
@@ -96,7 +98,7 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list; // ÀüÃ¼ °Ô½Ã¹° ¹ÝÈ¯
+		return list; // ï¿½ï¿½Ã¼ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½È¯
 	}
 
 	public boolean nextPage(int pageNumber) {
@@ -111,7 +113,7 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false; // µ¥ÀÌÅÍ º£ÀÌ½º ¿À·ù
+		return false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
 	public vo.BbsVo getBbs(int bbsID) {
@@ -133,7 +135,7 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null; // µ¥ÀÌÅÍ º£ÀÌ½º ¿À·ù
+		return null; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public int update(int bbsID, String bbsTitle, String bbsContent) {
@@ -148,10 +150,10 @@ public class BbsDAO {
 			e.printStackTrace();
 			System.out.println(e);
 		}
-		return -1; //µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	public int delete(int bbsID) {
-		//½ÇÁ¦ µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ´Â °ÍÀÌ ¾Æ´Ï¶ó °Ô½Ã±Û À¯È¿¼ýÀÚ¸¦ '0'À¸·Î ¼öÁ¤ÇÑ´Ù
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½Ú¸ï¿½ '0'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 		String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -160,7 +162,7 @@ public class BbsDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù 
+		return -1; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	}
 
 }

@@ -1,5 +1,8 @@
 package vo;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 public class BbsVo {
 	private int bbsID;
 	private String bbsTitle;
@@ -7,6 +10,7 @@ public class BbsVo {
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
+	private File bbsimages;
 	
 	public int getBbsID() {
 		return bbsID;
@@ -44,4 +48,11 @@ public class BbsVo {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
+	public File getBbsimages() {
+		return bbsimages;
+	}
+	public void setBbsimages(File bbsimages) {
+		this.bbsimages = bbsimages;
+	}
+	
 }

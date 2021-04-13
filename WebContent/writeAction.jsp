@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="dao.BbsDAO"%>
-<%@ page import="java.io.PrintWriter"%>
+<%@ page import="java.io.*, java.util.*" %>
 <%
 request.setCharacterEncoding("UTF-8");
+String path = application.getRealPath("/images");
+int size = 1024 * 1024 * 10;
+MultipartRequest multi = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
+Enumeration files = multi.getFileNames();
 %>
+
 <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
 <jsp:setProperty name="bbs" property="bbsTitle" />
 <jsp:setProperty name="bbs" property="bbsContent" />
+<jsp:setProperty name="bbs" property="bbsimages" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 
 <title>JSP 게시판 웹 사이트</title>
 </head>
@@ -37,7 +45,7 @@ request.setCharacterEncoding("UTF-8");
 		} else {
 
 			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent());
+			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(), bbs.getBbsimages());
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

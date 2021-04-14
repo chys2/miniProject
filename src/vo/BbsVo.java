@@ -1,7 +1,7 @@
 package vo;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
+
 
 public class BbsVo {
 	private int bbsID;
@@ -10,7 +10,9 @@ public class BbsVo {
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
-	private File bbsimages;
+	private String im_address;
+	private String im_name;
+	public BbsVo() {}
 	
 	public int getBbsID() {
 		return bbsID;
@@ -48,11 +50,18 @@ public class BbsVo {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
-	public File getBbsimages() {
-		return bbsimages;
+	public String getIm_address() {
+		return im_address;
 	}
-	public void setBbsimages(File bbsimages) {
-		this.bbsimages = bbsimages;
+	public void setIm_address(String im_address) {
+		this.im_address = im_address;
 	}
+	public String getIm_name() {
+		return im_name;
+	}
+	public void setIm_name(String im_name) {
+		this.im_name = im_name;
+	}
+	
 	
 }

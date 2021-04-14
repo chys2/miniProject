@@ -58,8 +58,8 @@ public class BbsDAO {
 		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
-	public int write(String bbsTitle, String logId, String bbsContent, FileInputStream bbsimages) {
-		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
+	public int write(String bbsTitle, String logId, String bbsContent, String im_address, String im_name) {
+		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?,?)";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -68,7 +68,8 @@ public class BbsDAO {
 			pstmt.setString(3, logId);
 			pstmt.setString(4, bbsContent);
 			pstmt.setInt(5, 1);
-			pstmt.setBinaryStream(6, bbsimages);
+			pstmt.setString(6, im_address);
+			pstmt.setString(7, im_name);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 
@@ -78,7 +79,7 @@ public class BbsDAO {
 	}
 
 	public ArrayList<vo.BbsVo> getList(int pageNumber) {
-		// °Ô½Ã±Û 1¹ø 10¹ø±îÁö Ãâ·Â
+		// ï¿½Ô½Ã±ï¿½ 1ï¿½ï¿½ 10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
 		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {

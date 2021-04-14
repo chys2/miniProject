@@ -111,6 +111,12 @@
 						<td colspan="2" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
 
 					</tr>
+					<%if(bbs.getBbsimages()!=null){
+					%><tr>
+						<td>내용</td>
+						<td colspan="2" style="min-height: 200px; text-align: left;"></td>
+
+					</tr><%}%>
 				</tbody>
 			</table>
 			<a href="bbs.jsp" class="btn btn-primary">목록</a>

@@ -31,6 +31,7 @@ padding-top:5%;
 </head>
 <body>
 	<%
+	session.getAttribute("logId");
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -90,7 +91,7 @@ padding-top:5%;
 			%>
 
 
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="write2.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 
 	</div>

@@ -34,8 +34,8 @@ padding-top:5%;
 	}
 	%>
 	<jsp:include page="../include/top_menu_3.jsp" flush="false"/>
-	<form id="bbsForm">
-	<div class="container" style="width:70%">
+	<div id="bbsForm">
+	<div class="container" style="width:70%" method="post" action="writeAction2.jsp">
 		<div class="row">
 			<form method="post" action="writeAction2.jsp">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -60,8 +60,10 @@ padding-top:5%;
 		</div>
 
 	</div>
-	</form>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
+	
 </html>

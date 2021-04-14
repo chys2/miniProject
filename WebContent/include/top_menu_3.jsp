@@ -65,6 +65,7 @@ html, body {
 </head>
 <body>
 	<%
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -98,7 +99,7 @@ html, body {
 					<ul class="dropdown-menu">
 					<li><a href="#">마이페이지</a>
 					</li>
-						<li><a href="loginOutAction.jsp">로그아웃</a></li>
+						<li><a href="loginOutAction2.jsp">로그아웃</a></li>
 					</ul></li>
 			</ul>
 			<%
@@ -109,13 +110,13 @@ html, body {
 </header>
 <aside class="side">
 
-		<inaside class="inaside"> 사진 영역 </inaside>
+	<inaside class="inaside"> 사진 영역 </inaside>
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
 			MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile("pink");
+			ArrayList<MemberVo> list = profile.getproFile(logId);
 
 			for (int i = 0; i < list.size(); i++) {
 			%>

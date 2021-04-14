@@ -10,6 +10,21 @@
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
+<style type="text/css">
+a, a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+#bbsForm {
+padding-top:5%;
+	height: 85%;
+	width: 80%;
+	float:right;
+	background: yellow;
+
+}
+
+</style>
 </head>
 <body>
 	<%
@@ -31,7 +46,9 @@
 	BbsVo bbs = new BbsDAO().getBbs(bbsID);
 	%>
 <jsp:include page="../include/top_menu_3.jsp" flush="false"/>
-	<div class="container">
+	
+	<form id="bbsForm">
+	<div class="container" style="width:70%">
 		<div class="row">
 
 			<table class="table table-striped"
@@ -81,6 +98,7 @@
 		</div>
 
 	</div>
+	</form>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

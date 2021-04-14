@@ -11,6 +11,21 @@
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
+<style type="text/css">
+a, a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+#bbsForm {
+padding-top:5%;
+	height: 85%;
+	width: 80%;
+	float:right;
+	background: yellow;
+
+}
+
+</style>
 </head>
 <body>
 	<%
@@ -22,7 +37,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 하세요')");
-		script.println("location.href='login.jsp'");
+		script.println("location.href='login2.jsp'");
 		script.println("</script>");
 	}
 	int bbsID = 0;
@@ -34,7 +49,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글2입니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='bbs2.jsp'");
 		script.println("</script>");
 	} 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
@@ -43,7 +58,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='bbs2.jsp'");
 		script.println("</script>");
 	} 
 %>
@@ -51,7 +66,8 @@
 <!-- 네비게이션 영역 끝 -->
 
 <!-- 게시판 메인 페이지 영역 시작 -->
-<div class="container">
+<div id="bbsForm" >
+	<div class="container" style="width:70%">
 	<div class="row">
 		<form method="post" action="updateAction2.jsp?bbsID=<%=bbsID%>">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -78,7 +94,7 @@
 	</div>
 </div>
 <!-- 게시판 메인 페이지 영역 끝 -->
-
+</div>
 
 <!-- 부트스트랩 참조 영역 -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

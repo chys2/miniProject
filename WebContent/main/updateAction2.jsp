@@ -23,7 +23,7 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 하세요.')");
-		script.println("location.href ='login.jsp'");
+		script.println("location.href ='login2.jsp'");
 		script.println("</script>");
 	}
 	int bbsID = 0;
@@ -34,7 +34,7 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='bbs2.jsp'");
 		script.println("</script>");
 	}
 
@@ -44,7 +44,7 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='bbs2.jsp'");
 		script.println("</script>");
 	} else {
 		// 입력이 안 됐거나 빈 값이 있는지 체크한다
@@ -71,7 +71,7 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('글 수정하기 성공')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='bbs2.jsp'");
 		script.println("</script>");
 			}
 		}

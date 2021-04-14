@@ -1,32 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="dao.MemberDAO"%>
+    pageEncoding="UTF-8"%>
+    <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
-<meta name="viewprot" content="width=device-width" , initial-scale="1">
-<link rel="stylesheet" href="../css/bootstrap.css">
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 html, body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
 }
-
 .header {
 	width: 100%;
 	height: 15%;
-	background: #FDF5E6;
+	
 	color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	
 }
-
 .side {
 	width: 20%;
 	height: 85%;
@@ -62,24 +61,28 @@ html, body {
 
 }
 </style>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-	<%
-	request.setCharacterEncoding("UTF-8");
-	%>
-
-	<header class="header">
-		헤드
-		<form id="menuform">
-			<input type="button" id="menubtn" value="강아지에 의한 지출"> <input
-				type="button" id="menubtn" value="강아지를 위한 일기"> <input
-				type="button" id="menubtn" value="강아지의 친구">
-		</form>
-	</header>
-
-	<aside class="side">
+<header class="header">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">홈</a></li>
+      <li><a href="#">강아지에 의한 지출</a></li>
+      <li><a href="#">강아지를 위한 일기</a></li>
+      <li><a href="#">강아지의친구</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+<aside class="side">
 
 		<inaside class="inaside"> 사진 영역 </inaside>
 		<div id="profile">
@@ -111,5 +114,6 @@ html, body {
 		</div>
 
 	</aside>
+
 </body>
 </html>

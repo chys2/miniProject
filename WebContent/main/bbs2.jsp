@@ -19,9 +19,10 @@ a, a:hover {
 	text-decoration: none;
 }
 #bbsForm {
-	height: 100%;
-	width: 900px;
-	
+padding-top:5%;
+	height: 85%;
+	width: 80%;
+	float:right;
 	background: yellow;
 
 }
@@ -39,9 +40,9 @@ a, a:hover {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
 	%>
-<jsp:include page="../include/st.jsp" flush="false"/>
-
-	<div class="container" style=" width:70%">
+<jsp:include page="../include/top_side.jsp" flush="false"/>
+<form id="bbsForm">
+	<div class="container" style="width:70%">
 		<div class="row">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
@@ -93,7 +94,7 @@ a, a:hover {
 		</div>
 
 	</div>
-	
+	</form>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

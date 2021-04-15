@@ -10,7 +10,6 @@ public class BbsVo {
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
-	private String im_address;
 	private String im_name;
 	public BbsVo() {}
 	
@@ -49,12 +48,6 @@ public class BbsVo {
 	}
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
-	}
-	public String getIm_address() {
-		return im_address;
-	}
-	public void setIm_address(String im_address) {
-		this.im_address = im_address;
 	}
 	public String getIm_name() {
 		return im_name;

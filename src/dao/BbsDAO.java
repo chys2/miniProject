@@ -58,8 +58,8 @@ public class BbsDAO {
 		return -1; // �����ͺ��̽� ����
 	}
 
-	public int write(String bbsTitle, String logId, String bbsContent, String im_address, String im_name) {
-		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?,?)";
+	public int write(String bbsTitle, String logId, String bbsContent, String im_name) {
+		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -68,8 +68,7 @@ public class BbsDAO {
 			pstmt.setString(3, logId);
 			pstmt.setString(4, bbsContent);
 			pstmt.setInt(5, 1);
-			pstmt.setString(6, im_address);
-			pstmt.setString(7, im_name);
+			pstmt.setString(6, im_name);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 
@@ -94,6 +93,7 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setIm_name(rs.getString(7));
 				list.add(bbs);
 			}
 
@@ -132,6 +132,7 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setIm_name(rs.getString(7));
 				return bbs;
 			}
 		} catch (Exception e) {
@@ -140,13 +141,15 @@ public class BbsDAO {
 		return null; // ������ ���̽� ����
 	}
 	
-	public int update(int bbsID, String bbsTitle, String bbsContent) {
-		String sql = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID = ?";
+	public int update(int bbsID, String bbsTitle, String bbsContent, String im_name) {
+		String sql = "update bbs set bbsTitle = ?, bbsContent = ? , im_name=?"
+				+ "where bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bbsTitle);
 			pstmt.setString(2, bbsContent);
-			pstmt.setInt(3, bbsID);
+			pstmt.setString(3, im_name);
+			pstmt.setInt(4, bbsID);
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();

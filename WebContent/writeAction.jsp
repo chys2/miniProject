@@ -3,13 +3,13 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="dao.BbsDAO"%>
+<%@ page import="vo.BbsVo"%>
 <%@ page import="java.sql.*" %> 
 <%@ page import="java.io.*, java.util.*" %>
 
-<jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
-<jsp:setProperty name="bbs" property="bbsTitle"/>
-<jsp:setProperty name="bbs" property="bbsContent" />
+<%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" /> --%>
 <%
+BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");
 
 String im_address = request.getRealPath("/images");
@@ -24,15 +24,16 @@ String im_name ="";// 중복 처리전 실제 원본 이름
 long fileSize =0;// 파일 사이즈
 String fileType ="";// 파일 타입
 MultipartRequest multi =null;
+String bbsT="";
+String bbsC="";
 try{
     // request,파일저장경로,용량,인코딩타입,중복파일명에 대한 기본 정책
     multi =new MultipartRequest(request,im_address,maxSize,"UTF-8",new DefaultFileRenamePolicy());
      
     // form내의 input name="name" 인 녀석 value를 가져옴
-    name = multi.getParameter("name");
+    bbsT = multi.getParameter("bbsTitle");
     // name="subject" 인 녀석 value를 가져옴
-    subject = multi.getParameter("subject");
-     
+    bbsC = multi.getParameter("bbsContent");     
     // 전송한 전체 파일이름들을 가져옴
     Enumeration files = multi.getFileNames();
      
@@ -44,7 +45,8 @@ try{
 }catch(Exception e){
     e.printStackTrace();
 }
-bbs.setIm_address(im_address);
+bbs.setBbsTitle(bbsT);
+bbs.setBbsContent(bbsC);
 bbs.setIm_name(im_name);
 
 %>
@@ -58,7 +60,7 @@ bbs.setIm_name(im_name);
 </head>
 <body>
 <%
-	String saveDir = application.getRealPath("/images");
+	 String saveDir = application.getRealPath("/images");
 	File dir = new File(saveDir);
 	
 	String fName[] = dir.list();
@@ -79,7 +81,7 @@ bbs.setIm_name(im_name);
 		script.println("location.href ='login.jsp'");
 		script.println("</script>");
 	}else{
-	if (bbs.getBbsTitle() == null || bbs.getBbsContent()== null) {
+	if (bbs.getBbsTitle() == null || bbs.getBbsContent() == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안된사항이 있습니다.')");
@@ -88,7 +90,7 @@ bbs.setIm_name(im_name);
 		} else { 
 
 			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(), bbs.getIm_address(),bbs.getIm_name());
+			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getIm_name());
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -105,7 +107,7 @@ bbs.setIm_name(im_name);
 				script.println("</script>");
 			}
 
-		/* } */
+		} 
 	}
 
 	

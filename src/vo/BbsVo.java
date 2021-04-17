@@ -1,5 +1,8 @@
 package vo;
 
+import java.io.*;
+
+
 public class BbsVo {
 	private int bbsID;
 	private String bbsTitle;
@@ -7,6 +10,8 @@ public class BbsVo {
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
+	private String im_name;
+	public BbsVo() {}
 	
 	public int getBbsID() {
 		return bbsID;
@@ -44,4 +49,12 @@ public class BbsVo {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
+	public String getIm_name() {
+		return im_name;
+	}
+	public void setIm_name(String im_name) {
+		this.im_name = im_name;
+	}
+	
+	
 }

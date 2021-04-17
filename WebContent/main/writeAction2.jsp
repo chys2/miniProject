@@ -1,13 +1,55 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.BbsDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
+BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");
+
+String im_address = request.getRealPath("/images");
+ 
+int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
+ 
+String name ="";
+String subject ="";
+ 
+String fileName1 ="";// 중복처리된 이름
+String im_name ="";// 중복 처리전 실제 원본 이름
+long fileSize =0;// 파일 사이즈
+String fileType ="";// 파일 타입
+MultipartRequest multi =null;
+String bbsT="";
+String bbsC="";
+try{
+    // request,파일저장경로,용량,인코딩타입,중복파일명에 대한 기본 정책
+    multi =new MultipartRequest(request,im_address,maxSize,"UTF-8",new DefaultFileRenamePolicy());
+     
+    // form내의 input name="name" 인 녀석 value를 가져옴
+    bbsT = multi.getParameter("bbsTitle");
+    // name="subject" 인 녀석 value를 가져옴
+    bbsC = multi.getParameter("bbsContent");     
+    // 전송한 전체 파일이름들을 가져옴
+    Enumeration files = multi.getFileNames();
+     
+    while(files.hasMoreElements()){
+        // form 태그에서 <input type="file" name="여기에 지정한 이름" />을 가져온다.
+        String file1 = (String)files.nextElement();// 파일 input에 지정한 이름을 가져옴
+        im_name = multi.getFilesystemName(file1);
+    }
+}catch(Exception e){
+    e.printStackTrace();
+}
+bbs.setBbsTitle(bbsT);
+bbs.setBbsContent(bbsC);
+bbs.setIm_name(im_name);
+
 %>
-<jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
+<%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
 <jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent" />
+<jsp:setProperty name="bbs" property="bbsContent" /> --%>
 <!DOCTYPE html>
 <html>
 <head>

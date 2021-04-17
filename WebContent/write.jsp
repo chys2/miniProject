@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html ; charset=UTF-8">
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
 </head>
@@ -68,7 +70,7 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<form method="post" action="writeAction.jsp">
+			<form method="post" action="writeAction.jsp" enctype="multipart/form-data">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -86,6 +88,7 @@
 						</tr>
 					</tbody>
 				</table>
+                   <input type="file" class="form-control"  name="bbsimages" size="40">
 				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
 			</form>
 		</div>

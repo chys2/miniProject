@@ -1,11 +1,12 @@
 package dao;
 
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class MemberDAO {
 	private Connection conn;
@@ -14,19 +15,27 @@ public class MemberDAO {
 
 	public MemberDAO() {
 		try {
-			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "c##root";
-			String dbPassword = "root";
-			Class.forName("oracle.jdbc.OracleDriver");
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-				System.out.println("연결완료");
+
+//			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+//			  String dbID ="c##root"; 
+//			  String dbPassword = "root";
+//			  Class.forName("oracle.jdbc.OracleDriver"); 
+//			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+
+			
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
+			
+
+			System.out.println("연결완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
 		}
 	}
-	
-	
 
 	public int login(String logid, String pwd) {
 		String SQL = "select pwd from member where logid=?";
@@ -39,7 +48,7 @@ public class MemberDAO {
 				if (rs.getString(1).equals(pwd)) {
 					return 1; // 로그인 성공
 				} else {
-					return 0; //비밀먼호가 다릅니다.
+					return 0; // 비밀먼호가 다릅니다.
 				}
 			}
 			return -1; // 아이디가 없음 존재하지 않는 아이디 입니다.
@@ -48,7 +57,7 @@ public class MemberDAO {
 		}
 		return -2; // 데이터베이스 오류
 	}
-	
+
 	public int join(vo.MemberVo member) {
 		String SQL = "INSERT INTO MEMBER VALUES (?,?,?,?,?,?)";
 		try {
@@ -61,16 +70,16 @@ public class MemberDAO {
 			pstmt.setString(6, member.getAge());
 			return pstmt.executeUpdate();
 		}
-		
-		catch(Exception e) {
+
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //데이터베이스 오류
-		
+		return -1; // 데이터베이스 오류
+
 	}
-	
+
 	public ArrayList<vo.MemberVo> getproFile(String logId) {
-		//프로필 메소드
+		// 프로필 메소드
 		String SQL = "select dogname, age,gender, email  from member where logid= ? ";
 		ArrayList<vo.MemberVo> pro = new ArrayList<vo.MemberVo>();
 		try {
@@ -89,6 +98,6 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return pro; 
+		return pro;
 	}
 }

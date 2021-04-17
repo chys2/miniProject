@@ -78,8 +78,8 @@ html, body {
     <ul class="nav navbar-nav">
       <li ><a href="main.jsp">홈</a></li>
       <li ><a href="#">강아지에 의한 지출</a></li>
-      <li class="active"><a href="#">강아지를 위한 일기</a></li>
-      <li><a href="bbs.jsp2">강아지의친구</a></li>
+      <li class="active"><a href="Diary2.jsp">강아지를 위한 일기</a></li>
+      <li><a href="bbs2.jsp">강아지의친구</a></li>
     </ul>
     <%
 			if (logId == null) { //로그인 안 했을때

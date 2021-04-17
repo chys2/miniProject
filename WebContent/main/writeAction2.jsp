@@ -4,12 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.BbsDAO"%>
+<%@ page import="vo.BbsVo"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");
 
-String im_address = request.getRealPath("/images");
+String im_address = request.getRealPath("/bbsimages");
  
 int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
  
@@ -44,7 +45,7 @@ try{
 }
 bbs.setBbsTitle(bbsT);
 bbs.setBbsContent(bbsC);
-bbs.setIm_name(im_name);
+bbs.setBbsImagename(im_name);
 
 %>
 <%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
@@ -79,7 +80,7 @@ bbs.setIm_name(im_name);
 		} else {
 
 			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent());
+			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

@@ -44,7 +44,7 @@ try{
 }
 bbs2.setBbsTitle(bbsT);
 bbs2.setBbsContent(bbsC);
-bbs2.setIm_name(im_name);
+bbs2.setBbsImagename(im_name);
 %>
 <!DOCTYPE html>
 <html>

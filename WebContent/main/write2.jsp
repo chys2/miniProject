@@ -37,7 +37,7 @@ padding-top:5%;
 	<div id="bbsForm">
 	<div class="container" style="width:70%" method="post" action="writeAction2.jsp">
 		<div class="row">
-			<form method="post" action="writeAction2.jsp">
+			<form method="post" method="post" action="writeAction2.jsp" enctype="multipart/form-data" >
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>

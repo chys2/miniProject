@@ -69,7 +69,7 @@ padding-top:5%;
 <div id="bbsForm" >
 	<div class="container" style="width:70%">
 	<div class="row">
-		<form method="post" action="updateAction2.jsp?bbsID=<%=bbsID%>">
+		<form method="post" action="updateAction2.jsp?bbsID=<%=bbsID%>" enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.BbsDAO"%>
+<%@ page import="vo.BbsVo"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 BbsVo bbs = new BbsVo();
@@ -79,7 +80,7 @@ bbs.setIm_name(im_name);
 		} else {
 
 			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent());
+			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(), bbs.getIm_name());
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

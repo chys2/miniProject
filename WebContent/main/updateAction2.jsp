@@ -9,7 +9,7 @@
 <%
 BbsVo bbs2 = new BbsVo();
 request.setCharacterEncoding("UTF-8");
-String im_address = request.getRealPath("/images");
+String im_address = request.getRealPath("/bbsimages");
 
 int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
  
@@ -88,8 +88,8 @@ bbs2.setBbsImagename(im_name);
 		script.println("</script>");
 	} else {
 		// 입력이 안 됐거나 빈 값이 있는지 체크한다
-		if (request.getParameter("bbsTitle") == null || request.getParameter("bbsContent") == null
-		|| request.getParameter("bbsTitle").equals("") || request.getParameter("bbsContent").equals("")) {
+		if (multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null
+		|| multi.getParameter("bbsTitle").equals("") || multi.getParameter("bbsContent").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다')");

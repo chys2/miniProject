@@ -80,11 +80,10 @@ bbs.setBbsImagename(im_name);
 		} else {
 
 			BbsDAO bbsDAO = new BbsDAO();
-<<<<<<< HEAD
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(), bbs.getIm_name());
-=======
+
+
 			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
->>>>>>> c584659aac8d6128b1d0d2c1b905e5de69bd8d50
+
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

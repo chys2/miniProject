@@ -83,7 +83,7 @@ padding-top:5%;
 					<tr>
 						<td>그림</td>
 						<td colspan="2" style="min-height: 200px;">
-						<img src="../bbsimage/<%=bbs.getBbsImagename()%>"/></td>
+						<img src="../bbsimages/<%=bbs.getBbsImagename()%>"/></td>
 
 					</tr>
 				</tbody>

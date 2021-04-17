@@ -80,9 +80,15 @@ padding-top:5%;
 						<td colspan="2" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
 
 					</tr>
+					<tr>
+						<td>그림</td>
+						<td colspan="2" style="min-height: 200px;">
+						<img src="../images/<%=bbs.getIm_name()%>"/></td>
+
+					</tr>
 				</tbody>
 			</table>
-			<a href="bbs.jsp" class="btn btn-primary">목록</a>
+			<a href="bbs2.jsp" class="btn btn-primary">목록</a>
 			<%
 			if(logId != null && logId.equals(bbs.getLogId())){
 			%>

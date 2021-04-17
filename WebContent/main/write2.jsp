@@ -55,6 +55,7 @@ padding-top:5%;
 						</tr>
 					</tbody>
 				</table>
+				 <input type="file" class="form-control"  name="bbsimages" size="40">
 				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
 			</form>
 		</div>

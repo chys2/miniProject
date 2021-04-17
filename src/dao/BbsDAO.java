@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
 
 public class BbsDAO {
 	
@@ -14,12 +17,28 @@ public class BbsDAO {
 
 	public BbsDAO() {
 		try {
+<<<<<<< HEAD
 			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
 			String dbID = "c##root";
 			String dbPassword = "root";
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 			System.out.println("ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
+=======
+			/*
+			 * String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; String dbID =
+			 * "c##root"; String dbPassword = "root";
+			 * Class.forName("oracle.jdbc.OracleDriver"); conn =
+			 * DriverManager.getConnection(dbURL, dbID, dbPassword);
+			 */
+			
+			InitialContext ic = new InitialContext();
+
+			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+
+			 conn = ds.getConnection();
+			System.out.println("¿¬°á¿Ï·á");
+>>>>>>> master
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);

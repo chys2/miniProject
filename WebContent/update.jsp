@@ -86,7 +86,7 @@
 <!-- 게시판 메인 페이지 영역 시작 -->
 <div class="container">
 	<div class="row">
-		<form method="post" action="updateAction.jsp?bbsID=<%=bbsID%>">
+		<form method="post" action="updateAction.jsp?bbsID=<%=bbsID%>"  enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -100,11 +100,13 @@
 							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50" value="<%=bbs.getBbsTitle() %>"></td>
 						</tr>
 						<tr>
+						    
 							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"><%=bbs.getBbsContent() %></textarea></td>
 						</tr>							
 					</tr>
 				</tbody>
 			</table>
+			<input type="file" class="form-control"  name="bbsimages" size="40">
 			<!-- 글쓰기 버튼 생성 -->
 			<input type="submit" class="btn btn-primary pull-right" value="수정하기">
 		</form>

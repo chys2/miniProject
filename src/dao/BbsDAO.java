@@ -26,7 +26,11 @@ public class BbsDAO {
 //			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 			
 			
+<<<<<<< HEAD
 			 InitialContext ic = new InitialContext();
+=======
+			  InitialContext ic = new InitialContext();
+>>>>>>> 1649844f8344bda7e7b03ec48196118b91b97c89
 			  
 			  DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 			  

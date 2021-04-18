@@ -29,7 +29,11 @@ public class MemberDAO {
 			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 			 
 			 conn = ds.getConnection();
+<<<<<<< HEAD
 		
+=======
+			
+>>>>>>> 1649844f8344bda7e7b03ec48196118b91b97c89
 
 			System.out.println("연결완료");
 		} catch (Exception e) {

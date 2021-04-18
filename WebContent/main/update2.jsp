@@ -91,6 +91,7 @@ padding-top:5%;
 			<input type="file" class="form-control"  name="bbsimages" size="40">
 			<!-- 글쓰기 버튼 생성 -->
 			<input type="submit" class="btn btn-primary pull-right" value="수정하기">
+				<a href="bbs2.jsp" class="btn btn-primary">취소</a>
 		</form>
 	</div>
 </div>

@@ -116,7 +116,7 @@ html, body {
 			<br>
 			<%
 			MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile("pink");
+			ArrayList<MemberVo> list = profile.getproFile(logId);
 
 			for (int i = 0; i < list.size(); i++) {
 			%>

@@ -10,12 +10,12 @@ import java.sql.*;
 import javax.sql.*;
 import javax.naming.*;
 
-public class BbsDAO {
+public class DiaryDAO2 {
 	
 	private Connection conn;
 	private ResultSet rs;
 
-	public BbsDAO() {
+	public DiaryDAO2() {
 		try {
 
 
@@ -56,7 +56,7 @@ public class BbsDAO {
 //		return"";
 //	}
 
-	public int bbsgetNext() { // 占쌉쏙옙占쏙옙 占쏙옙호 占쌍깍옙
+	public int getNext() { // 占쌉쏙옙占쏙옙 占쏙옙호 占쌍깍옙
 		String SQL = "select bbsID from bbs order by bbsID DESC";
 
 		try {
@@ -72,12 +72,12 @@ public class BbsDAO {
 		return -1; // 占쏙옙占쏙옙占싶븝옙占싱쏙옙 占쏙옙占쏙옙
 	}
 
-	public int bbswrite(String bbsTitle, String logId, String bbsContent, String bbsImagename) {
+	public int write(String bbsTitle, String logId, String bbsContent, String bbsImagename) {
 		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsgetNext());
+			pstmt.setInt(1, getNext());
 			pstmt.setString(2, bbsTitle);
 			pstmt.setString(3, logId);
 			pstmt.setString(4, bbsContent);
@@ -91,13 +91,13 @@ public class BbsDAO {
 		return -1; // 占쏙옙占쏙옙占쏙옙 占쏙옙占싱쏙옙 占쏙옙占쏙옙
 	}
 
-	public ArrayList<vo.BbsVo> bbsgetList(int pageNumber) {
+	public ArrayList<vo.BbsVo> getList(int pageNumber) {
 		// 占쌉시깍옙 1占쏙옙 10占쏙옙占쏙옙占쏙옙 占쏙옙占�
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
 		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsgetNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.BbsVo bbs = new vo.BbsVo();
@@ -121,7 +121,7 @@ public class BbsDAO {
 		String SQL = "select * from bbs where bbsId < ? and bbsAvailable = 1 and ROWNUM <=10   order by bbsID desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsgetNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return true;
@@ -155,7 +155,7 @@ public class BbsDAO {
 		return null; // 占쏙옙占쏙옙占쏙옙 占쏙옙占싱쏙옙 占쏙옙占쏙옙
 	}
 	
-	public int bbsupdate(int bbsID, String bbsTitle, String bbsContent, String im_name) {
+	public int update(int bbsID, String bbsTitle, String bbsContent, String im_name) {
 		String sql = "update bbs set bbsTitle = ?, bbsContent = ? , bbsImagename= ?"
 				+ "where bbsID = ?";
 		try {
@@ -171,7 +171,7 @@ public class BbsDAO {
 		}
 		return -1; //占쏙옙占쏙옙占싶븝옙占싱쏙옙 占쏙옙占쏙옙
 	}
-	public int bbsdelete(int bbsID) {
+	public int delete(int bbsID) {
 		//占쏙옙占쏙옙 占쏙옙占쏙옙占싶몌옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙 占싣니띰옙 占쌉시깍옙 占쏙옙효占쏙옙占쌘몌옙 '0'占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 		String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
 		try {

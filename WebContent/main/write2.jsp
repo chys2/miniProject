@@ -37,11 +37,11 @@ padding-top:5%;
 	<div id="bbsForm">
 	<div class="container" style="width:70%" method="post" action="writeAction2.jsp">
 		<div class="row">
-<<<<<<< HEAD
+
 			<form method="post" action="writeAction2.jsp" enctype="multipart/form-data">
-=======
+
 			<form method="post" method="post" action="writeAction2.jsp" enctype="multipart/form-data" >
->>>>>>> c584659aac8d6128b1d0d2c1b905e5de69bd8d50
+
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -54,13 +54,14 @@ padding-top:5%;
 							</tr>
 							
 							<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:350px;"></textarea>
+							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:300px;"></textarea>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				 <input type="file" class="form-control"  name="bbsimages" size="40">
 				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+				<a href="bbs2.jsp" class="btn btn-primary">취소</a>
 			</form>
 		</div>
 

@@ -156,7 +156,7 @@ public class BbsDAO {
 	}
 	
 	public int update(int bbsID, String bbsTitle, String bbsContent, String im_name) {
-		String sql = "update bbs set bbsTitle = ?, bbsContent = ? , im_name=?"
+		String sql = "update bbs set bbsTitle = ?, bbsContent = ? , bbsImagename= ?"
 				+ "where bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

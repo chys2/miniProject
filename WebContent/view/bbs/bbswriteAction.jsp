@@ -82,7 +82,7 @@ bbs.setBbsImagename(im_name);
 			BbsDAO bbsDAO = new BbsDAO();
 
 
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
+			int result = bbsDAO.bbswrite(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
 
 			if (result == -1) {
 				PrintWriter script = response.getWriter();

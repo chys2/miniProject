@@ -56,8 +56,8 @@ public class DiaryDAO {
 //		return"";
 //	}
 
-	public int getNext() { // ? ?Œ‰?™?˜™? ?™?˜™ ? ?™?˜™?˜¸ ? ?Œê¹ì˜™
-		String SQL = "select bbsID from bbs order by bbsID DESC";
+	public int diarygetNext() { // ? ?Œ‰?™?˜™? ?™?˜™ ? ?™?˜™?˜¸ ? ?Œê¹ì˜™
+		String SQL = "select diaryID from diary order by diaryID DESC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -72,17 +72,16 @@ public class DiaryDAO {
 		return -1; // ? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public int write(String bbsTitle, String logId, String bbsContent, String bbsImagename) {
-		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
+	public int diarywrite(String diaryId, String logId, String diaryContent, String diaryImagename) {
+		String SQL = "insert into diary values (?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext());
-			pstmt.setString(2, bbsTitle);
-			pstmt.setString(3, logId);
-			pstmt.setString(4, bbsContent);
-			pstmt.setInt(5, 1);
-			pstmt.setString(6, bbsImagename);
+			pstmt.setInt(1, diarygetNext());
+			pstmt.setString(2, logId);
+			pstmt.setString(3, diaryContent);
+			pstmt.setInt(4, 1);
+			pstmt.setString(5, diaryImagename);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 
@@ -91,24 +90,24 @@ public class DiaryDAO {
 		return -1; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public ArrayList<vo.BbsVo> getList(int pageNumber) {
+	public ArrayList<vo.DiaryVo> getList(String logId) {
 		// ? ?Œ‰?‹œê¹ì˜™ 1? ?™?˜™ 10? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ï¿?
-		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
-		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
+		String SQL = "select * from bbs where logId = ?  and diaryAvailable = 1 and ROWNUM <=10 order by diaryID desc";
+		
+		ArrayList<vo.DiaryVo> list = new ArrayList<vo.DiaryVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setString(1,logId);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				vo.BbsVo bbs = new vo.BbsVo();
-				bbs.setBbsID(rs.getInt(1));
-				bbs.setBbsTitle(rs.getString(2));
-				bbs.setLogId(rs.getString(3));
-				bbs.setBbsDate(rs.getString(4));
-				bbs.setBbsContent(rs.getString(5));
-				bbs.setBbsAvailable(rs.getInt(6));
-				bbs.setBbsImagename(rs.getString(7));
-				list.add(bbs);
+				vo.DiaryVo diary = new vo.DiaryVo();
+				diary.setDiaryId(rs.getInt(1));
+				diary.setLogId(rs.getString(2));
+				diary.setDiaryDate(rs.getString(3));
+				diary.setDiaryContent(rs.getString(4));
+				diary.setDiaryAvailable(rs.getInt(5));
+				diary.setDiaryImagename(rs.getString(6));
+				list.add(diary);
 			}
 
 		} catch (Exception e) {
@@ -117,11 +116,11 @@ public class DiaryDAO {
 		return list; // ? ?™?˜™ì²? ? ?Œ‰?‹œë±„ì˜™ ? ?™?˜™?™˜
 	}
 
-	public boolean nextPage(int pageNumber) {
-		String SQL = "select * from bbs where bbsId < ? and bbsAvailable = 1 and ROWNUM <=10   order by bbsID desc";
+	public boolean diarynextPage(int pageNumber) {
+		String SQL = "select * from diary where diaryId < ? and diaryAvailable = 1 and ROWNUM <=10   order by diaryID desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, diarygetNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return true;
@@ -132,22 +131,21 @@ public class DiaryDAO {
 		return false; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public vo.BbsVo getBbs(int bbsID) {
-		String SQL = "select * from bbs where bbsID = ?";
+	public vo.DiaryVo getDiasry(int diaryID) {
+		String SQL = "select * from diary where diaryID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsID);
+			pstmt.setInt(1, diaryID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo.BbsVo bbs = new vo.BbsVo();
-				bbs.setBbsID(rs.getInt(1));
-				bbs.setBbsTitle(rs.getString(2));
-				bbs.setLogId(rs.getString(3));
-				bbs.setBbsDate(rs.getString(4));
-				bbs.setBbsContent(rs.getString(5));
-				bbs.setBbsAvailable(rs.getInt(6));
-				bbs.setBbsImagename(rs.getString(7));
-				return bbs;
+				vo.DiaryVo diary = new vo.DiaryVo();
+				diary.setDiaryId(rs.getInt(1));
+				diary.setLogId(rs.getString(2));
+				diary.setDiaryDate(rs.getString(3));
+				diary.setDiaryContent(rs.getString(4));
+				diary.setDiaryAvailable(rs.getInt(5));
+				diary.setDiaryImagename(rs.getString(6));
+				return diary;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,15 +153,14 @@ public class DiaryDAO {
 		return null; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 	
-	public int update(int bbsID, String bbsTitle, String bbsContent, String im_name) {
-		String sql = "update bbs set bbsTitle = ?, bbsContent = ? , bbsImagename= ?"
-				+ "where bbsID = ?";
+	public int diaryupdate(int diaryID,  String diaryContent, String diaryImagename) {
+		String sql = "update diary set diaryContent = ? , diaryImagename= ?"
+				+ "where diaryID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bbsTitle);
-			pstmt.setString(2, bbsContent);
-			pstmt.setString(3, im_name);
-			pstmt.setInt(4, bbsID);
+			pstmt.setString(1, diaryContent);
+			pstmt.setString(2, diaryImagename);
+			pstmt.setInt(3, diaryID);
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -171,12 +168,12 @@ public class DiaryDAO {
 		}
 		return -1; //? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
-	public int delete(int bbsID) {
+	public int diarydelete(int diaryID) {
 		//? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¶ëªŒì˜™ ? ?™?˜™? ?™?˜™? ?‹¹?Œ?˜™ ? ?™?˜™? ?™?˜™ ? ?‹£?‹ˆ?°?˜™ ? ?Œ‰?‹œê¹ì˜™ ? ?™?˜™?š¨? ?™?˜™? ?Œ˜ëªŒì˜™ '0'? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¼?Œ?˜™
-		String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
+		String sql = "update diary set diaryAvailable = 0 where dirayID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bbsID);
+			pstmt.setInt(1, diaryID);
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();

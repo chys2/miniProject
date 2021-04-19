@@ -4,26 +4,18 @@ import java.io.*;
 
 
 public class DiaryVo {
-	private int bbsID;
-	private String bbsTitle;
-	private String logId;
-	private String bbsDate;
-	private String bbsContent;
-	private int bbsAvailable;
-	private String bbsImagename;
-	public DiaryVo() {}
 	
-	public int getBbsID() {
-		return bbsID;
+	private int diaryId;
+	private String logId;
+	private String diaryDate;
+	private String diaryContent;
+	private int diaryAvailable;
+	private String diaryImagename;
+	public int getDiaryId() {
+		return diaryId;
 	}
-	public void setBbsID(int bbsID) {
-		this.bbsID = bbsID;
-	}
-	public String getBbsTitle() {
-		return bbsTitle;
-	}
-	public void setBbsTitle(String bbsTitle) {
-		this.bbsTitle = bbsTitle;
+	public void setDiaryId(int diaryId) {
+		this.diaryId = diaryId;
 	}
 	public String getLogId() {
 		return logId;
@@ -31,33 +23,30 @@ public class DiaryVo {
 	public void setLogId(String logId) {
 		this.logId = logId;
 	}
-	public String getBbsDate() {
-		return bbsDate;
+	public String getDiaryDate() {
+		return diaryDate;
 	}
-	public void setBbsDate(String bbsDate) {
-		this.bbsDate = bbsDate;
+	public void setDiaryDate(String diaryDate) {
+		this.diaryDate = diaryDate;
 	}
-	public String getBbsContent() {
-		return bbsContent;
+	public String getDiaryContent() {
+		return diaryContent;
 	}
-	public void setBbsContent(String bbsContent) {
-		this.bbsContent = bbsContent;
+	public void setDiaryContent(String diaryContent) {
+		this.diaryContent = diaryContent;
 	}
-	public int getBbsAvailable() {
-		return bbsAvailable;
+	public int getDiaryAvailable() {
+		return diaryAvailable;
 	}
-	public void setBbsAvailable(int bbsAvailable) {
-		this.bbsAvailable = bbsAvailable;
+	public void setDiaryAvailable(int diaryAvailable) {
+		this.diaryAvailable = diaryAvailable;
 	}
-
-	public String getBbsImagename() {
-		return bbsImagename;
+	public String getDiaryImagename() {
+		return diaryImagename;
 	}
-
-	public void setBbsImagename(String bbsImagename) {
-		this.bbsImagename = bbsImagename;
+	public void setDiaryImagename(String diaryImagename) {
+		this.diaryImagename = diaryImagename;
 	}
-
 	
 	
 }

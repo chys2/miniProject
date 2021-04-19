@@ -17,23 +17,19 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 
-//			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-//			  String dbID ="c##root"; 
-//			  String dbPassword = "root";
-//			  Class.forName("oracle.jdbc.OracleDriver"); 
-//			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+			  String dbID ="c##root"; 
+			  String dbPassword = "root";
+			  Class.forName("oracle.jdbc.OracleDriver"); 
+			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
 			
-			 InitialContext ic = new InitialContext();
-			 
-			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-			 
-			 conn = ds.getConnection();
-<<<<<<< HEAD
-		
-=======
-			
->>>>>>> 1649844f8344bda7e7b03ec48196118b91b97c89
+//			 InitialContext ic = new InitialContext();
+//			 
+//			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+//			 
+//			 conn = ds.getConnection();
+//			
 
 			System.out.println("연결완료");
 		} catch (Exception e) {

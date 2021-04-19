@@ -86,12 +86,15 @@ padding-top:5%;
 							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"><%=bbs.getBbsContent() %></textarea></td>
 						</tr>							
 					</tr>
-				</tbody>
+				<tr>
+			<td><input type="file" class="form-control"  name="bbsimages" size="40"></td>
+			</tr>
+			</tbody>
 			</table>
-			<input type="file" class="form-control"  name="bbsimages" size="40">
 			<!-- 글쓰기 버튼 생성 -->
-			<input type="submit" class="btn btn-primary pull-right" value="수정하기">
-				<a href="bbs2.jsp" class="btn btn-primary">취소</a>
+			<a href="bbs2.jsp"  class="btn btn-primary pull-right">수정취소</a>
+			<input type="submit"   style="margin-right:5px " class="btn btn-primary pull-right" value="수정하기">
+			
 		</form>
 	</div>
 </div>

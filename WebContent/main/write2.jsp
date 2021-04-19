@@ -54,14 +54,16 @@ padding-top:5%;
 							</tr>
 							
 							<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:300px;"></textarea>
+							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:270px;"></textarea>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				 <input type="file" class="form-control"  name="bbsimages" size="40">
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-				<a href="bbs2.jsp" class="btn btn-primary">취소</a>
+				<a href="bbs2.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
+				
+				<input type="submit" style="margin-right:5px " class="btn btn-primary pull-right" value="글쓰기">
+				
 			</form>
 		</div>
 

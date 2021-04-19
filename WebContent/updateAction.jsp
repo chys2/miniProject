@@ -9,7 +9,7 @@
 <%
 BbsVo bbs2 = new BbsVo();
 request.setCharacterEncoding("UTF-8");
-String im_address = request.getRealPath("/images");
+String im_address = request.getRealPath("/bbsimages");
 
 int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
  
@@ -44,7 +44,7 @@ try{
 }
 bbs2.setBbsTitle(bbsT);
 bbs2.setBbsContent(bbsC);
-bbs2.setIm_name(im_name);
+bbs2.setBbsImagename(im_name);
 %>
 <!DOCTYPE html>
 <html>

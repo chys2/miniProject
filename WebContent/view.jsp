@@ -114,7 +114,7 @@
 					<tr>
 						<td>그림</td>
 						<td colspan="2" style="min-height: 200px;">
-						<img src="images/<%=bbs.getIm_name()%>"/></td>
+						<img src="bbsimages/<%=bbs.getBbsImagename()%>"/></td>
 
 					</tr>
 				</tbody>

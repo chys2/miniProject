@@ -90,7 +90,7 @@ bbs.setIm_name(im_name);
 		} else { 
 
 			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getIm_name());
+			int result = bbsDAO.write(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

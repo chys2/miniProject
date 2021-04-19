@@ -29,7 +29,7 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미 로그인이 되어있습니다.')");
-		script.println("location.href ='main2.jsp'");
+		script.println("location.href ='../main/main.jsp'");
 		script.println("history.back()");
 		script.println("</script>");
 	}
@@ -58,7 +58,7 @@ request.setCharacterEncoding("UTF-8");
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('회원가입이 되었습니다.')");
-			script.println("location.href='main2.jsp'");
+			script.println("location.href='../main/main.jsp'");
 			script.println("</script>");
 		}
 

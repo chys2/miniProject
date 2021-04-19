@@ -31,7 +31,7 @@ a, a:hover {
 
 </head>
 <body>
-<jsp:include page="../include/top_menu_2.jsp" flush="false" />
+<jsp:include page="/include/top_menu_2.jsp" flush="false" />
 	<form id="bbsForm">
 		<div class="contatiner" style="width: 70%">
 			<div class="row">

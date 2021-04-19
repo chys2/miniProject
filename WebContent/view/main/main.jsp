@@ -13,7 +13,7 @@
 <body>
 <%String logid = request.getParameter("logid");
 session.setAttribute("userId", logid);%>
-<jsp:include page="../include/top_main.jsp" flush="false"/>
+<jsp:include page="/include/top_main.jsp" flush="false"/>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

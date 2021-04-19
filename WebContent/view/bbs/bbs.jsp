@@ -41,7 +41,7 @@ padding-top:5%;
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
 	%>
-<jsp:include page="../include/top_menu_3.jsp" flush="false"/>
+<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
 <form id="bbsForm">
 	<div class="container" style="width:70%">
 		<div class="row">
@@ -64,7 +64,7 @@ padding-top:5%;
 					%>
 					<tr>
 						<td><%=list.get(i).getBbsID()%></td>
-						<td><a href="view2.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></a></td>
+						<td><a href="bbsview.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></a></td>
 						<td><%=list.get(i).getLogId()%></td>
 						<td><%=list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + " 시"
 		+ list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
@@ -78,20 +78,20 @@ padding-top:5%;
 			<%
 			if (pageNumber != 1) {
 			%>
-			<a href="bbs2.jsp?pageNumber=<%=pageNumber - 1%>"
+			<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
 				class="btn btn-success btn-arrow-left">이전</a>
 			<%
 			}
 			if (bbsDAO.nextPage(pageNumber + 1)) {
 			%>
-			<a href="bbs2.jsp?pageNumber=<%=pageNumber + 1%>"
+			<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
 				class="btn btn-success btn-arrow-left">다음</a>
 			<%
 			}
 			%>
 
 
-			<a href="write2.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="bbswrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 
 	</div>

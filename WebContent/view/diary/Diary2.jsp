@@ -31,7 +31,7 @@ a, a:hover {
 
 </head>
 <body>
-	<jsp:include page="../include/top_menu_2.jsp" flush="false" />
+	<jsp:include page="/include/top_menu_2.jsp" flush="false" />
 	
 	
 	<form id="bbsForm">
@@ -41,7 +41,7 @@ a, a:hover {
 				
 				<div class="col-sm-10 col-md-10">
 					<div class="thumbnail">
-						<img src="../diaryimage/foot.jpg" alt="...">
+						<img src="/diaryimage/foot.jpg" alt="...">
 						<div class="caption" style="text-align: center">
 							<h4>등록된 게시물이 없습니다.</h4>
 							<p>게시물을 등록해주세요.</p>

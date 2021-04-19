@@ -37,7 +37,7 @@ padding-top:5%;
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 하세요')");
-		script.println("location.href='login2.jsp'");
+		script.println("location.href='../login/login.jsp'");
 		script.println("</script>");
 	}
 	int bbsID = 0;
@@ -49,7 +49,7 @@ padding-top:5%;
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글2입니다')");
-		script.println("location.href='bbs2.jsp'");
+		script.println("location.href='bbs.jsp'");
 		script.println("</script>");
 	} 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
@@ -58,18 +58,18 @@ padding-top:5%;
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
-		script.println("location.href='bbs2.jsp'");
+		script.println("location.href='bbs.jsp'");
 		script.println("</script>");
 	} 
 %>
-<jsp:include page="../include/top_menu_3.jsp" flush="false"/>
+<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
 <!-- 네비게이션 영역 끝 -->
 
 <!-- 게시판 메인 페이지 영역 시작 -->
 <div id="bbsForm" >
 	<div class="container" style="width:70%">
 	<div class="row">
-		<form method="post" action="updateAction2.jsp?bbsID=<%=bbsID%>" enctype="multipart/form-data">
+		<form method="post" action="bbsupdateAction.jsp?bbsID=<%=bbsID%>" enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

@@ -9,13 +9,13 @@
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
-	<jsp:include page="../include/top_main.jsp" flush="false"/>
+	<jsp:include page="/include/top_main.jsp" flush="false"/>
 	<div class="container">
 
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="joinAction2.jsp">
+				<form method="post" action="joinAction.jsp">
 					<h3 style="">회원가입</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디"

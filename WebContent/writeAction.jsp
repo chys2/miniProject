@@ -47,7 +47,7 @@ try{
 }
 bbs.setBbsTitle(bbsT);
 bbs.setBbsContent(bbsC);
-bbs.setIm_name(im_name);
+bbs.setBbsImagename(im_name);
 
 %>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,10 +46,12 @@ a, a:hover {
 						<div class="caption" style="text-align: center">
 							<h4>등록된 게시물이 없습니다.</h4>
 							<p>게시물을 등록해주세요.</p>
+							<c:if test="${!empty login }">
 							<p>
 								<a href="addDiary2.jsp" class="btn btn-primary" role="button">게시물
 									등록</a>
 							</p>
+							</c:if>
 						</div>
 					</div>
 				</div>

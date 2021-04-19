@@ -40,12 +40,12 @@ padding-top:5%;
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않는 글 입니다.')");
-		script.println("location.href ='bbs2.jsp'");
+		script.println("location.href ='bbs.jsp'");
 		script.println("</script>");
 	}
 	BbsVo bbs = new BbsDAO().getBbs(bbsID);
 	%>
-<jsp:include page="../include/top_menu_3.jsp" flush="false"/>
+<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
 	
 	<form id="bbsForm">
 	<div class="container" style="width:70%">
@@ -97,9 +97,9 @@ padding-top:5%;
 			if(logId != null && logId.equals(bbs.getLogId())){
 			%>
 				
-				<a href="update2.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
+				<a href="bbsupdate.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
 					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href=
-						"deleteAction2.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
+						"bbsdeleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
 				
 			<% 
 			}

@@ -10,12 +10,12 @@ import java.sql.*;
 import javax.sql.*;
 import javax.naming.*;
 
-public class DiaryDAO2 {
+public class DiaryDAO {
 	
 	private Connection conn;
 	private ResultSet rs;
 
-	public DiaryDAO2() {
+	public DiaryDAO() {
 		try {
 
 
@@ -32,7 +32,7 @@ public class DiaryDAO2 {
 			  
 			  conn = ds.getConnection();
 			
-			System.out.println("å ì™ì˜™å ì™ì˜™ç‹—å ï¿½");
+			System.out.println("? ?™?˜™? ?™?˜™?‹—? ï¿?");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class DiaryDAO2 {
 		}
 	}
 
-//	public String getDate() { //å ì™ì˜™å ì™ì˜™ å ì‹œê³¤ì˜™ å ìŒê¹ì˜™
+//	public String getDate() { //? ?™?˜™? ?™?˜™ ? ?‹œê³¤ì˜™ ? ?Œê¹ì˜™
 //		String SQL="select to_char(sysdate, 'YYYY/MM/DD HH24:MI:SS') from dual;";
 //		
 //		try {
@@ -56,7 +56,7 @@ public class DiaryDAO2 {
 //		return"";
 //	}
 
-	public int getNext() { // å ìŒ‰ì™ì˜™å ì™ì˜™ å ì™ì˜™í˜¸ å ìŒê¹ì˜™
+	public int getNext() { // ? ?Œ‰?™?˜™? ?™?˜™ ? ?™?˜™?˜¸ ? ?Œê¹ì˜™
 		String SQL = "select bbsID from bbs order by bbsID DESC";
 
 		try {
@@ -65,11 +65,11 @@ public class DiaryDAO2 {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; // ì²« å ì™ì˜™ì§¸ å ìŒ‰ì‹œë±„ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½
+			return 1; // ì²? ? ?™?˜™ì§? ? ?Œ‰?‹œë±„ì˜™? ?™?˜™ ? ?™?˜™? ï¿?
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // å ì™ì˜™å ì™ì˜™å ì‹¶ë¸ì˜™å ì‹±ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		return -1; // ? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
 	public int write(String bbsTitle, String logId, String bbsContent, String bbsImagename) {
@@ -88,11 +88,11 @@ public class DiaryDAO2 {
 
 			e.printStackTrace();
 		}
-		return -1; // å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		return -1; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
 	public ArrayList<vo.BbsVo> getList(int pageNumber) {
-		// å ìŒ‰ì‹œê¹ì˜™ 1å ì™ì˜™ 10å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½
+		// ? ?Œ‰?‹œê¹ì˜™ 1? ?™?˜™ 10? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ï¿?
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
 		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {
@@ -114,7 +114,7 @@ public class DiaryDAO2 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list; // å ì™ì˜™ì²´ å ìŒ‰ì‹œë±„ì˜™ å ì™ì˜™í™˜
+		return list; // ? ?™?˜™ì²? ? ?Œ‰?‹œë±„ì˜™ ? ?™?˜™?™˜
 	}
 
 	public boolean nextPage(int pageNumber) {
@@ -129,7 +129,7 @@ public class DiaryDAO2 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false; // å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		return false; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
 	public vo.BbsVo getBbs(int bbsID) {
@@ -152,7 +152,7 @@ public class DiaryDAO2 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null; // å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		return null; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 	
 	public int update(int bbsID, String bbsTitle, String bbsContent, String im_name) {
@@ -169,10 +169,10 @@ public class DiaryDAO2 {
 			e.printStackTrace();
 			System.out.println(e);
 		}
-		return -1; //å ì™ì˜™å ì™ì˜™å ì‹¶ë¸ì˜™å ì‹±ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		return -1; //? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 	public int delete(int bbsID) {
-		//å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™ å ì‹£ë‹ˆë°ì˜™ å ìŒ‰ì‹œê¹ì˜™ å ì™ì˜™íš¨å ì™ì˜™å ìŒ˜ëªŒì˜™ '0'å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™
+		//? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¶ëªŒì˜™ ? ?™?˜™? ?™?˜™? ?‹¹?Œ?˜™ ? ?™?˜™? ?™?˜™ ? ?‹£?‹ˆ?°?˜™ ? ?Œ‰?‹œê¹ì˜™ ? ?™?˜™?š¨? ?™?˜™? ?Œ˜ëªŒì˜™ '0'? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¼?Œ?˜™
 		String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -181,7 +181,7 @@ public class DiaryDAO2 {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //å ì™ì˜™å ì™ì˜™å ì‹¶ë¸ì˜™å ì‹±ì™ì˜™ å ì™ì˜™å ì™ì˜™ 
+		return -1; //? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™ 
 	}
 
 }

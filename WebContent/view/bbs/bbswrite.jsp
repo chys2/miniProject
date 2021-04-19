@@ -33,14 +33,13 @@ padding-top:5%;
 		logId = (String) session.getAttribute("logId");
 	}
 	%>
-	<jsp:include page="../include/top_menu_3.jsp" flush="false"/>
+	<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
 	<div id="bbsForm">
-	<div class="container" style="width:70%" method="post" action="writeAction2.jsp">
+	<div class="container" style="width:70%" method="post" action="bbswriteAction.jsp">
 		<div class="row">
 
-			<form method="post" action="writeAction2.jsp" enctype="multipart/form-data">
+			<form method="post" action="bbswriteAction.jsp" enctype="multipart/form-data">
 
-			<form method="post" method="post" action="writeAction2.jsp" enctype="multipart/form-data" >
 
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -60,7 +59,7 @@ padding-top:5%;
 					</tbody>
 				</table>
 				 <input type="file" class="form-control"  name="bbsimages" size="40">
-				<a href="bbs2.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
+				<a href="bbs.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
 				
 				<input type="submit" style="margin-right:5px " class="btn btn-primary pull-right" value="글쓰기">
 				

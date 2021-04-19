@@ -1,19 +1,16 @@
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="java.util.Enumeration"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.BbsDAO"%>
 <%@ page import="vo.BbsVo"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="java.sql.*" %> 
-<%@ page import="java.io.*, java.util.*" %>
 <%
-BbsVo bbs = new BbsVo();
+BbsVo bbs2 = new BbsVo();
 request.setCharacterEncoding("UTF-8");
+String im_address = request.getRealPath("/bbsimages");
 
- String im_address = request.getRealPath("/bbsimages");
- 
 int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
  
 String name ="";
@@ -45,14 +42,10 @@ try{
 }catch(Exception e){
     e.printStackTrace();
 }
-bbs.setBbsTitle(bbsT);
-bbs.setBbsContent(bbsC);
-bbs.setBbsImagename(im_name); 
-
+bbs2.setBbsTitle(bbsT);
+bbs2.setBbsContent(bbsC);
+bbs2.setBbsImagename(im_name);
 %>
-<%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
-<jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent" />  --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,42 +65,57 @@ bbs.setBbsImagename(im_name);
 		script.println("alert('로그인을 하세요.')");
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
-	}else{
-		if (bbs.getBbsTitle().equals("") || bbs.getBbsContent().equals("") || 
-				bbs.getBbsTitle() == null || bbs.getBbsContent()==null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('입력이 안된사항이 있습니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-		} 
-		else {
-
-			BbsDAO bbsDAO = new BbsDAO();
-
-
-			int result = bbsDAO.bbswrite(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
-
-			if (result == -1) {
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('글쓰기에 실패했습니다.')");
-				script.println("history.back()");
-				script.println("</script>");
-			}
-
-			else {
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('글을 작성하였습니다.')");
-				script.println("location.href='bbs.jsp'");
-				script.println("</script>");
-			}
-
-		}
+	}
+	int bbsID = 0;
+	if (request.getParameter("bbsID") != null) {
+		bbsID = Integer.parseInt(request.getParameter("bbsID"));
+	}
+	if (bbsID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다')");
+		script.println("location.href='bbs.jsp'");
+		script.println("</script>");
 	}
 
-	
+	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
+	BbsVo bbs = new BbsDAO().getBbs(bbsID);
+	if (!logId.equals(bbs.getLogId())) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('권한이 없습니다')");
+		script.println("location.href='bbs.jsp'");
+		script.println("</script>");
+	} else {
+		// 입력이 안 됐거나 빈 값이 있는지 체크한다
+		if (multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null
+		|| multi.getParameter("bbsTitle").equals("") || multi.getParameter("bbsContent").equals("")) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('입력이 안 된 사항이 있습니다')");
+			script.println("history.back()");
+			script.println("</script>");
+		} else {
+			// 정상적으로 입력이 되었다면 글 수정 로직을 수행한다
+			BbsDAO bbsDAO = new BbsDAO();
+			int result = bbsDAO.bbsupdate(bbsID, multi.getParameter("bbsTitle"), multi.getParameter("bbsContent"),im_name);
+			// 데이터베이스 오류인 경우
+			if (result == -1) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('글 수정하기에 실패했습니다')");
+		script.println("history.back()");
+		script.println("</script>");
+		// 글 수정이 정상적으로 실행되면 알림창을 띄우고 게시판 메인으로 이동한다
+			} else {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('글 수정하기 성공')");
+		script.println("location.href='bbs.jsp'");
+		script.println("</script>");
+			}
+		}
+	}
 	%>
 
 

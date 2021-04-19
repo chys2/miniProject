@@ -62,7 +62,7 @@ padding-top:5%;
 		script.println("</script>");
 	} 
 %>
-<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
+<jsp:include page="/include/top_menu_2.jsp" flush="false"/>
 <!-- 네비게이션 영역 끝 -->
 
 <!-- 게시판 메인 페이지 영역 시작 -->
@@ -92,7 +92,7 @@ padding-top:5%;
 			</tbody>
 			</table>
 			<!-- 글쓰기 버튼 생성 -->
-			<a href="bbs.jsp"  class="btn btn-primary pull-right">수정취소</a>
+			<a href="bbs2.jsp"  class="btn btn-primary pull-right">수정취소</a>
 			<input type="submit"   style="margin-right:5px " class="btn btn-primary pull-right" value="수정하기">
 			
 		</form>

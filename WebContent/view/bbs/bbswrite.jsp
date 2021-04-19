@@ -14,15 +14,14 @@ a, a:hover {
 	color: #000000;
 	text-decoration: none;
 }
+
 #bbsForm {
-padding-top:5%;
+	padding-top: 5%;
 	height: 85%;
 	width: 80%;
-	float:right;
+	float: right;
 	background: yellow;
-
 }
-
 </style>
 </head>
 
@@ -33,44 +32,50 @@ padding-top:5%;
 		logId = (String) session.getAttribute("logId");
 	}
 	%>
-	<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
+	<jsp:include page="/include/top_menu_3.jsp" flush="false" />
 	<div id="bbsForm">
-	<div class="container" style="width:70%" method="post" action="bbswriteAction.jsp">
-		<div class="row">
+		<div class="container" style="width: 70%" >
+			<div class="row">
 
-			<form method="post" action="bbswriteAction.jsp" enctype="multipart/form-data">
+				<form method="post" action="bbswriteAction.jsp"
+					enctype="multipart/form-data">
 
 
-				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th colspan="2"	style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
-							</tr>
-							
+					<table class="table table-striped"
+						style="text-align: center; border: 1px solid #dddddd">
+						<thead>
 							<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:270px;"></textarea>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				 <input type="file" class="form-control"  name="bbsimages" size="40">
-				<a href="bbs.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
-				
-				<input type="submit" style="margin-right:5px " class="btn btn-primary pull-right" value="글쓰기">
-				
-			</form>
+								<th colspan="2"
+									style="background-color: #eeeeee; text-align: center;">게시판
+									글쓰기 양식</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" class="form-control"
+									placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+							</tr>
+
+							<tr>
+								<td><textarea class="form-control" placeholder="글 내용"
+										name="bbsContent" maxlength="2048" style="height: 270px;"></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="file" class="form-control" name="bbsimages" size="40">
+					<a href="bbs.jsp" class="btn btn-primary pull-right">글쓰기 취소</a> <input
+						type="submit" style="margin-right: 5px"
+						class="btn btn-primary pull-right" value="글쓰기">
+
+				</form>
+			</div>
+
 		</div>
 
 	</div>
-	
-</div>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
-	
+
 </html>

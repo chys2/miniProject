@@ -6,13 +6,11 @@
 <%@ page import="dao.BbsDAO"%>
 <%@ page import="vo.BbsVo"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="java.sql.*" %> 
-<%@ page import="java.io.*, java.util.*" %>
 <%
 BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");
 
- String im_address = request.getRealPath("/bbsimages");
+String im_address = request.getRealPath("/bbsimages");
  
 int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
  
@@ -47,12 +45,12 @@ try{
 }
 bbs.setBbsTitle(bbsT);
 bbs.setBbsContent(bbsC);
-bbs.setBbsImagename(im_name); 
+bbs.setBbsImagename(im_name);
 
 %>
 <%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
 <jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent" />  --%>
+<jsp:setProperty name="bbs" property="bbsContent" /> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,15 +71,13 @@ bbs.setBbsImagename(im_name);
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	}else{
-		if (bbs.getBbsTitle().equals("") || bbs.getBbsContent().equals("") || 
-				bbs.getBbsTitle() == null || bbs.getBbsContent()==null) {
+		if (bbs.getBbsTitle() == null || bbs.getBbsContent()==null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안된사항이 있습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} 
-		else {
+		} else {
 
 			BbsDAO bbsDAO = new BbsDAO();
 

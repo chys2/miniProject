@@ -45,7 +45,7 @@ padding-top:5%;
 	}
 	BbsVo bbs = new BbsDAO().getBbs(bbsID);
 	%>
-<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
+<jsp:include page="/include/top_menu_2.jsp" flush="false"/>
 	
 	<form id="bbsForm">
 	<div class="container" style="width:70%">

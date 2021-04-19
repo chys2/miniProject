@@ -7,7 +7,7 @@
 <%@ page import="java.sql.*" %> 
 <%@ page import="java.io.*, java.util.*" %>
 
-<%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" /> --%>
+<jsp:useBean id="bbs" class="vo.BbsVo" scope="page" /> 
 <%
 BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");

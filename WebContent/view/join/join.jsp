@@ -71,7 +71,7 @@ body {
 
 				</div>
 
-				<button type="submit" name="go" class="btn btn-primary btn-block">회원가입</button>
+					<input type="submit" class="btn btn-primary form-control" value="회원가입">
 
 
 

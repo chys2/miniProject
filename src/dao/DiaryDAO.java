@@ -72,7 +72,7 @@ public class DiaryDAO {
 		return -1; // ? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public int diarywrite(String diaryId, String logId, String diaryContent, String diaryImagename) {
+	public int diarywrite( String logId, String diaryContent, String diaryImagename) {
 		String SQL = "insert into diary values (?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
 
 		try {
@@ -90,14 +90,15 @@ public class DiaryDAO {
 		return -1; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public ArrayList<vo.DiaryVo> getList(String logId) {
+	public ArrayList<vo.DiaryVo> getList(String logId,int pageNumber) {
 		// ? ?Œ‰?‹œê¹ì˜™ 1? ?™?˜™ 10? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ï¿?
-		String SQL = "select * from bbs where logId = ?  and diaryAvailable = 1 and ROWNUM <=10 order by diaryID desc";
+		String SQL = "select * from diary where logId = ? and diaryId < ? and diaryAvailable = 1 and ROWNUM <=10 order by diaryId desc";
 		
 		ArrayList<vo.DiaryVo> list = new ArrayList<vo.DiaryVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1,logId);
+			 pstmt.setString(1,logId); 
+			pstmt.setInt(2,diarygetNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.DiaryVo diary = new vo.DiaryVo();
@@ -131,7 +132,7 @@ public class DiaryDAO {
 		return false; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public vo.DiaryVo getDiasry(int diaryID) {
+	public vo.DiaryVo getDiary(int diaryID) {
 		String SQL = "select * from diary where diaryID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

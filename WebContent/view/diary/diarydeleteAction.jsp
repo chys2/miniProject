@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dao.BbsDAO"%>
-<%@ page import="vo.BbsVo"%>
+<%@ page import="dao.DiaryDAO"%>
+<%@ page import="vo.DiaryVo"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -26,30 +26,30 @@ request.setCharacterEncoding("UTF-8");
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	}
-	int bbsID = 0;
-	if (request.getParameter("bbsID") != null) {
-		bbsID = Integer.parseInt(request.getParameter("bbsID"));
+	int diaryID = 0;
+	if (request.getParameter("diaryID") != null) {
+		diaryID = Integer.parseInt(request.getParameter("diaryID"));
 	}
-	if (bbsID == 0) {
+	if (diaryID == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 	}
 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	BbsVo bbs = new BbsDAO().getBbs(bbsID);
-	if (!logId.equals(bbs.getLogId())) {
+	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
+	if (!logId.equals(diary.getLogId())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 	} else {
 		// 정상적으로 입력이 되었다면 글 수정 로직을 수행한다
-		BbsDAO bbsDAO = new BbsDAO();
-		int result = bbsDAO.bbsdelete(bbsID);
+		DiaryDAO diaryDAO = new DiaryDAO();
+		int result = diaryDAO.diarydelete(diaryID);
 		// 데이터베이스 오류인 경우
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
@@ -62,7 +62,7 @@ request.setCharacterEncoding("UTF-8");
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('글 삭제 성공')");
-			script.println("location.href='bbs.jsp'");
+			script.println("location.href='diary.jsp'");
 			script.println("</script>");
 		}
 	}

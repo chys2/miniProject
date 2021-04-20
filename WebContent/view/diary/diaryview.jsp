@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="vo.BbsVo"%>
-<%@ page import="dao.BbsDAO"%>
+<%@ page import="vo.DiaryVo"%>
+<%@ page import="dao.DiaryDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
@@ -32,18 +32,18 @@ padding-top:5%;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-	int bbsID=0;
-	if(request.getParameter("bbsID") != null){
-		bbsID=Integer.parseInt(request.getParameter("bbsID"));
+	int diaryID=0;
+	if(request.getParameter("diaryID") != null){
+		diaryID=Integer.parseInt(request.getParameter("diaryID"));
 	}
-	if(bbsID==0){
+	if(diaryID==0){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않는 글 입니다.')");
-		script.println("location.href ='bbs.jsp'");
+		script.println("location.href ='diary.jsp'");
 		script.println("</script>");
 	}
-	BbsVo bbs = new BbsDAO().getBbs(bbsID);
+	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
 	%>
 <jsp:include page="/include/top_menu_2.jsp" flush="false"/>
 	
@@ -61,32 +61,32 @@ padding-top:5%;
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<%-- <tr>
 						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%= bbs.getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
-					</tr>
+						<td colspan="2"><%= diary.getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+					</tr> --%>
 					<tr>
 						<td>작성자</td>
-						<td colspan="2"><%= bbs.getLogId() %></td>
+						<td colspan="2"><%= diary.getLogId() %></td>
 
 					</tr>
 					<tr>
 						<td>작성일자</td>
-						<td colspan="2"><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + " 시"
-									+ bbs.getBbsDate().substring(14, 16) + "분"%></td>
+						<td colspan="2"><%=diary.getDiaryDate().substring(0, 11) + diary.getDiaryDate().substring(11, 13) + " 시"
+									+ diary.getDiaryDate().substring(14, 16) + "분"%></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
+						<td colspan="2" style="min-height: 200px; text-align: left;"><%= diary.getDiaryContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
 
 					</tr>
 					
-					<%if(bbs.getBbsImagename()!=null){ 
+					<%if(diary.getDiaryImagename()!=null){ 
 					%>
 					<tr>
 						<td>그림</td>
 						<td colspan="2" style="min-height: 200px;">
-						<img src="../../bbsimages/<%=bbs.getBbsImagename()%>"/></td>
+						<img src="../../diaryimage/<%=diary.getDiaryImagename()%>"/></td>
 
 					</tr>
 					<%} %>
@@ -94,12 +94,12 @@ padding-top:5%;
 			</table>
 			<a href="bbs.jsp" class="btn btn-primary">목록</a>
 			<%
-			if(logId != null && logId.equals(bbs.getLogId())){
+			if(logId != null && logId.equals(diary.getLogId())){
 			%>
 				
-				<a href="bbsupdate.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
+				<a href="bbsupdate.jsp?diaryID=<%= diaryID %>" class="btn btn-primary">수정</a>
 					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href=
-						"bbsdeleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
+						"bbsdeleteAction.jsp?diaryID=<%= diaryID %>" class="btn btn-primary">삭제</a>
 				
 			<% 
 			}

@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="dao.BbsDAO"%>
-<%@ page import="vo.BbsVo"%>
+<%@ page import="dao.DiaryDAO"%>
+<%@ page import="vo.DiaryVo"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@ a, a:hover {
 	color: #000000;
 	text-decoration: none;
 }
-#bbsForm {
+#diaryForm {
 padding-top:5%;
 	height: 85%;
 	width: 80%;
@@ -41,8 +41,8 @@ padding-top:5%;
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
 	%>
-<jsp:include page="/include/top_menu_3.jsp" flush="false"/>
-<form id="bbsForm">
+<jsp:include page="/include/top_menu_2.jsp" flush="false"/>
+<form id="diaryForm">
 	<div class="container" style="width:70%">
 		<div class="row">
 			<table class="table table-striped"
@@ -50,25 +50,24 @@ padding-top:5%;
 				<thead>
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center">번호</th>
-						<th style="background-color: #eeeeee; text-align: center">제목</th>
+						<!-- <th style="background-color: #eeeeee; text-align: center">제목</th> -->
 						<th style="background-color: #eeeeee; text-align: center">작성자</th>
 						<th style="background-color: #eeeeee; text-align: center">작성일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-					BbsDAO bbsDAO = new BbsDAO();
-					ArrayList<BbsVo> list = bbsDAO.getList(pageNumber);
+					DiaryDAO diaryDAO = new DiaryDAO();
+					ArrayList<DiaryVo> list = diaryDAO.getList(logId,pageNumber);
 
 					for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
-						<td><a href="diaryview.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></a></td>
+						<td><%=list.get(i).getDiaryId() %></td>
+						<%-- <td><a href="diaryview.jsp?diaryID=<%=list.get(i).getDiaryId()%>"> --%><%-- <%=list.get(i).getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%> --%></a></td>
 						<td><%=list.get(i).getLogId()%></td>
-						<td><%=list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + " 시"
-		+ list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
-					</tr>
+						<td><%=list.get(i).getDiaryDate().substring(0, 11) + list.get(i).getDiaryDate().substring(11, 13) + " 시"+ list.get(i).getDiaryDate().substring(14, 16) + "분"%></td>
+					</tr> 
 
 					<%
 					}
@@ -82,7 +81,7 @@ padding-top:5%;
 				class="btn btn-success btn-arrow-left">이전</a>
 			<%
 			}
-			if (bbsDAO.nextPage(pageNumber + 1)) {
+			if (diaryDAO.diarynextPage(pageNumber + 1)) {
 			%>
 			<a href="diary.jsp?pageNumber=<%=pageNumber + 1%>"
 				class="btn btn-success btn-arrow-left">다음</a>
@@ -91,7 +90,7 @@ padding-top:5%;
 			%>
 
 
-			<a href="bbswrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 
 	</div>

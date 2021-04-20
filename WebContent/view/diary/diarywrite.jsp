@@ -14,7 +14,7 @@ a, a:hover {
 	color: #000000;
 	text-decoration: none;
 }
-#bbsForm {
+#diaryForm {
 padding-top:5%;
 	height: 85%;
 	width: 80%;
@@ -34,11 +34,11 @@ padding-top:5%;
 	}
 	%>
 	<jsp:include page="/include/top_menu_2.jsp" flush="false"/>
-	<div id="bbsForm">
-	<div class="container" style="width:70%" method="post" action="bbswriteAction.jsp">
+	<div id="diaryForm">
+	<div class="container" style="width:70%" >
 		<div class="row">
 
-			<form method="post" action="bbswriteAction.jsp" enctype="multipart/form-data">
+			<form method="post" action="diarywriteAction.jsp" enctype="multipart/form-data">
 
 
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -48,18 +48,18 @@ padding-top:5%;
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<!-- <tr>
 							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
-							</tr>
+							</tr> -->
 							
 							<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:270px;"></textarea>
+							<td><textarea class="form-control" placeholder="글 내용" name="diaryContent" maxlength="2048" style="height:270px;"></textarea>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				 <input type="file" class="form-control"  name="bbsimages" size="40">
-				<a href="bbs.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
+				 <input type="file" class="form-control"  name="diaryimages" size="40">
+				<a href="diary.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
 				
 				<input type="submit" style="margin-right:5px " class="btn btn-primary pull-right" value="글쓰기">
 				

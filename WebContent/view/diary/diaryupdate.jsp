@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dao.BbsDAO"%>
-<%@ page import="vo.BbsVo"%>
+<%@ page import="dao.DiaryDAO"%>
+<%@ page import="vo.DiaryVo"%>
 <%@ page import="java.io.PrintWriter"%>
 <%request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
@@ -40,21 +40,21 @@ padding-top:5%;
 		script.println("location.href='../login/login.jsp'");
 		script.println("</script>");
 	}
-	int bbsID = 0;
+	int diaryID = 0;
 	
-	if(request.getParameter("bbsID") != null){
-		bbsID = Integer.parseInt(request.getParameter("bbsID"));
+	if(request.getParameter("diaryID") != null){
+		diaryID = Integer.parseInt(request.getParameter("diaryID"));
 	}
- 	if(bbsID == 0){
+ 	if(diaryID == 0){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글2입니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 	} 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	BbsVo bbs = new BbsDAO().getBbs(bbsID);
-	if(! logId.equals(bbs.getLogId())){
+	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
+	if(! logId.equals(diary.getLogId())){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
@@ -69,7 +69,7 @@ padding-top:5%;
 <div id="bbsForm" >
 	<div class="container" style="width:70%">
 	<div class="row">
-		<form method="post" action="bbsupdateAction.jsp?bbsID=<%=bbsID%>" enctype="multipart/form-data">
+		<form method="post" action="diaryupdateAction.jsp?diaryID=<%=diaryID%>" enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -79,20 +79,20 @@ padding-top:5%;
 				<tbody>
 					<tr>
 						<!-- 테스트 코드 -->
-						<tr>
+					<%-- 	<tr>
 							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50" value="<%=bbs.getBbsTitle() %>"></td>
-						</tr>
+						</tr> --%>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"><%=bbs.getBbsContent() %></textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="diaryContent" maxlength="2048" style="height: 350px;"><%=diary.getDiaryContent() %></textarea></td>
 						</tr>							
 					</tr>
 				<tr>
-			<td><input type="file" class="form-control"  name="bbsimages" size="40"></td>
+			<td><input type="file" class="form-control"  name="diaryimages" size="40"></td>
 			</tr>
 			</tbody>
 			</table>
 			<!-- 글쓰기 버튼 생성 -->
-			<a href="bbs2.jsp"  class="btn btn-primary pull-right">수정취소</a>
+			<a href="dairy.jsp"  class="btn btn-primary pull-right">수정취소</a>
 			<input type="submit"   style="margin-right:5px " class="btn btn-primary pull-right" value="수정하기">
 			
 		</form>

@@ -79,7 +79,7 @@ html, body {
     <ul class="nav navbar-nav">
       <li ><a href="../main/main.jsp">홈</a></li>
       <li ><a href="#">강아지에 의한 지출</a></li>
-      <li><a href="../diary/Diary2.jsp">강아지를 위한 일기</a></li>
+      <li><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
       <li class="active"><a href="../bbs/bbs.jsp">강아지의친구</a></li>
     </ul>
     <%

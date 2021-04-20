@@ -48,23 +48,19 @@ html, body {
     <%
 			if (logId == null) { //로그인 안 했을때
 			%>
-    <ul class="nav navbar-nav navbar-right">
+     <ul class="nav navbar-nav navbar-right">
       <li><a href="../login/login.jsp"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
       <li><a href="../join/join.jsp"><span class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
-    </ul>
+    </ul> 
     <%
 			} else{ //로그인 했을때
 			%>
 				<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">회원관리<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-					<li><a href="#">마이페이지</a>
+					<li><a href="../mypage/mypage.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a>
 					</li>
-						<li><a href="../login/loginOutAction.jsp">로그아웃</a></li>
-					</ul></li>
-			</ul>
+						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
+					</ul>
+ -->			</ul>
 			<%
 			}
 			%>

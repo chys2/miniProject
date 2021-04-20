@@ -79,6 +79,33 @@ public class MemberDAO {
 
 	}
 
+	public ArrayList<vo.MemberVo> mypage(String logId) {
+		// 프로필 메소드
+		String SQL = "select * from member where logid= ? ";
+		ArrayList<vo.MemberVo> mypage = new ArrayList<vo.MemberVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.MemberVo membermypage = new vo.MemberVo();
+				membermypage.setLogid(rs.getString(1));
+				membermypage.setPwd(rs.getString(2));
+				membermypage.setDogname(rs.getString(3));
+				membermypage.setEmail(rs.getString(4));
+				membermypage.setGender(rs.getString(5));
+				membermypage.setAge(rs.getString(6));
+				mypage.add(membermypage);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mypage;
+	}
+	
+	
+	
 	public ArrayList<vo.MemberVo> getproFile(String logId) {
 		// 프로필 메소드
 		String SQL = "select dogname, age,gender, email  from member where logid= ? ";

@@ -6,6 +6,13 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
+<jsp:useBean id="member" class="vo.MemberVo" scope="page" />
+<jsp:setProperty name="member" property="logid" />
+<jsp:setProperty name="member" property="pwd" />
+<jsp:setProperty name="member" property="dogname" />
+<jsp:setProperty name="member" property="email" />
+<jsp:setProperty name="member" property="gender" />
+<jsp:setProperty name="member" property="age" />
 <!DOCTYPE html>
 <html>
 <head>

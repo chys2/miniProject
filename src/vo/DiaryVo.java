@@ -11,6 +11,9 @@ public class DiaryVo {
 	private String diaryContent;
 	private int diaryAvailable;
 	private String diaryImagename;
+	private int count;
+	
+	
 	public int getDiaryId() {
 		return diaryId;
 	}
@@ -46,6 +49,12 @@ public class DiaryVo {
 	}
 	public void setDiaryImagename(String diaryImagename) {
 		this.diaryImagename = diaryImagename;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 	

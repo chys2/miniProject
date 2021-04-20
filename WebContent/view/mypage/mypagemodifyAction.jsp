@@ -25,14 +25,7 @@ request.setCharacterEncoding("UTF-8");
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-	if (logId != null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미 로그인이 되어있습니다.')");
-		script.println("location.href ='../main/main.jsp'");
-		script.println("history.back()");
-		script.println("</script>");
-	}
+
 
 	if (member.getLogid() == null || member.getPwd() == null || member.getDogname() == null || member.getEmail() == null
 			|| member.getGender() == null || member.getAge() == null) {
@@ -44,7 +37,7 @@ request.setCharacterEncoding("UTF-8");
 	} else {
 
 		MemberDAO memberDAO = new MemberDAO();
-		int result = memberDAO.join(member);
+		int result = memberDAO.modify(member);
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -57,7 +50,7 @@ request.setCharacterEncoding("UTF-8");
 			session.setAttribute("logId", member.getLogid());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('회원가입이 되었습니다.')");
+			script.println("alert('정보수정이 되었습니다.')");
 			script.println("location.href='../main/main.jsp'");
 			script.println("</script>");
 		}

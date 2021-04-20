@@ -7,6 +7,21 @@ public class MemberVo {
 	private String email;
 	private String gender;
 	private String age;
+	
+
+	public MemberVo() {
+		
+	}
+
+	public MemberVo(String logid, String pwd, String dogname, String email, String gender, String age) {
+		
+		this.logid = logid;
+		this.pwd = pwd;
+		this.dogname = dogname;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
+	}
 
 	public String getLogid() {
 		return logid;

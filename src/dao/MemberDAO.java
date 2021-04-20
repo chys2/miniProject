@@ -78,6 +78,23 @@ public class MemberDAO {
 		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
 
 	}
+	public int modify(vo.MemberVo member) {
+		String sql = "update MEMBER set pwd = ?, dogname = ? , email =?, gender =?, age =? where logId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getPwd());
+			pstmt.setString(2, member.getDogname());
+			pstmt.setString(3, member.getEmail() );
+			pstmt.setString(4, member.getGender());
+			pstmt.setString(5, member.getAge());
+			pstmt.setString(6, member.getLogid());
+			return pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
+		return -1; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	}
 
 	public ArrayList<vo.MemberVo> mypage(String logId) {
 		// ÇÁ·ÎÇÊ ¸Þ¼Òµå

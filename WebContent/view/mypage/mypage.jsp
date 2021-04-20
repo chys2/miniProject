@@ -40,7 +40,7 @@ function back(){
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="mypageAction.jsp">
+				<form method="post" action="mypagemodifyAction.jsp">
 					<h3 style="">정보수정</h3>
 
 					<%
@@ -78,7 +78,7 @@ function back(){
 					<div class="form-group" style="text-align: center;">
 
 						<%
-						if (list.get(i).getGender().equals(logId)) {
+						if (list.get(i).getGender().equals("남자")) {
 						%>
 
 						<div class="btn-group" data-toggle="buttons">

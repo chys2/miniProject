@@ -35,7 +35,7 @@ a, a:hover {
 	<jsp:include page="/include/top_menu_2.jsp" flush="false" />
 	
 	
-	<form id="bbsForm">
+	<form id="diaryForm">
 		<div class="container" style="width: 70%">
 			<div class="row">
 				

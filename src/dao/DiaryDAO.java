@@ -11,28 +11,25 @@ import javax.sql.*;
 import javax.naming.*;
 
 public class DiaryDAO {
-	
+
 	private Connection conn;
 	private ResultSet rs;
 
 	public DiaryDAO() {
 		try {
 
+			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+			 String dbID ="c##root"; String dbPassword = "root";
+			 Class.forName("oracle.jdbc.OracleDriver"); 
+			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
-			
-//			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-//			 String dbID ="c##root"; String dbPassword = "root";
-//			 Class.forName("oracle.jdbc.OracleDriver"); 
-//			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
-			
-			
-			 InitialContext ic = new InitialContext();
-			  
-			  DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-			  
-			  conn = ds.getConnection();
-			
-			System.out.println("? ?™?˜™? ?™?˜™?‹—? ï¿?");
+//			InitialContext ic = new InitialContext();
+//
+//			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+//
+//			conn = ds.getConnection();
+
+			System.out.println("¿¬°á¿Ï·á");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +69,7 @@ public class DiaryDAO {
 		return -1; // ? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public int diarywrite( String logId, String diaryContent, String diaryImagename) {
+	public int diarywrite(String logId, String diaryContent, String diaryImagename) {
 		String SQL = "insert into diary values (?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
 
 		try {
@@ -90,15 +87,36 @@ public class DiaryDAO {
 		return -1; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public ArrayList<vo.DiaryVo> getList(String logId,int pageNumber) {
+	public ArrayList<vo.DiaryVo> diarycheck(String logId) {
+		String SQL = "select logid, count(diaryAvailable) from diary where diaryAvailable =1 and logid= ? group by logid";
+		ArrayList<vo.DiaryVo> check = new ArrayList<vo.DiaryVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.DiaryVo diary = new vo.DiaryVo();
+				diary.setLogId(rs.getString(1));
+				diary.setCount(rs.getInt(2));
+				check.add(diary);
+			}
+			System.out.println("test");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check; // ? ?™?˜™ì²? ? ?Œ‰?‹œë±„ì˜™ ? ?™?˜™?™˜
+	}
+
+	public ArrayList<vo.DiaryVo> getList(String logId, int pageNumber) {
 		// ? ?Œ‰?‹œê¹ì˜™ 1? ?™?˜™ 10? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ï¿?
 		String SQL = "select * from diary where logId = ? and diaryId < ? and diaryAvailable = 1 and ROWNUM <=10 order by diaryId desc";
-		
+
 		ArrayList<vo.DiaryVo> list = new ArrayList<vo.DiaryVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			 pstmt.setString(1,logId); 
-			pstmt.setInt(2,diarygetNext() - (pageNumber - 1) * 10);
+			pstmt.setString(1, logId);
+			pstmt.setInt(2, diarygetNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.DiaryVo diary = new vo.DiaryVo();
@@ -153,33 +171,34 @@ public class DiaryDAO {
 		}
 		return null; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
-	
-	public int diaryupdate(int diaryID,  String diaryContent, String diaryImagename) {
-		String sql = "update diary set diaryContent = ? , diaryImagename= ?"
-				+ "where diaryID = ?";
+
+	public int diaryupdate(int diaryID, String diaryContent, String diaryImagename) {
+		String sql = "update diary set diaryContent = ? , diaryImagename= ?" + "where diaryID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, diaryContent);
 			pstmt.setString(2, diaryImagename);
 			pstmt.setInt(3, diaryID);
 			return pstmt.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
 		}
-		return -1; //? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
+		return -1; // ? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
+
 	public int diarydelete(int diaryID) {
-		//? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¶ëªŒì˜™ ? ?™?˜™? ?™?˜™? ?‹¹?Œ?˜™ ? ?™?˜™? ?™?˜™ ? ?‹£?‹ˆ?°?˜™ ? ?Œ‰?‹œê¹ì˜™ ? ?™?˜™?š¨? ?™?˜™? ?Œ˜ëªŒì˜™ '0'? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¼?Œ?˜™
+		// ? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¶ëªŒì˜™ ? ?™?˜™? ?™?˜™? ?‹¹?Œ?˜™ ? ?™?˜™? ?™?˜™ ? ?‹£?‹ˆ?°?˜™
+		// ? ?Œ‰?‹œê¹ì˜™ ? ?™?˜™?š¨? ?™?˜™? ?Œ˜ëªŒì˜™ '0'? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¼?Œ?˜™
 		String sql = "update diary set diaryAvailable = 0 where dirayID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, diaryID);
 			return pstmt.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™ 
+		return -1; // ? ?™?˜™? ?™?˜™? ?‹¶ë¸ì˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
 }

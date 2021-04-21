@@ -78,7 +78,51 @@ public class MemberDAO {
 		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
 
 	}
+	public int modify(vo.MemberVo member) {
+		String sql = "update MEMBER set pwd = ?, dogname = ? , email =?, gender =?, age =? where logId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getPwd());
+			pstmt.setString(2, member.getDogname());
+			pstmt.setString(3, member.getEmail() );
+			pstmt.setString(4, member.getGender());
+			pstmt.setString(5, member.getAge());
+			pstmt.setString(6, member.getLogid());
+			return pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
+		return -1; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	}
 
+	public ArrayList<vo.MemberVo> mypage(String logId) {
+		// ÇÁ·ÎÇÊ ¸Þ¼Òµå
+		String SQL = "select * from member where logid= ? ";
+		ArrayList<vo.MemberVo> mypage = new ArrayList<vo.MemberVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.MemberVo membermypage = new vo.MemberVo();
+				membermypage.setLogid(rs.getString(1));
+				membermypage.setPwd(rs.getString(2));
+				membermypage.setDogname(rs.getString(3));
+				membermypage.setEmail(rs.getString(4));
+				membermypage.setGender(rs.getString(5));
+				membermypage.setAge(rs.getString(6));
+				mypage.add(membermypage);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mypage;
+	}
+	
+	
+	
 	public ArrayList<vo.MemberVo> getproFile(String logId) {
 		// ÇÁ·ÎÇÊ ¸Þ¼Òµå
 		String SQL = "select dogname, age,gender, email  from member where logid= ? ";

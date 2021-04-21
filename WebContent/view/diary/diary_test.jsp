@@ -38,16 +38,9 @@ a, a:hover {
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
-	DiaryDAO diaryDAO = new DiaryDAO();
-	ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId);
 	%>
 	<jsp:include page="/include/top_menu_2.jsp" flush="false" />
-	<%
-	for (int j = 0; j < check.size(); j++) {
-		int diarycheck = check.get(j).getCount();
-		if (diarycheck != 0 ) {
-	%>
-		<form id="diaryForm">
+	<form id="diaryForm">
 		<div class="container" style="width: 70%">
 			<div class="row">
 				<table class="table table-striped"
@@ -61,15 +54,17 @@ a, a:hover {
 						</tr>
 					</thead>
 					<tbody>
-	
-	<%
-	
-	ArrayList<DiaryVo> list = diaryDAO.getList(logId, pageNumber);
-	for (int i = 0; i < list.size(); i++) {
-	%>
-
-
-
+						<%
+						DiaryDAO diaryDAO = new DiaryDAO();
+						ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId);
+						for (int j = 0; j < check.size(); j++) {
+							int diarycheck = check.get(j).getCount();
+							if (diarycheck != 0) {
+							}
+						}
+						ArrayList<DiaryVo> list = diaryDAO.getList(logId, pageNumber);
+						for (int i = 0; i < list.size(); i++) {
+						%>
 						<tr>
 							<td><%=list.get(i).getLogId()%></td>
 							<td><%=list.get(i).getDiaryDate().substring(0, 11) + list.get(i).getDiaryDate().substring(11, 13) + " 시"
@@ -99,30 +94,6 @@ a, a:hover {
 			</div>
 		</div>
 	</form>
-
-	<%
-	} else {
-	%>
-	<form id="diaryForm">
-		<div class="container" style="width: 70%">
-			<div class="row">
-				<div class="col-sm-10 col-md-10">
-					<div class="thumbnail">
-						<img src="../../diaryimages/foot.jpg" alt="...">
-						<div class="caption" style="text-align: center">
-							<h4>등록된 게시물이 없습니다.</h4>
-							<p>게시물을 등록해주세요.</p>
-							<p>	<a href="addDiary2.jsp" class="btn btn-primary" role="button">게시물 등록</a>
-							</p>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-	<%
-	}	}	%>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

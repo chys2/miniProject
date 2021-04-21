@@ -88,20 +88,16 @@ html, body {
     <ul class="nav navbar-nav navbar-right">
       <li><a href="login2.jsp"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
       <li><a href="join2.jsp"><span class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
-    </ul>
+    </ul> 
     <%
 			} else { //로그인 했을때
 			%>
 				<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">회원관리<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-					<li><a href="#">마이페이지</a>
+					<li><a href="../mypage/mypage.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a>
 					</li>
-						<li><a href="loginOutAction2.jsp">로그아웃</a></li>
-					</ul></li>
-			</ul>
+						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
+					</ul>
+ -->			</ul>
 			<%
 			}
 			%>
@@ -116,12 +112,9 @@ html, body {
 			<br>
 			<%
 			MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile("pink");
+			ArrayList<MemberVo> list = profile.getproFile(logId);
 
 			for (int i = 0; i < list.size(); i++) {
-			%>
-			<%
-			System.out.println("출력");
 			%>
 			댕댕님 존함:
 			<%=list.get(i).getDogname()%>

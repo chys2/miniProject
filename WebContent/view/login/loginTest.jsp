@@ -46,7 +46,7 @@ body {
 
 				<button type="submit" name="go" class="btn btn-primary btn-block">LOGIN</button>
 
-				<a href="../join/join.jsp">JOIN US</a>
+				<a href="../join/joinTest.jsp">JOIN US</a>
 			</form>
 		</section>
 	</section>

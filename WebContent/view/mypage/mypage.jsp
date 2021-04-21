@@ -45,7 +45,7 @@ function back(){
 
 					<%
 					MemberDAO mypage = new MemberDAO();
-					ArrayList<MemberVo> list = mypage.mypage("test");
+					ArrayList<MemberVo> list = mypage.mypage(logId);
 
 					for (int i = 0; i < list.size(); i++) {
 					%>

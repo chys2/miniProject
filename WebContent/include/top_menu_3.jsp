@@ -40,7 +40,8 @@ html, body {
 	width: 100%;
 	height: 40%;
 	float: left;
-	background: olivedrab;
+	background-image: url( "../../diaryimages/foot.jpg" );
+	background-size: 100% 100%;
 }
 
 #profile {
@@ -110,7 +111,8 @@ html, body {
 </header>
 <aside class="side">
 
-	<inaside class="inaside"> 사진 영역 </inaside>
+	<inaside class="inaside"><img src="dfdf" onerror="../../diaryimages/foot.jpg" 
+	 width="100%" height="100%"/></inaside>
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>

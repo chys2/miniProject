@@ -52,7 +52,7 @@
 	else if (result == -1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('존재하지 않는 아이디입니다.')");
+		script.println("alert('아이디를 확인해주세요.)");
 		script.println("history.back()");
 		script.println("</script>");
 	}

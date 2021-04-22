@@ -14,7 +14,7 @@
 <body>
 	<%
 	MemberDAO_test dao = MemberDAO_test.getInstance();
-
+	
 	ArrayList<vo.MemberVo> list = dao.selectMemberAll();
 	%>
 

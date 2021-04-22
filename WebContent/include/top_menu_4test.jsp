@@ -129,13 +129,13 @@ html, body {
 			<%
 			System.out.println("출력");
 			%>
-			존함:
+			<span class="glyphicon glyphicon-heart"></span>&nbsp;존함: 
 			<%=list.get(i).getDogname()%>
-			<br> <br> 나이:
+			<br> <br> <span class="glyphicon glyphicon-heart-empty"></span> &nbsp;나이:
 			<%=list.get(i).getAge()%>
-			<br> <br> 성별:
+			<br> <br> <span class="glyphicon glyphicon-heart"></span>&nbsp;성별:
 			<%=list.get(i).getGender()%>
-			<br> <br> 이메일:
+			<br> <br> <span class="glyphicon glyphicon-envelope"></span> &nbsp;이메일:
 			<%=list.get(i).getEmail()%>
 
 

@@ -37,7 +37,7 @@ padding-left: 10%;
 </style>
 </head>
 <body>
-<jsp:include page="/include/top_menu_3.jsp" flush="false" />
+<jsp:include page="/include/top_menu_2.jsp" flush="false" />
 	<%
 	session.getAttribute("logId");
 	String logId = null;
@@ -62,7 +62,7 @@ padding-left: 10%;
 							<div class="caption" style="text-align: center">
 								<h4>등록된 게시물이 없습니다.</h4>
 								<p>게시물을 등록해주세요.</p>
-								<p>	<a href="addDiary2.jsp" class="btn btn-primary" role="button">게시물 등록</a>
+								<p>	<a href=diarywrite.jsp class="btn btn-primary" role="button">게시물 등록</a>
 								</p>	
 							</div>
 						</div>
@@ -115,7 +115,7 @@ padding-left: 10%;
 	<%
 		}
 	%>
-					<a href="addDiary2.jsp" class="btn btn-primary pull-right">글쓰기</a>
+					<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
 				</div>
 			</div>
 		</form>

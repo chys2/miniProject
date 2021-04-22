@@ -1,7 +1,7 @@
+<%@page import="dao.TitleImageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
-<%@ page import="dao.TitleImageDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
@@ -32,10 +32,11 @@ html, body {
 }
 
 .side {
+	background:rgba(217, 217, 217, 0.5);
 	width: 20%;
 	height: 85%;
-	background: pink;
-	color: white;
+	border: 5px solid #8c8c8c;
+	border-radius: 20px;
 	float: left;
 	text-align: center;
 }
@@ -44,12 +45,13 @@ html, body {
 	width: 100%;
 	height: 40%;
 	float: left;
-	background:gray;
-	
+	background: olivedrab;
 }
 
 #profile {
 	margin-top: 300px;
+	
+	
 }
 
 #menubtn {
@@ -82,8 +84,8 @@ html, body {
 				<ul class="nav navbar-nav">
 					<li><a href="../main/main.jsp">홈</a></li>
 					<li><a href="#">강아지에 의한 지출</a></li>
-					<li><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
-					<li class="active"><a href="../bbs/bbs.jsp">강아지의친구</a></li>
+					<li class="active"><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
+					<li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
 				</ul>
 				<%
 				if (logId == null) { //로그인 안 했을때
@@ -103,49 +105,54 @@ html, body {
 					<li><a href="../login/loginOutAction.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
 				</ul>
-
-				</ul>
-							
-
+				
+				
 				<%
 				}
 				%>
 			</div>
 		</nav>
 	</header>
+	<%
+			MemberDAO profile = new MemberDAO();
+			ArrayList<MemberVo> list = profile.getproFile(logId);
+			TitleImageDAO title = new TitleImageDAO(); 
+			String titlename = title.view(logId);       %>
 	<aside class="side">
 
-		<inaside class="inaside">사진영역</inaside>
+		<inaside class="inaside"><img src="../../profile/<%=titlename %>" width="100%" height="100%" style="border-radius: 20px;"/></inaside>
+		
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
-				MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile(logId);
-
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<%
 			System.out.println("출력");
 			%>
-			댕댕님 존함:
+			존함:
 			<%=list.get(i).getDogname()%>
-			<br> <br> 댕댕님 나이:
+			<br> <br> 나이:
 			<%=list.get(i).getAge()%>
-			<br> <br> 댕댕님 성별:
+			<br> <br> 성별:
 			<%=list.get(i).getGender()%>
-			<br> <br> 집사 이메일:
+			<br> <br> 이메일:
 			<%=list.get(i).getEmail()%>
 
 
 			<%
 			}
 			%>
-
+			<form method="post" action="../../profile/testTitleAction.jsp"
+					enctype="multipart/form-data">
+           <br> <br> <input type="submit"  style="margin-center: 0px"
+						class="btn " value="이미지설정">
+						<input type="file" class="btn" name="titleimages">
+           </form>
 		</div>
 
 	</aside>
-
 
 </body>
 </html>

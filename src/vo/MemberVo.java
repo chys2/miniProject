@@ -7,6 +7,7 @@ public class MemberVo {
 	private String email;
 	private String gender;
 	private String age;
+	private String Profile;
 	
 
 	public MemberVo() {
@@ -71,4 +72,12 @@ public class MemberVo {
 		this.age = age;
 	}
 
+	public String getProfile() {
+		return Profile;
+	}
+
+	public void setProfile(String profile) {
+		Profile = profile;
+	}
+ 
 }

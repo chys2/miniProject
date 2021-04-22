@@ -19,24 +19,33 @@ public class MemberDAO_test {
 	public static MemberDAO_test getInstance() {
 		return dao;
 	}
+	 public Connection getConnection() throws NamingException, SQLException {
+	      Connection conn = null;
+	      
+	      InitialContext ic = new InitialContext();
+	      DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+	      conn = ds.getConnection();
+	      
+	      return conn;
+	   } 
 
-	public Connection getConnection() {
-		try {
-
-			InitialContext ic = new InitialContext();
-
-			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-
-			Connection conn = ds.getConnection();
-
-			System.out.println("연결완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e);
-		}
-		return conn;
-		
-	}
+//	public Connection getConnection() {
+//		try {
+//
+//			InitialContext ic = new InitialContext();
+//
+//			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+//
+//			Connection conn = ds.getConnection();
+//
+//			System.out.println("연결완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println(e);
+//		}
+//		return conn;
+//		
+//	}
 		
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
@@ -91,7 +100,7 @@ public class MemberDAO_test {
 		String SQL = "select *  from member where logId =? ";
 		vo.MemberVo member = new vo.MemberVo();
 		try {
-			conn = getConnection();
+
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();

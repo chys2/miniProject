@@ -45,7 +45,7 @@ a, a:hover {
 				<form method="post" action="diarywriteAction.jsp" enctype="multipart/form-data">
 					<table class="table table-striped"	style="border: 20px solid #dddddd"  style="text-align: center">
 						<thead>
-						<tr><th colspan="2"	style="background-color: #eeeeee; text-align: center;">댕댕님 일기</th>	</tr>
+						<tr><th style="background-color: #eeeeee; text-align: center;">댕댕님 일기</th>	</tr>
 						</thead>
 						<tbody>
 							<tr>

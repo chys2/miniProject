@@ -103,32 +103,28 @@ html, body {
 					<li><a href="../login/loginOutAction.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
 				</ul>
-<<<<<<< HEAD
+
 				</ul>
-=======
-				
-				
->>>>>>> 8e90126a5e99ae5f4e7121a3739fedee45fcec67
+							
+
 				<%
 				}
 				%>
 			</div>
 		</nav>
 	</header>
-	<%
-	TitleImageDAO title = new TitleImageDAO();
-	MemberDAO profile = new MemberDAO();
-	ArrayList<MemberVo> list = profile.getproFile(logId);
-	for (int i = 0; i < list.size(); i++) {
-	String pro = title.view(list.get(i).getLogid());
-	out.print(list.get(i).getLogid());
-	%>
 	<aside class="side">
-	<inaside class="inaside"><img src="../../diaryimages/<%=pro %>" 
-	 width="100%" height="100%"/></inaside>
+
+		<inaside class="inaside"> 사진 영역 </inaside>
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
+			<%
+			MemberDAO profile = new MemberDAO();
+			ArrayList<MemberVo> list = profile.getproFile(logId);
+
+			for (int i = 0; i < list.size(); i++) {
+			%>
 			<%
 			System.out.println("출력");
 			%>

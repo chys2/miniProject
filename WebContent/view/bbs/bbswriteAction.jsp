@@ -12,7 +12,7 @@
 BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");
 
- String im_address = request.getRealPath("/bbsimages");
+String im_address = request.getRealPath("/bbsimages");
  
 int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
  
@@ -48,9 +48,6 @@ try{
 bbs.setBbsTitle(bbsT);
 bbs.setBbsContent(bbsC);
 bbs.setBbsImagename(im_name); 
-System.out.println(bbs.getBbsTitle());
-System.out.println(bbs.getBbsContent());
-System.out.println(bbs.getBbsImagename());
 %>
 <%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
 <jsp:setProperty name="bbs" property="bbsTitle" />

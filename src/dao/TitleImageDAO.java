@@ -72,7 +72,9 @@ public class TitleImageDAO {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logid);
 			rs = pstmt.executeQuery();
+			while(rs.next()) {
 			imagename = rs.getString(1);
+			}
 			if(imagename==null)
             return tatleDefault;
 			else
@@ -83,4 +85,5 @@ public class TitleImageDAO {
 		}
 		return imagename;
 	}
+	
 }

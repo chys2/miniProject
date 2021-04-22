@@ -17,20 +17,20 @@ public class BbsDAO {
 
 	public BbsDAO() {
 		try {
-
-
 			
-//			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-//			 String dbID ="c##root"; String dbPassword = "root";
-//			 Class.forName("oracle.jdbc.OracleDriver"); 
-//			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
-//			
-			
-			  InitialContext ic = new InitialContext();
-			  
-			  DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-			  
-			  conn = ds.getConnection();
+			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+			  String dbID ="c##root"; 
+			  String dbPassword = "root";
+			  Class.forName("oracle.jdbc.OracleDriver"); 
+			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+				
+/*
+ * InitialContext ic = new InitialContext();
+ * 
+ * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+ * 
+ * conn = ds.getConnection();
+ */
 			 
 			System.out.println("占쏙옙占쏙옙狗占�");
 

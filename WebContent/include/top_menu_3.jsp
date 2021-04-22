@@ -114,15 +114,16 @@ html, body {
 		</nav>
 	</header>
 	<aside class="side">
-
-		<inaside class="inaside"> 사진 영역 </inaside>
+<%
+			MemberDAO profile = new MemberDAO();
+			ArrayList<MemberVo> list = profile.getproFile(logId);
+			TitleImageDAO title = new TitleImageDAO(); 
+			String titlename = title.view(logId);       %>
+		<inaside class="inaside"><img src="../../diaryimages/<%=titlename %>" width="100%" height="100%"/></inaside>
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
-			MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile(logId);
-
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<%

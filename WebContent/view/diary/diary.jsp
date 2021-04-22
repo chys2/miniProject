@@ -37,7 +37,7 @@ padding-left: 10%;
 </style>
 </head>
 <body>
-<jsp:include page="/include/top_menu_4test.jsp" flush="false" />
+<jsp:include page="/include/top_menu_3.jsp" flush="false" />
 	<%
 	session.getAttribute("logId");
 	String logId = null;
@@ -115,7 +115,7 @@ padding-left: 10%;
 	<%
 		}
 	%>
-					<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+					<a href="addDiary2.jsp" class="btn btn-primary pull-right">글쓰기</a>
 				</div>
 			</div>
 		</form>

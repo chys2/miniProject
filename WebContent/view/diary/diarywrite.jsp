@@ -37,14 +37,11 @@ padding-top:5%;
 	<div id="diaryForm">
 	<div class="container" style="width:70%" >
 		<div class="row">
-
 			<form method="post" action="diarywriteAction.jsp" enctype="multipart/form-data">
-
-
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="2"	style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+						<th colspan="2"	style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
 						</tr>
 					</thead>
 					<tbody>

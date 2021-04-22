@@ -24,7 +24,7 @@ a, a:hover {
 	height: 85%;
 	width: 80%;
 	float: right;
-	background: yellow;
+	/* background: yellow; */
 	
 }
 </style>
@@ -43,36 +43,45 @@ a, a:hover {
 	}
 	%>
 	<jsp:include page="/include/top_menu_2.jsp" flush="false" />
-	<form id="diaryForm">
+	<div id="diaryForm">
 		<div class="contatiner" style="width: 70%">
 			<div class="row">
-				<form method="post" action="uploadDiary.jsp">
-					<table class="table table-striped"
-						style="border: 25px solid #dddddd">
+				<form method="post" action="diarywriteAction.jsp" enctype="multipart/form-data">
+					<table class="table table-striped"	style="border: 20px solid #dddddd"  style="text-align: center">
+						<thead>
+						<tr>
+						<th colspan="2"	style="background-color: #eeeeee; text-align: center;">댕댕님 일기</th>
+						</tr>
+					</thead>
 						<tbody>
 							<tr>
-								<td><input type="file" name="file" value="찾아보기"> <br></td>
+								<td> <input type="file" class="form-control"  name="diaryimages" size="40"> <br></td>
 							</tr>
 							<tr>
-								<td>내용: <textarea class="form-control"
-										placeholder="내용을 입력해주세요." name="diaryContent" maxlength="2048"
+								<td> <textarea class="form-control"	placeholder="내용을 입력해주세요." name="diaryContent" maxlength="2048"
 										style="height:150px"></textarea></td>
 							</tr>
 
 						</tbody>
 
 					</table>
-				</form>
-			</div>
 			<div class="contatiner" style="width: 70%" style="algin:center">
-				<input type="submit" style="margin-left: 60%"
+			
+			<a href="diary.jsp" class="btn btn-primary pull-right">글쓰기 취소</a>
+				
+				<input type="submit" style="margin-right:5px " class="btn btn-primary pull-right" value="글쓰기">
+				<!-- <input type="submit" style="margin-left: 60%"
 					class="btn btn-primary pull-center" value="등록"> 
 					&nbsp; &nbsp;&nbsp;<input
 					type="button" class="btn btn-secondary"
-					value="취소" onclick=back() />
+					value="취소" onclick=back() /> -->
 			</div>
+				</form>
+			
+			</div>
+			
 		</div>
-	</form>
+	</div>
 
 </body>
 </html>

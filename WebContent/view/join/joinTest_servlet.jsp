@@ -29,8 +29,8 @@ body {
 	<section class="container login-form">
 		<section>
 
-
-			<form method="post" action="joinAction.jsp" role="join">
+<!-- <form method="post" action="joinProc.do" role="join"> -->
+		<	<form method="post" action="joinAction.jsp" role="join"> 
 				<img src="assets/images/join_logo.png" alt="" class="img-responsive" />
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="아이디"

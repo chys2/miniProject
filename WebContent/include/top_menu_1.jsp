@@ -97,7 +97,7 @@ html, body {
 					</li>
 						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
 					</ul>
- -->			</ul>
+		</ul>
 			<%
 			}
 			%>

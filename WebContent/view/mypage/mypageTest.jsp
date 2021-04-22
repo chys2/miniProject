@@ -44,7 +44,7 @@ function back(){
 
 						<%
 							MemberDAO mypage = new MemberDAO();
-						ArrayList<MemberVo> list = mypage.mypage(logId);
+						ArrayList<MemberVo> list = mypage.mypage("pink");
 
 						for (int i = 0; i < list.size(); i++) {
 						%>
@@ -118,8 +118,6 @@ function back(){
 							%>
 
 							<tr>
-							<td class="text-center">성별</td>
-							
 								<td>
 
 									<div class="btn-group" data-toggle="buttons"

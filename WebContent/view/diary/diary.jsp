@@ -28,7 +28,7 @@ a, a:hover {
 </style>
 </head>
 <body>
-<jsp:include page="/include/top_menu_2.jsp" flush="false" />
+<jsp:include page="/include/top_menu_4test.jsp" flush="false" />
 	<%
 	session.getAttribute("logId");
 	String logId = null;

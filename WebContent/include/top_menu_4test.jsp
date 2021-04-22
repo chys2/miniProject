@@ -31,10 +31,11 @@ html, body {
 }
 
 .side {
+	background:rgba(217, 217, 217, 0.5);
 	width: 20%;
 	height: 85%;
-	background: pink;
-	color: white;
+	border: 5px solid #8c8c8c;
+	border-radius: 20px;
 	float: left;
 	text-align: center;
 }
@@ -48,6 +49,8 @@ html, body {
 
 #profile {
 	margin-top: 300px;
+	
+	
 }
 
 #menubtn {
@@ -66,7 +69,7 @@ html, body {
 </head>
 <body>
 	<%
-		String logId = null;
+	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
@@ -84,7 +87,7 @@ html, body {
 					<li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
 				</ul>
 				<%
-					if (logId == null) { //로그인 안 했을때
+				if (logId == null) { //로그인 안 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../login/login.jsp"><span
@@ -93,18 +96,18 @@ html, body {
 							class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
 				</ul>
 				<%
-					} else { //로그인 했을때
+				} else { //로그인 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../mypage/mypage.jsp"><span
-							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
+							class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a></li>
 					<li><a href="../login/loginOutAction.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
+							class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
 				</ul>
-
-				</ul>
+				
+				
 				<%
-					}
+				}
 				%>
 			</div>
 		</nav>
@@ -112,30 +115,31 @@ html, body {
 	<aside class="side">
 
 		<inaside class="inaside"> 사진 영역 </inaside>
+		
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
-				MemberDAO profile = new MemberDAO();
+			MemberDAO profile = new MemberDAO();
 			ArrayList<MemberVo> list = profile.getproFile(logId);
 
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<%
-				System.out.println("출력");
+			System.out.println("출력");
 			%>
-			댕댕님 존함:
+			존함:
 			<%=list.get(i).getDogname()%>
-			<br> <br> 댕댕님 나이:
+			<br> <br> 나이:
 			<%=list.get(i).getAge()%>
-			<br> <br> 댕댕님 성별:
+			<br> <br> 성별:
 			<%=list.get(i).getGender()%>
-			<br> <br> 집사 이메일:
+			<br> <br> 이메일:
 			<%=list.get(i).getEmail()%>
 
 
 			<%
-				}
+			}
 			%>
 
 		</div>

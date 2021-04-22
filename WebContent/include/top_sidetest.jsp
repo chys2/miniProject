@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+        <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +12,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style>
 html, body {
 	margin: 0;
@@ -48,6 +48,9 @@ html, body {
 
 #profile {
 	margin-top: 300px;
+	border-style: groove;
+  	border-width: 7px;
+  	border-color: coral;  
 }
 
 #menubtn {
@@ -62,11 +65,12 @@ html, body {
 	width: 900px;
 	background: #FDCD8C;
 }
+
 </style>
 </head>
 <body>
-	<%
-		String logId = null;
+<%
+	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
@@ -78,41 +82,27 @@ html, body {
 					<a class="navbar-brand" href="#"></a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="../main/main.jsp">홈</a></li>
+					<li class="active"><a href="#">홈</a></li>
 					<li><a href="#">강아지에 의한 지출</a></li>
-					<li class="active"><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
-					<li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
+					<li><a href="#">강아지를 위한 일기</a></li>
+					<li><a href="#">강아지의친구</a></li>
 				</ul>
-				<%
-					if (logId == null) { //로그인 안 했을때
-				%>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../login/login.jsp"><span
-							class="glyphicon glyphicon-user"></span> 로그인</a></li>
-					<li><a href="../join/join.jsp"><span
-							class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+							회원가입</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+							로그인</a></li>
 				</ul>
-				<%
-					} else { //로그인 했을때
-				%>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../mypage/mypage.jsp"><span
-							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
-					<li><a href="../login/loginOutAction.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
-				</ul>
-
-				</ul>
-				<%
-					}
-				%>
 			</div>
 		</nav>
 	</header>
 	<aside class="side">
 
 		<inaside class="inaside"> 사진 영역 </inaside>
+
+
 		<div id="profile">
+		
 			<h1>프로필</h1>
 			<br>
 			<%
@@ -137,10 +127,10 @@ html, body {
 			<%
 				}
 			%>
-
+		
 		</div>
-
+	
 	</aside>
-
+	
 </body>
 </html>

@@ -85,7 +85,7 @@ padding-top:5%;
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용" name="diaryContent" maxlength="2048" style="height: 350px;"><%=diary.getDiaryContent() %></textarea></td>
 						</tr>							
-					</tr>
+					
 				<tr>
 			<td><input type="file" class="form-control"  name="diaryimages" size="40"></td>
 			</tr>

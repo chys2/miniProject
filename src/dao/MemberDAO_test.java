@@ -16,20 +16,18 @@ public class MemberDAO_test {
 	private MemberDAO_test() {
 	}
 
-	public static MemberDAO_test getInstandce() {
+	public static MemberDAO_test getInstance() {
 		return dao;
 	}
 
 	public Connection getConnection() {
-		Connection conn = null;
-
 		try {
 
 			InitialContext ic = new InitialContext();
 
 			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 
-			conn = ds.getConnection();
+			Connection conn = ds.getConnection();
 
 			System.out.println("연결완료");
 		} catch (Exception e) {
@@ -37,8 +35,9 @@ public class MemberDAO_test {
 			System.out.println(e);
 		}
 		return conn;
+		
 	}
-
+		
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
 		try {
@@ -64,10 +63,18 @@ public class MemberDAO_test {
 	}
 
 	public ArrayList<vo.MemberVo> selectMemberAll() {
-		String SQL = "select *  from member ";
+		String SQL = "select *  from member";
 		ArrayList<vo.MemberVo> member = new ArrayList<vo.MemberVo>();
 		try {
+//			InitialContext ic = new InitialContext();
+//
+//			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+//
+//			conn = ds.getConnection();
+			
+			System.out.println("테스트입니다.");
 			pstmt = conn.prepareStatement(SQL);
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				member.add(new vo.MemberVo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),

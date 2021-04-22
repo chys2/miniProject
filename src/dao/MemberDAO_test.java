@@ -19,34 +19,21 @@ public class MemberDAO_test {
 	public static MemberDAO_test getInstance() {
 		return dao;
 	}
-	 public Connection getConnection() throws NamingException, SQLException {
-	      Connection conn = null;
-	      
-	      InitialContext ic = new InitialContext();
-	      DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-	      conn = ds.getConnection();
-	      
-	      return conn;
-	   } 
 
-//	public Connection getConnection() {
-//		try {
-//
-//			InitialContext ic = new InitialContext();
-//
-//			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-//
-//			Connection conn = ds.getConnection();
-//
-//			System.out.println("연결완료");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println(e);
-//		}
-//		return conn;
-//		
-//	}
-		
+	public Connection getConnection() {
+	      String url = "jdbc:oracle:thin:@localhost:1521:xe"; 
+	      String dbId = "c##root";    String dbPwd = "root";
+	      try {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         conn = DriverManager.getConnection(url,dbId,dbPwd);
+	         System.out.println("connection");
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return conn;  
+	   }//getConnectivity
+
+
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
 		try {
@@ -79,15 +66,16 @@ public class MemberDAO_test {
 //
 //			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 //
-//			conn = ds.getConnection();
-			
-			System.out.println("테스트입니다.");
+//			Connection conn = ds.getConnection();
+
+			conn = getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			
+			System.out.println("test2");
+
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				member.add(new vo.MemberVo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6)));
+				member.add(new vo.MemberVo(rs.getString("logid"), rs.getString("pwd"), rs.getString("dogname"),
+						rs.getString("email"), rs.getString("gender"), rs.getString("age")));
 			}
 
 		} catch (Exception e) {
@@ -100,7 +88,7 @@ public class MemberDAO_test {
 		String SQL = "select *  from member where logId =? ";
 		vo.MemberVo member = new vo.MemberVo();
 		try {
-
+			conn = getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -149,7 +137,6 @@ public class MemberDAO_test {
 //		return dto;
 //	}
 
-	
 	public int insertMember(vo.MemberVo member) {
 		String SQL = "INSERT INTO MEMBER VALUES (?,?,?,?,?,?)";
 		try {

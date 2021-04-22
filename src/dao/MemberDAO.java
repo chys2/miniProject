@@ -141,10 +141,10 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.MemberVo memberpro = new vo.MemberVo();
-				memberpro.getDogname();
-				memberpro.getAge();
-				memberpro.getGender();
-				memberpro.getEmail();
+				memberpro.setDogname(rs.getString(1));
+				memberpro.setAge(rs.getString(2));
+				memberpro.setGender(rs.getString(3));
+				memberpro.setEmail(rs.getString(4));
 				pro.add(memberpro);
 			}
 

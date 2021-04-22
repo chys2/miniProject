@@ -23,6 +23,15 @@ a, a:hover {
 	height: 85%;
 	width: 80%;
 	float: right;
+	background: pink;
+}
+#diaryForm_2 {
+padding-left: 10%;
+
+	padding-top: 5%;
+	height: 85%;
+	width: 80%;
+	float: right;
 	background: yellow;
 }
 </style>
@@ -44,7 +53,7 @@ a, a:hover {
 	
 	if(check.size() == 0) {
 	%>		
-		<form id="diaryForm">
+		<form id="diaryForm_2">
 			<div class="container" style="width: 70%">
 				<div class="row">
 					<div class="col-sm-10 col-md-10">

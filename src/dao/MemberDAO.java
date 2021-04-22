@@ -10,6 +10,14 @@ import javax.sql.*;
 import javax.naming.*;
 
 public class MemberDAO {
+	
+	
+	private static MemberDAO dao= new MemberDAO();
+	//private MemberDAO();
+	public static MemberDAO getInstandce() {
+		return dao;
+	}
+	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
@@ -133,10 +141,10 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.MemberVo memberpro = new vo.MemberVo();
-				memberpro.setDogname(rs.getString(1));
-				memberpro.setAge(rs.getString(2));
-				memberpro.setGender(rs.getString(3));
-				memberpro.setEmail(rs.getString(4));
+				memberpro.getDogname();
+				memberpro.getAge();
+				memberpro.getGender();
+				memberpro.getEmail();
 				pro.add(memberpro);
 			}
 

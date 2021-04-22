@@ -37,11 +37,9 @@ padding-left: 10%;
 </style>
 </head>
 <body>
-<<<<<<< HEAD
-<jsp:include page="/include/top_menu_4test2title.jsp" flush="false" />
-=======
+
 <jsp:include page="/include/top_menu_2.jsp" flush="false" />
->>>>>>> 39693250d39202d5e4f2d5feda9d79ae146f4b4b
+
 	<%
 	session.getAttribute("logId");
 	String logId = null;

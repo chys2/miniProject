@@ -1,3 +1,4 @@
+<%@page import="dao.TitleImageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
@@ -114,13 +115,13 @@ html, body {
 	</header>
 	<aside class="side">
 
-		<inaside class="inaside"> 사진 영역 </inaside>
+		<inaside class="inaside">사진영역</inaside>
 		
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
-			MemberDAO profile = new MemberDAO();
+				MemberDAO profile = new MemberDAO();
 			ArrayList<MemberVo> list = profile.getproFile(logId);
 
 			for (int i = 0; i < list.size(); i++) {
@@ -141,7 +142,6 @@ html, body {
 			<%
 			}
 			%>
-
 		</div>
 
 	</aside>

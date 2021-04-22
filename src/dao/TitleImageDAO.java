@@ -34,7 +34,7 @@ public class TitleImageDAO {
 			System.out.println(e);
 		}
 	}
-	public void update(String logid, String imagename) {
+	public int update(String logid, String imagename) {
 		String SQL = "update titleimage set imagename=? where logId = ? ";
 
 		try {
@@ -44,12 +44,12 @@ public class TitleImageDAO {
 			pstmt.execute();
 			rs = pstmt.executeQuery();
 
-			
+			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}return 0;
 	}
-	public void insert(String logid, String imagename) {
+	public int insert(String logid, String imagename) {
 		String SQL = "INSERT INTO titleimage VALUES (?,?)";
 
 		try {
@@ -58,12 +58,14 @@ public class TitleImageDAO {
 			pstmt.setString(2, imagename);
 			pstmt.execute();
 			rs = pstmt.executeQuery();
-
+         return 1;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
+	
 	public String view(String logid) {
 		String SQL = "select imagename from titleimage where logid = ?";
        String tatleDefault = "foot.jpg";

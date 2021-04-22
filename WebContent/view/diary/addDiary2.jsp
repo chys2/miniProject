@@ -46,7 +46,7 @@ a, a:hover {
 	<form id="diaryForm">
 		<div class="contatiner" style="width: 70%">
 			<div class="row">
-				<form method="post" action="uploadDiary.jsp">
+				<form method="post" action="diarywriteaction.jsp" enctype="multipart/form-data">
 					<table class="table table-striped"
 						style="border: 25px solid #dddddd">
 						<tbody>

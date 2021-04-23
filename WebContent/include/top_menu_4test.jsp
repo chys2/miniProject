@@ -101,9 +101,9 @@ html, body {
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../mypage/mypage.jsp"><span
-							class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a></li>
+							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
 					<li><a href="../login/loginOutAction.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
+							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 				</ul>
 				
 				

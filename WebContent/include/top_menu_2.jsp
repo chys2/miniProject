@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
+<%@ page import="dao.TitleImageDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
@@ -43,7 +44,8 @@ html, body {
 	width: 100%;
 	height: 40%;
 	float: left;
-	background: olivedrab;
+	background:gray;
+	
 }
 
 #profile {
@@ -66,7 +68,7 @@ html, body {
 </head>
 <body>
 	<%
-		String logId = null;
+	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
@@ -84,7 +86,7 @@ html, body {
 					<li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
 				</ul>
 				<%
-					if (logId == null) { //로그인 안 했을때
+				if (logId == null) { //로그인 안 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../login/login.jsp"><span
@@ -93,7 +95,7 @@ html, body {
 							class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
 				</ul>
 				<%
-					} else { //로그인 했을때
+				} else { //로그인 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../mypage/mypage.jsp"><span
@@ -102,27 +104,34 @@ html, body {
 							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 				</ul>
 
-				</ul>
+				
+							
+
 				<%
-					}
+				}
 				%>
 			</div>
 		</nav>
 	</header>
+	
+		<%
+			MemberDAO profile = new MemberDAO();
+			ArrayList<MemberVo> list = profile.getproFile(logId);
+			TitleImageDAO title = new TitleImageDAO(); 
+			String titlename = title.view(logId);       %>
 	<aside class="side">
 
-		<inaside class="inaside"> 사진 영역 </inaside>
+		<aside class="inaside"><img src="../../profile/<%=titlename%>" width="100%" height="100%" style="border-radius: 20px;"/></aside>
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
-				MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile(logId);
+			
 
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<%
-				System.out.println("출력");
+			System.out.println("출력");
 			%>
 			댕댕님 존함:
 			<%=list.get(i).getDogname()%>
@@ -135,12 +144,18 @@ html, body {
 
 
 			<%
-				}
+			}
 			%>
-
+	<form method="post" action="../../profile/testTitleAction.jsp"
+					enctype="multipart/form-data">
+           <br> <br> <input type="submit"  style="margin-center: 0px"
+						class="btn " value="이미지설정">
+						<input type="file" class="btn" name="titleimages">
+           </form>
 		</div>
 
 	</aside>
+
 
 </body>
 </html>

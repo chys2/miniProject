@@ -1,7 +1,7 @@
-<%@page import="dao.TitleImageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
+<%@page import="dao.TitleImageDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
@@ -101,9 +101,9 @@ html, body {
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../mypage/mypage.jsp"><span
-							class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a></li>
+							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
 					<li><a href="../login/loginOutAction.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
+							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 				</ul>
 				
 				
@@ -120,7 +120,7 @@ html, body {
 			String titlename = title.view(logId);       %>
 	<aside class="side">
 
-		<inaside class="inaside"><img src="../../profile/<%=titlename %>" width="100%" height="100%" style="border-radius: 20px;"/></inaside>
+		<aside class="inaside"><img src="../../profile/<%=titlename %>" width="100%" height="100%" style="border-radius: 20px;"/></aside>
 		
 		<div id="profile">
 			<h1>프로필</h1>

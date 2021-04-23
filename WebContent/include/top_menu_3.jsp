@@ -32,10 +32,11 @@ html, body {
 }
 
 .side {
+	background:rgba(217, 217, 217, 0.5);
 	width: 20%;
 	height: 85%;
-	background: pink;
-	color: white;
+	border: 5px solid #8c8c8c;
+	border-radius: 20px;
 	float: left;
 	text-align: center;
 }
@@ -99,12 +100,12 @@ html, body {
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../mypage/mypage.jsp"><span
-							class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a></li>
+							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
 					<li><a href="../login/loginOutAction.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
+							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 				</ul>
 
-				</ul>
+				
 							
 
 				<%
@@ -113,15 +114,20 @@ html, body {
 			</div>
 		</nav>
 	</header>
+	
+		<%
+			MemberDAO profile = new MemberDAO();
+			ArrayList<MemberVo> list = profile.getproFile(logId);
+			TitleImageDAO title = new TitleImageDAO(); 
+			String titlename = title.view(logId);       %>
 	<aside class="side">
 
-		<inaside class="inaside">사진영역</inaside>
+		<aside class="inaside"><img src="../../profile/<%=titlename%>" width="100%" height="100%" style="border-radius: 20px;"/></aside>
 		<div id="profile">
 			<h1>프로필</h1>
 			<br>
 			<%
-				MemberDAO profile = new MemberDAO();
-			ArrayList<MemberVo> list = profile.getproFile(logId);
+			
 
 			for (int i = 0; i < list.size(); i++) {
 			%>
@@ -141,7 +147,12 @@ html, body {
 			<%
 			}
 			%>
-
+	<form method="post" action="../../profile/testTitleAction.jsp"
+					enctype="multipart/form-data">
+           <br> <br> <input type="submit"  style="margin-center: 0px"
+						class="btn " value="이미지설정">
+						<input type="file" class="btn" name="titleimages">
+           </form>
 		</div>
 
 	</aside>

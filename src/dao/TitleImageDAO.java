@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class TitleImageDAO {
 
@@ -87,5 +88,24 @@ public class TitleImageDAO {
 		}
 		return imagename;
 	}
-	
+	public ArrayList<vo.TitleimageVo> titlecheck(String logId) {
+		String SQL = "select count(imagename) from titleimage where logid= ? group by logid" ;
+		ArrayList<vo.TitleimageVo> check = new ArrayList<vo.TitleimageVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.TitleimageVo title = new vo.TitleimageVo();
+				title.setLogId(rs.getString(1));
+				title.setImagename(rs.getString(2));
+				check.add(title);
+			}
+			System.out.println("test");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check; // ? ?™?˜™ì²? ? ?Œ‰?‹œë±„ì˜™ ? ?™?˜™?™˜
+	}
 }

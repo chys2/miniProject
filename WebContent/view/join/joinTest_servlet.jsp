@@ -71,7 +71,7 @@ body {
 
 				</div>
 
-				<input type="submit" class="btn btn-primary form-control" valye="회원가입">
+				<input type="submit" class="btn btn-primary form-control" value="회원가입">
 
 
 

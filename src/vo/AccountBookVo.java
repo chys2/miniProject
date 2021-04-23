@@ -10,9 +10,15 @@ public class AccountBookVo {
 	private int etc;
 	private String accountbookdate;
 	private int accountbookAvailable;
+	private String dogname;
 
 	public AccountBookVo() {
 
+	}
+
+	public AccountBookVo(String logId) {
+		
+		this.logId = logId;
 	}
 
 	public int getAccountbookID() {
@@ -86,5 +92,14 @@ public class AccountBookVo {
 	public void setAccountbookAvailable(int accountbookAvailable) {
 		this.accountbookAvailable = accountbookAvailable;
 	}
+
+	public String getDogname() {
+		return dogname;
+	}
+
+	public void setDogname(String dogname) {
+		this.dogname = dogname;
+	}
+	
 
 }

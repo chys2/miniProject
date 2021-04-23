@@ -80,6 +80,8 @@ public class MemberDAO_test {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			
 		}
 		return member;
 	}

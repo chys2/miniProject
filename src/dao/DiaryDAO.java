@@ -150,20 +150,18 @@ public class DiaryDAO {
 		return false; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public vo.DiaryVo getDiary(int diaryID) {
-		String SQL = "select * from diary where diaryID = ?";
+	public vo.DiaryVo getDiary(String logId) {
+		String SQL = "select DiaryContent,DiaryImagename from diary where logId = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, diaryID);
+			pstmt.setString(1, logId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				vo.DiaryVo diary = new vo.DiaryVo();
-				diary.setDiaryId(rs.getInt(1));
-				diary.setLogId(rs.getString(2));
-				diary.setDiaryDate(rs.getString(3));
-				diary.setDiaryContent(rs.getString(4));
-				diary.setDiaryAvailable(rs.getInt(5));
-				diary.setDiaryImagename(rs.getString(6));
+				
+				diary.setDiaryContent(rs.getString(1));
+				
+				diary.setDiaryImagename(rs.getString(2));
 				return diary;
 			}
 		} catch (Exception e) {
@@ -171,6 +169,27 @@ public class DiaryDAO {
 		}
 		return null; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
+//	public vo.DiaryVo getDiary(String logId) {
+//		String SQL = "select * from diary where diaryID = ?";
+//		try {
+//			PreparedStatement pstmt = conn.prepareStatement(SQL);
+//			pstmt.setString(1, logId);
+//			rs = pstmt.executeQuery();
+//			if (rs.next()) {
+//				vo.DiaryVo diary = new vo.DiaryVo();
+//				diary.setDiaryId(rs.getInt(1));
+//				diary.setLogId(rs.getString(2));
+//				diary.setDiaryDate(rs.getString(3));
+//				diary.setDiaryContent(rs.getString(4));
+//				diary.setDiaryAvailable(rs.getInt(5));
+//				diary.setDiaryImagename(rs.getString(6));
+//				return diary;
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
+//	}
 
 	public int diaryupdate(int diaryID, String diaryContent, String diaryImagename) {
 		String sql = "update diary set diaryContent = ? , diaryImagename= ?" + "where diaryID = ?";

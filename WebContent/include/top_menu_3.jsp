@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bootstrap Example</title>
+<title>top_menu_3</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -32,10 +32,10 @@ html, body {
 }
 
 .side {
-	background:rgba(217, 217, 217, 0.5);
+	background: rgba(217, 217, 217, 0.1);
 	width: 20%;
 	height: 85%;
-	border: 5px solid #8c8c8c;
+	border: 1px dashed #8c8c8c;
 	border-radius: 20px;
 	float: left;
 	text-align: center;
@@ -45,8 +45,7 @@ html, body {
 	width: 100%;
 	height: 40%;
 	float: left;
-	background:gray;
-	
+		
 }
 
 #profile {
@@ -124,7 +123,7 @@ html, body {
 
 		<aside class="inaside"><img src="../../profile/<%=titlename%>" width="100%" height="100%" style="border-radius: 20px;"/></aside>
 		<div id="profile">
-			<h1>프로필</h1>
+			<h2>프로필</h2>
 			<br>
 			<%
 			
@@ -134,15 +133,16 @@ html, body {
 			<%
 			System.out.println("출력");
 			%>
-			댕댕님 존함:
+			<span class="glyphicon glyphicon-heart"></span>&nbsp;댕댕이름:
 			<%=list.get(i).getDogname()%>
-			<br> <br> 댕댕님 나이:
+			<br> <br> <span class="glyphicon glyphicon-heart-empty"></span>
+			&nbsp;나이:
 			<%=list.get(i).getAge()%>
-			<br> <br> 댕댕님 성별:
+			<br> <br> <span class="glyphicon glyphicon-heart"></span>&nbsp;성별:
 			<%=list.get(i).getGender()%>
-			<br> <br> 집사 이메일:
+			<br> <br> <span class="glyphicon glyphicon-envelope"></span>
+			&nbsp;이메일:
 			<%=list.get(i).getEmail()%>
-
 
 			<%
 			}

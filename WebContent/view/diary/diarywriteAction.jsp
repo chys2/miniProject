@@ -72,7 +72,7 @@ diary.setDiaryImagename(im_name);
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	}else{
-		if  (diary.getDiaryContent().equals("") ||	diary.getDiaryContent()==null) {
+		if  (diary.getDiaryContent().equals("") ||	diary.getDiaryContent()==null || diary.getDiaryImagename()==null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안된사항이 있습니다.')");

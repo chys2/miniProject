@@ -79,7 +79,7 @@ diary2.setDiaryImagename(im_name);
 	}
 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	DiaryVo diary = new DiaryDAO().getDiary(logId);
+	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
 	if (!logId.equals(diary.getLogId())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -97,7 +97,13 @@ diary2.setDiaryImagename(im_name);
 		} else {
 			// 정상적으로 입력이 되었다면 글 수정 로직을 수행한다
 			DiaryDAO diaryDAO = new DiaryDAO();
-			int result = diaryDAO.diaryupdate(diaryID, /* multi.getParameter("bbsTitle"), */ multi.getParameter("diaryContent"),im_name);
+			
+			if(im_name== null){
+				DiaryVo diaryBefore = new DiaryDAO().getDiary(diaryID);
+				im_name = diaryBefore.getDiaryImagename();
+			}
+			
+			int result = diaryDAO.diaryupdate(diaryID, multi.getParameter("diaryContent"),im_name);
 			// 데이터베이스 오류인 경우
 			if (result == -1) {
 		PrintWriter script = response.getWriter();

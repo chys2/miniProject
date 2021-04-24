@@ -49,6 +49,7 @@ html, body {
 			if (logId == null) { //로그인 안 했을때
 			%>
      <ul class="nav navbar-nav navbar-right">
+     
       <li><a href="../login/login.jsp"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
       <li><a href="../join/join.jsp"><span class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
     </ul> 
@@ -56,6 +57,7 @@ html, body {
 			} else{ //로그인 했을때
 			%>
 				<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><b><%=logId %></b>님 접속중</a></li>
 					<li><a href="../mypage/mypage.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a>
 					</li>
 						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>

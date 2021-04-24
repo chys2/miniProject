@@ -38,7 +38,7 @@ function back(){
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="col-sm-2"></div>
-				<div class="col-sm-7">
+				<div class="col-sm-8">
 					<h2 class="text-center">회원 정보 수정하기</h2>
 					<form method="post" action="mypagemodifyAction.jsp">
 
@@ -97,7 +97,7 @@ function back(){
 								<td>
 
 									<div class="btn-group" data-toggle="buttons"
-										style="margin-left: 75px">
+										style="margin-left: 95px">
 										<label class="btn btn-primary active"> <input
 											type="radio" name="gender" autocomplete="off" value="남자"
 											checked>남자
@@ -123,7 +123,7 @@ function back(){
 								<td>
 
 									<div class="btn-group" data-toggle="buttons"
-										style="margin-left: 75px">
+										style="margin-left: 95px">
 										<label class="btn btn-primary active"> <input
 											type="radio" name="gender" autocomplete="off" value="남자"
 											checked>남자

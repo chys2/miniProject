@@ -33,12 +33,15 @@ html, body {
 
 .side {
 	background: rgba(217, 217, 217, 0.1);
-	width: 20%;
-	height: 85%;
+	width: 19%;
+	height: 84%;
 	border: 1px dashed #8c8c8c;
 	border-radius: 20px;
 	float: left;
 	text-align: center;
+	margin-left:1%;
+	margin-bottom: 1%;
+
 }
 
 .inaside {
@@ -99,6 +102,7 @@ html, body {
 				} else { //로그인 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><b><%=logId %></b>님 접속중</a></li>
 					<li><a href="../mypage/mypage.jsp"><span
 							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
 					<li><a href="../login/loginOutAction.jsp"><span

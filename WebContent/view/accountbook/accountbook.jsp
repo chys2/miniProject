@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
@@ -35,10 +36,11 @@ a, a:hover {
 }
 
 #container_2 {
-	/*  background: pink;  */
+	  /* background: pink; */  
 	height: 100%;
 	width: 60%;
 	float: left;
+	text-align: center;
 }
 
 #container_3 {
@@ -47,6 +49,8 @@ a, a:hover {
 	width: 40%;
 	float: right;
 }
+
+
 </style>
 
 </head>
@@ -57,24 +61,41 @@ a, a:hover {
 		logId = (String) session.getAttribute("logId");
 	}
 	
-	
-	
+	Calendar now  = Calendar.getInstance();
+	int month = now.get(Calendar.MONTH)+1;
 	AccountBookDAO book = new AccountBookDAO();
-	ArrayList<AccountBookVo> list= book.getAccount(logId);
+	ArrayList<AccountBookVo> list= book.getAccount("test");
 	
 	
 	%>
 	<jsp:include page="/include/top_menu_1.jsp" flush="false" />
-	<form id="accountForm">
+	<div id="accountForm">
 		<div class="container" id="container">
-			<div class="row" id="container_2">그래프영역</div>
+			
+			<%if(list.size() == 0){ %>
+			<div  id="container_2" style="padding-top: 10%"><h2>오른쪽에서 지출 내역을 입력해주세요</h2></div>
+	<%}else { %>
+			<div  id="container_2">그래프영역</div>
 
+			<%} %>
 
-
-
-			<div class="row" id="container_3">입출력 영역</div>
+			<div  id="container_3"> 
+			<form action="accountinsertAction.jsp" method="post" class="account">
+			<select name="account" id="account">
+   			<option name="meal" value="meal">식사비</option>
+    		<option value="clothes">의류비</option>
+    		<option value="hospital">병원비</option>
+    		<option value="hair">뷰티비</option>
+    		<option value="etc">기타</option>
+			</select>
+			<input type="text" name="money" placeholder="금액을 입력해주세요." maxlength="20">
+			 <input type="date" name="date">
+			<input type="submit" value="지출하기">
+			</form>
+			
+			</div>
 		</div>
-	</form>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript"
@@ -98,7 +119,7 @@ a, a:hover {
         ]);
        
         var options = {
-          title: '<%=list.get(i).getDogname()%>님을 위한 @월 지출내역',
+          title: '<%=list.get(i).getDogname()%>님을 위한 <%=month%>월 지출내역',
          	width:'100%',
          	height :'100%'
         };

@@ -79,7 +79,7 @@ diary2.setDiaryImagename(im_name);
 	}
 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
+	DiaryVo diary = new DiaryDAO().getDiary(logId);
 	if (!logId.equals(diary.getLogId())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");

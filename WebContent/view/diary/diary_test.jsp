@@ -98,6 +98,8 @@ padding-left: 10%;
 					<%} %>
 					</table>
 					
+					
+					
 	
 					<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
 				</div>

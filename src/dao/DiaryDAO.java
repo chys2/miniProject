@@ -151,7 +151,7 @@ public class DiaryDAO {
 	}
 
 	public vo.DiaryVo getDiary(String logId) {
-		String SQL = "select DiaryContent,DiaryImagename from diary where logId = ?";
+		String SQL = "select DiaryContent,DiaryImagename from diary where logId = ? and diaryAvailable = 1 and ROWNUM <=3  order by diaryID desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);

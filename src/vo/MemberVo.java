@@ -1,7 +1,7 @@
 package vo;
 
 public class MemberVo {
-	private String logid;
+	private String logId;
 	private String pwd;
 	private String dogname;
 	private String email;
@@ -14,9 +14,9 @@ public class MemberVo {
 		
 	}
 
-	public MemberVo(String logid, String pwd, String dogname, String email, String gender, String age) {
+	public MemberVo(String logId, String pwd, String dogname, String email, String gender, String age) {
 		
-		this.logid = logid;
+		this.logId = logId;
 		this.pwd = pwd;
 		this.dogname = dogname;
 		this.email = email;
@@ -25,11 +25,11 @@ public class MemberVo {
 	}
 
 	public String getLogid() {
-		return logid;
+		return logId;
 	}
 
 	public void setLogid(String logid) {
-		this.logid = logid;
+		this.logId = logid;
 	}
 
 	public String getPwd() {

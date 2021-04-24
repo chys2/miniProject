@@ -11,13 +11,6 @@ import javax.naming.*;
 
 public class MemberDAO {
 	
-	
-	private static MemberDAO dao= new MemberDAO();
-	//private MemberDAO();
-	public static MemberDAO getInstandce() {
-		return dao;
-	}
-	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;

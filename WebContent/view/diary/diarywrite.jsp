@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>등록된 게시물 없을 때 이미지</title>
+<title>다이어리 등록</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"

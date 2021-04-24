@@ -150,8 +150,10 @@ public class DiaryDAO {
 		return false; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
 	}
 
-	public vo.DiaryVo getDiary(String logId) {
-		String SQL = "select DiaryContent,DiaryImagename from diary where logId = ? and diaryAvailable = 1 and ROWNUM <=3  order by diaryID desc";
+	public ArrayList<vo.DiaryVo> getDiarylist(String logId) {
+		String SQL = "select DiaryContent,DiaryImagename,diaryid,logid from diary where logId = ? and diaryAvailable = 1 and ROWNUM <=3  order by diaryID desc";
+		
+		ArrayList<vo.DiaryVo> list = new ArrayList<vo.DiaryVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
@@ -162,6 +164,30 @@ public class DiaryDAO {
 				diary.setDiaryImagename(rs.getString(2));
 				diary.setDiaryId(rs.getInt(3));
 				diary.setLogId(rs.getString(4));
+				list.add(diary);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list; // ? ?™?˜™? ?™?˜™? ?™?˜™ ? ?™?˜™? ?‹±?™?˜™ ? ?™?˜™? ?™?˜™
+	}
+	
+	
+	public vo.DiaryVo getDiary(String logId) {
+		String SQL = "select DiaryContent,DiaryImagename,diaryid,logid,diarydate from diary where logId = ? and diaryAvailable = 1 and ROWNUM <=3  order by diaryID desc";
+		
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.DiaryVo diary = new vo.DiaryVo();
+				diary.setDiaryContent(rs.getString(1));
+				diary.setDiaryImagename(rs.getString(2));
+				diary.setDiaryId(rs.getInt(3));
+				diary.setLogId(rs.getString(4));
+				diary.setDiaryDate(rs.getString(5));
 				return diary;
 			}
 		} catch (Exception e) {
@@ -209,7 +235,7 @@ public class DiaryDAO {
 	public int diarydelete(int diaryID) {
 		// ? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¶ëªŒì˜™ ? ?™?˜™? ?™?˜™? ?‹¹?Œ?˜™ ? ?™?˜™? ?™?˜™ ? ?‹£?‹ˆ?°?˜™
 		// ? ?Œ‰?‹œê¹ì˜™ ? ?™?˜™?š¨? ?™?˜™? ?Œ˜ëªŒì˜™ '0'? ?™?˜™? ?™?˜™ ? ?™?˜™? ?™?˜™? ?‹¼?Œ?˜™
-		String sql = "update diary set diaryAvailable = 0 where dirayID = ?";
+		String sql = "update diary set diaryAvailable = 0 where diaryID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, diaryID);

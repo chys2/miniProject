@@ -14,6 +14,8 @@ public class DiaryVo {
 	private int count;
 	
 	
+	public DiaryVo() {
+	}
 	public int getDiaryId() {
 		return diaryId;
 	}

@@ -44,34 +44,19 @@ a, a:hover {
 
 
 	<%
+
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-
-	DiaryVo diary = new DiaryDAO().getDiary(logId);
+	
+	DiaryVo diary = new DiaryDAO().getDiary(logId); 
 	DiaryDAO diaryDAO = new DiaryDAO();
-	ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId);
-	System.out.println("아이디 확인");
-
-	System.out.println(logId);
-	System.out.println("아이디 확인2");
-	System.out.println(diary.getDiaryId());
-	System.out.println("아이디 확인3");
-
-	int diaryID = diary.getDiaryId();
-	if (request.getParameter("diaryID") != null) {
-		diaryID = Integer.parseInt(request.getParameter("diaryID"));
-	}
-	if (diaryID == 0) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('유효하지 않는 글 입니다.')");
-		script.println("location.href ='diary.jsp'");
-		script.println("</script>");
-	}
-
-	if (check.size() == 0) {
+	 ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId); 
+	ArrayList<DiaryVo> list = diaryDAO.getDiarylist(logId);
+	
+	
+	if(check.size() == 0) {
 	%>
 	<form id="diaryForm_2">
 		<div class="container" style="width: 70%">
@@ -96,6 +81,8 @@ a, a:hover {
 	<%
 	} else {
 	%>
+
+
 	<form id="diaryForm">
 		<div class="container" style="width: 70%">
 			<div class="row">
@@ -104,65 +91,54 @@ a, a:hover {
 
 
 
-
-					<%
-					if (diary.getDiaryImagename() != null) {
+					<%if(diary.getDiaryImagename()!=null){ 
 					%>
 					<tr>
-						<td>그림</td>
+						
 						<td colspan="2" style="min-height: 200px;"><img
 							src="../../diaryimages/<%=diary.getDiaryImagename()%>" /></td>
 
 					</tr>
-<<<<<<< HEAD
-					<%
-					}
-					%>
-=======
-					<%} %>
-<<<<<<< HEAD
-					</table>
+					<tr>
+						<td>작성일자</td>
+						<td colspan="2"><%=diary.getDiaryDate().substring(0, 11) + diary.getDiaryDate().substring(11, 13) + " 시"
+									+ diary.getDiaryDate().substring(14, 16) + "분"%></td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td colspan="2" style="min-height: 200px; text-align: left;"><%= diary.getDiaryContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
+
+					</tr>
 					
-					
-					
-	
-					<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
-				</div>
-=======
->>>>>>> 040254d7810b375b75bb1e2d2a4c04e5d6afd4a4
 				</table>
+				
+				
 
-				<%
-				System.out.println("아이디 확인");
+<%
+System.out.println("아이디 확인");
 
-				System.out.println(logId);
-				System.out.println(diary.getLogId());
-				System.out.println("아이디 확인2");
+System.out.println(logId);
+System.out.println("아이디 확인2");
+				
+			if(logId != null && logId.equals(diary.getLogId())){
+			%>
 
-				if (logId != null && logId.equals(diary.getLogId())) {
-				%>
-
-				<a href="diaryupdate.jsp?diaryID=<%=diaryID%>"
+				<a href="diaryupdate.jsp?diaryID=<%=diary.getDiaryId()%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="diarydeleteAction.jsp?diaryID=<%=diaryID%>"
+					href="diarydeleteAction.jsp?diaryID=<%=diary.getDiaryId()%>"
 					class="btn btn-primary">삭제</a>
 
-				<%
-				}
-				%>
+				<% 
+			}
+			%>
 				<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
-<<<<<<< HEAD
-
-=======
 				
->>>>>>> 292e2193914aa51658419f6df0a306d272a5f583
->>>>>>> 040254d7810b375b75bb1e2d2a4c04e5d6afd4a4
 			</div>
 		</div>
 	</form>
-	<%
-	}
+	<%	
+	}}	
 	%>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

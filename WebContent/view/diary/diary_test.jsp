@@ -44,31 +44,34 @@ a, a:hover {
 
 
 	<%
-
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-	
+
 	DiaryVo diary = new DiaryDAO().getDiary(logId);
 	DiaryDAO diaryDAO = new DiaryDAO();
 	ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId);
-	
-	int diaryID=diary.getDiaryId();
-	if(request.getParameter("diaryID") != null){
-		diaryID=Integer.parseInt(request.getParameter("diaryID"));
+	System.out.println("아이디 확인");
+
+	System.out.println(logId);
+	System.out.println("아이디 확인2");
+	System.out.println(diary.getDiaryId());
+	System.out.println("아이디 확인3");
+
+	int diaryID = diary.getDiaryId();
+	if (request.getParameter("diaryID") != null) {
+		diaryID = Integer.parseInt(request.getParameter("diaryID"));
 	}
-	if(diaryID==0){
+	if (diaryID == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않는 글 입니다.')");
 		script.println("location.href ='diary.jsp'");
 		script.println("</script>");
 	}
-	
-	
-	
-	if(check.size() == 0) {
+
+	if (check.size() == 0) {
 	%>
 	<form id="diaryForm_2">
 		<div class="container" style="width: 70%">
@@ -102,7 +105,8 @@ a, a:hover {
 
 
 
-					<%if(diary.getDiaryImagename()!=null){ 
+					<%
+					if (diary.getDiaryImagename() != null) {
 					%>
 					<tr>
 						<td>그림</td>
@@ -110,35 +114,37 @@ a, a:hover {
 							src="../../diaryimages/<%=diary.getDiaryImagename()%>" /></td>
 
 					</tr>
-					<%} %>
+					<%
+					}
+					%>
 				</table>
 
-<%
-System.out.println("아이디 확인");
+				<%
+				System.out.println("아이디 확인");
 
-System.out.println(logId);
-System.out.println(diary.getLogId());
-System.out.println("아이디 확인2");
-				
-			if(logId != null && logId.equals(diary.getLogId())){
-			%>
+				System.out.println(logId);
+				System.out.println(diary.getLogId());
+				System.out.println("아이디 확인2");
+
+				if (logId != null && logId.equals(diary.getLogId())) {
+				%>
 
 				<a href="diaryupdate.jsp?diaryID=<%=diaryID%>"
 					class="btn btn-primary">수정</a> <a
 					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="diarydeleteAction.jsp?diaryID=<%= diaryID %>"
+					href="diarydeleteAction.jsp?diaryID=<%=diaryID%>"
 					class="btn btn-primary">삭제</a>
 
-				<% 
-			}
-			%>
+				<%
+				}
+				%>
 				<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
-				
+
 			</div>
 		</div>
 	</form>
-	<%	
-	}	
+	<%
+	}
 	%>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

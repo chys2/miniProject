@@ -54,7 +54,7 @@ public class AccountBookDAO {
 	
 	
 	public int accountinsert(int accountbookID, String logId, 
-			int meal, int clothes,int hospital,int hair,int etc, String accountbookdate, int accountbookAvailable) {
+			String category, String price, String accountbookdate, int accountbookAvailable) {
 		String SQL = "insert into accountbook values(?,?,?,?,?,?,?,to_date(?,'yyyy-mm-dd'),?)";
 //insert into accountbook values(4,'test',0,12000,20000,1000,1000,to_date('2021-04-03','yyyy-mm-dd'),1);
 // 예제
@@ -63,11 +63,38 @@ public class AccountBookDAO {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, accoumtgetNext());
 			pstmt.setString(2, logId);
-			pstmt.setInt(3,meal);
-			pstmt.setInt(4,clothes);
-			pstmt.setInt(5,hospital);
-			pstmt.setInt(6,hair);
-			pstmt.setInt(7,etc);
+			if(category.equals("meal")) {
+				pstmt.setString(3, price);
+				pstmt.setInt(4, 0);
+				pstmt.setInt(5, 0);
+				pstmt.setInt(6, 0);
+				pstmt.setInt(7, 0);
+			} else if (category.equals("clothes")) {
+				pstmt.setInt(3, 0);
+				pstmt.setString(4, price);
+				pstmt.setInt(5, 0);
+				pstmt.setInt(6, 0);
+				pstmt.setInt(7, 0);
+			}else if (category.equals("hospital")) {
+				pstmt.setInt(3, 0);
+				pstmt.setInt(4, 0);
+				pstmt.setString(5, price);
+				pstmt.setInt(6, 0);
+				pstmt.setInt(7, 0);
+			}else if (category.equals("hair")) {
+				pstmt.setInt(3, 0);
+				pstmt.setInt(4, 0);
+				pstmt.setInt(5, 0);
+				pstmt.setString(6, price);
+				pstmt.setInt(7, 0);
+			}else if (category.equals("etc")){
+				pstmt.setInt(3, 0);
+				pstmt.setInt(4, 0);
+				pstmt.setInt(5, 0);
+				pstmt.setInt(6, 0);
+				pstmt.setString(7, price);
+			}
+			
 			pstmt.setString(8,accountbookdate);
 			pstmt.setInt(9,1);
 		

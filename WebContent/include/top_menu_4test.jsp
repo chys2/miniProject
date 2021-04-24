@@ -1,7 +1,7 @@
-<%@page import="dao.TitleImageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
+<%@ page import="dao.TitleImageDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="vo.MemberVo"%>
 <%@ page import="java.util.ArrayList"%>
@@ -32,10 +32,10 @@ html, body {
 }
 
 .side {
-	background:rgba(217, 217, 217, 0.5);
+	background: rgba(217, 217, 217, 0.1);
 	width: 20%;
 	height: 85%;
-	border: 5px solid #8c8c8c;
+	border: 1px dashed #8c8c8c;
 	border-radius: 20px;
 	float: left;
 	text-align: center;
@@ -45,13 +45,10 @@ html, body {
 	width: 100%;
 	height: 40%;
 	float: left;
-	background: olivedrab;
 }
 
 #profile {
 	margin-top: 300px;
-	
-	
 }
 
 #menubtn {
@@ -70,7 +67,7 @@ html, body {
 </head>
 <body>
 	<%
-	String logId = null;
+		String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
@@ -88,7 +85,7 @@ html, body {
 					<li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
 				</ul>
 				<%
-				if (logId == null) { //로그인 안 했을때
+					if (logId == null) { //로그인 안 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../login/login.jsp"><span
@@ -97,7 +94,7 @@ html, body {
 							class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
 				</ul>
 				<%
-				} else { //로그인 했을때
+					} else { //로그인 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../mypage/mypage.jsp"><span
@@ -105,10 +102,10 @@ html, body {
 					<li><a href="../login/loginOutAction.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 				</ul>
-				
-				
+
+
 				<%
-				}
+					}
 				%>
 			</div>
 		</nav>
@@ -116,9 +113,9 @@ html, body {
 	<aside class="side">
 
 		<inaside class="inaside">사진영역</inaside>
-		
+
 		<div id="profile">
-			<h1>프로필</h1>
+			<h2>프로필</h2>
 			<br>
 			<%
 				MemberDAO profile = new MemberDAO();
@@ -127,20 +124,22 @@ html, body {
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<%
-			System.out.println("출력");
+				System.out.println("출력");
 			%>
-			<span class="glyphicon glyphicon-heart"></span>&nbsp;존함: 
+			<span class="glyphicon glyphicon-heart"></span>&nbsp;댕댕이름:
 			<%=list.get(i).getDogname()%>
-			<br> <br> <span class="glyphicon glyphicon-heart-empty"></span> &nbsp;나이:
+			<br> <br> <span class="glyphicon glyphicon-heart-empty"></span>
+			&nbsp;나이:
 			<%=list.get(i).getAge()%>
 			<br> <br> <span class="glyphicon glyphicon-heart"></span>&nbsp;성별:
 			<%=list.get(i).getGender()%>
-			<br> <br> <span class="glyphicon glyphicon-envelope"></span> &nbsp;이메일:
+			<br> <br> <span class="glyphicon glyphicon-envelope"></span>
+			&nbsp;이메일:
 			<%=list.get(i).getEmail()%>
 
 
 			<%
-			}
+				}
 			%>
 		</div>
 

@@ -88,7 +88,7 @@ diary2.setDiaryImagename(im_name);
 		script.println("</script>");
 	} else {
 		// 입력이 안 됐거나 빈 값이 있는지 체크한다
-		if ( multi.getParameter("bbsContent") == null || multi.getParameter("bbsContent").equals("")) {
+		if ( multi.getParameter("diaryContent") == null || multi.getParameter("diaryContent").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다')");

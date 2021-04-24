@@ -158,10 +158,10 @@ public class DiaryDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				vo.DiaryVo diary = new vo.DiaryVo();
-				
 				diary.setDiaryContent(rs.getString(1));
-				
 				diary.setDiaryImagename(rs.getString(2));
+				diary.setDiaryId(rs.getInt(3));
+				diary.setLogId(rs.getString(4));
 				return diary;
 			}
 		} catch (Exception e) {

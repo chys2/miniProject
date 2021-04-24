@@ -58,7 +58,7 @@ padding-top:5%;
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 	} 
 %>
@@ -87,7 +87,7 @@ padding-top:5%;
 						</tr>							
 					
 				<tr>
-			<td><input type="file" class="form-control"  name="diaryimages" size="40"></td>
+			<td><input type="file" class="form-control"  name="diaryimages" size="40"><%=diary.getDiaryImagename() %></td>
 			</tr>
 			</tbody>
 			</table>

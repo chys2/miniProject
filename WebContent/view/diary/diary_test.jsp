@@ -11,29 +11,84 @@
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>강아지를 위한 일기</title>
 <style type="text/css">
-a, a:hover {
-	color: #000000;
-	text-decoration: none;
-}
+	a, a:hover {
+		color: #000000;
+		text-decoration: none;
+	}
+	
+	#diaryForm {
+		padding-top: 5%;
+		height: 85%;
+		width: 80%;
+		float: right;
+		background: yellow;
+	}
+	
+	#diaryForm_2 {
+		padding-left: 10%;
+		padding-top: 5%;
+		height: 85%;
+		width: 80%;
+		float: right;
+		background: yellow;
+	}
+	*{
+	    /*Remove the margins of all elements*/
+	    /*You can remove the left margin of li in ul to make it beautiful*/
+	    margin:0;
+	    padding:0;
+	}
+	
+	#div-box1{
+	    width: 80%;
+		height: 85%;
+	    text-align: center;
 
-#diaryForm {
-	padding-top: 5%;
-	height: 85%;
-	width: 80%;
-	float: right;
-	background: yellow;
-}
+	    float:right;
+	}
+	 .faceul{
+	    width: 100%;   
+	    height: 550px;
+	    /*Make ul automatically center horizontally*/
 
-#diaryForm_2 {
-	padding-left: 10%;
-	padding-top: 5%;
-	height: 85%;
-	width: 80%;
-	float: right;
-	background: yellow;
-}
+	    
+	}
+	#div-box1 li{
+	    /*Remove the style in front of li*/
+	    list-style-type:none;
+	    width: 31%;
+	    height: 500px;    
+	    /* border:1px solid red; */
+	    /*To put li in a row, use left and left float*/
+	    float:left; 
+	    margin-top:2%;
+	    margin-left:2%;
+	}
+	.faceul img{
+	    width: 100%;	    
+	}
+	.faceul span{
+	    display: block;         
+	}
+	.faceul a:link{
+	    color:black;
+	    text-decoration:none;
+	}
+	.faceul a:hover{
+	    color:red;
+	    text-decoration:underline;
+	}
+	.info_left {
+		width: 40%;
+		float: left;
+	}
+	.info_right {
+		width: 60%;
+		float: right;
+	}
+
 </style>
 </head>
 <body>
@@ -44,19 +99,17 @@ a, a:hover {
 
 
 	<%
-
-	String logId = null;
+		String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-	
-	DiaryVo diary = new DiaryDAO().getDiary(logId); 
+
+	DiaryVo diary = new DiaryDAO().getDiary(logId);
 	DiaryDAO diaryDAO = new DiaryDAO();
-	 ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId); 
+	ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId);
 	ArrayList<DiaryVo> list = diaryDAO.getDiarylist(logId);
-	
-	
-	if(check.size() == 0) {
+
+	if (check.size() == 0) {
 	%>
 	<form id="diaryForm_2">
 		<div class="container" style="width: 70%">
@@ -79,66 +132,55 @@ a, a:hover {
 	</form>
 
 	<%
-	} else {
+		} else {
 	%>
-
-
-	<form id="diaryForm">
-		<div class="container" style="width: 70%">
-			<div class="row">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
-
-
-
-					<%if(diary.getDiaryImagename()!=null){ 
-					%>
-					<tr>
-						
-						<td colspan="2" style="min-height: 200px;"><img
-							src="../../diaryimages/<%=diary.getDiaryImagename()%>" /></td>
-
-					</tr>
-					<tr>
-						<td>작성일자</td>
-						<td colspan="2"><%=diary.getDiaryDate().substring(0, 11) + diary.getDiaryDate().substring(11, 13) + " 시"
-									+ diary.getDiaryDate().substring(14, 16) + "분"%></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%= diary.getDiaryContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
-
-					</tr>
-					
-				</table>
-				
-				
-
-<%
-System.out.println("아이디 확인");
-
-System.out.println(logId);
-System.out.println("아이디 확인2");
-				
-			if(logId != null && logId.equals(diary.getLogId())){
+	
+	<div id="div-box1">    	
+	
+		<ul class="faceul">
+			<%
+				for( int i=0; i<3; i++) {
+					if (diary.getDiaryImagename() != null) {
 			%>
+				<li>
+					<div class="btn btn primary pull-right">삭제</div>
+					<div class="btn btn primary pull-right">수정</div>
+					<div>
+						<img src="../../diaryimages/<%=diary.getDiaryImagename()%>" />
+					</div>
+					<div>
+						<div class="info_left">작성일자</div>
+						<div class="info_right"><%=diary.getDiaryDate().substring(0, 11) + diary.getDiaryDate().substring(11, 13) + " 시"
+							+ diary.getDiaryDate().substring(14, 16) + "분"%>
+						</div>	
+					</div>
+					<div>내용</div>
+					<div><%=diary.getDiaryContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+		.replaceAll("\n", "<br>")%></div>
 
-				<a href="diaryupdate.jsp?diaryID=<%=diary.getDiaryId()%>"
-					class="btn btn-primary">수정</a> <a
-					onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="diarydeleteAction.jsp?diaryID=<%=diary.getDiaryId()%>"
-					class="btn btn-primary">삭제</a>
-
-				<% 
-			}
-			%>
-				<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+				</li>	
+			<% 
 				
-			</div>
+					}
+				}
+			%>				
+		</ul>
+		
+		<div>
+			<a href="bbs.jsp?pageNumber=1" class="btn btn-success btn-arrow-left pull-left" style="margin-left:10px;">이전</a>
+			<a href="bbs.jsp?pageNumber=2" class="btn btn-success btn-arrow-left pull-left" style="margin-left:10px;">다음</a>
+			
+			<a href="write.jsp" class="btn btn-primary pull-right" style="margin-right:30px;">글쓰기</a>
+		
 		</div>
-	</form>
-	<%	
-	}}	
+		
+	</div>
+	
+	
+
+	<%
+
+	}
 	%>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

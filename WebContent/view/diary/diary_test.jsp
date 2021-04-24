@@ -25,9 +25,9 @@ a, a:hover {
 	float: right;
 	background: yellow;
 }
-#diaryForm_2 {
-padding-left: 10%;
 
+#diaryForm_2 {
+	padding-left: 10%;
 	padding-top: 5%;
 	height: 85%;
 	width: 80%;
@@ -40,7 +40,7 @@ padding-left: 10%;
 
 
 
-<jsp:include page="/include/top_menu_2.jsp" flush="false" />
+	<jsp:include page="/include/top_menu_2.jsp" flush="false" />
 
 
 	<%
@@ -49,60 +49,94 @@ padding-left: 10%;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-
 	
 	DiaryVo diary = new DiaryDAO().getDiary(logId);
 	DiaryDAO diaryDAO = new DiaryDAO();
 	ArrayList<DiaryVo> check = diaryDAO.diarycheck(logId);
 	
+	int diaryID=diary.getDiaryId();
+	if(request.getParameter("diaryID") != null){
+		diaryID=Integer.parseInt(request.getParameter("diaryID"));
+	}
+	if(diaryID==0){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않는 글 입니다.')");
+		script.println("location.href ='diary.jsp'");
+		script.println("</script>");
+	}
+	
+	
+	
 	if(check.size() == 0) {
-	%>		
-		<form id="diaryForm_2">
-			<div class="container" style="width: 70%">
-				<div class="row">
-					<div class="col-sm-10 col-md-10">
-						<div class="thumbnail">
-							<img src="../../diaryimages/foot.jpg" alt="...">
-							<div class="caption" style="text-align: center">
-								<h4>등록된 게시물이 없습니다.</h4>
-								<p>게시물을 등록해주세요.</p>
-								<p>	<a href=diarywrite.jsp class="btn btn-primary" role="button">게시물 등록</a>
-								</p>	
-							</div>
+	%>
+	<form id="diaryForm_2">
+		<div class="container" style="width: 70%">
+			<div class="row">
+				<div class="col-sm-10 col-md-10">
+					<div class="thumbnail">
+						<img src="../../diaryimages/foot.jpg" alt="...">
+						<div class="caption" style="text-align: center">
+							<h4>등록된 게시물이 없습니다.</h4>
+							<p>게시물을 등록해주세요.</p>
+							<p>
+								<a href=diarywrite.jsp class="btn btn-primary" role="button">게시물
+									등록</a>
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</form>
-	
+		</div>
+	</form>
+
 	<%
 	} else {
 	%>
-		<form id="diaryForm">
-			<div class="container" style="width: 70%">
-				<div class="row">
-					<table class="table table-striped"
-						style="text-align: center; border: 1px solid #dddddd">
-			
-			
-			
-			
-			<%if(diary.getDiaryImagename()!=null){ 
+	<form id="diaryForm">
+		<div class="container" style="width: 70%">
+			<div class="row">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+
+
+
+
+					<%if(diary.getDiaryImagename()!=null){ 
 					%>
 					<tr>
 						<td>그림</td>
-						<td colspan="2" style="min-height: 200px;">
-						<img src="../../diaryimages/<%=diary.getDiaryImagename()%>"/></td>
+						<td colspan="2" style="min-height: 200px;"><img
+							src="../../diaryimages/<%=diary.getDiaryImagename()%>" /></td>
 
 					</tr>
 					<%} %>
-					</table>
-					
-	
-					<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
-				</div>
+				</table>
+
+<%
+System.out.println("아이디 확인");
+
+System.out.println(logId);
+System.out.println(diary.getLogId());
+System.out.println("아이디 확인2");
+				
+			if(logId != null && logId.equals(diary.getLogId())){
+			%>
+
+				<a href="diaryupdate.jsp?diaryID=<%=diaryID%>"
+					class="btn btn-primary">수정</a> <a
+					onclick="return confirm('정말로 삭제하시겠습니까?')"
+					href="diarydeleteAction.jsp?diaryID=<%= diaryID %>"
+					class="btn btn-primary">삭제</a>
+
+				<% 
+			}
+			%>
+				<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+				
 			</div>
-		</form>
+		</div>
+	</form>
 	<%	
 	}	
 	%>

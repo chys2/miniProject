@@ -53,12 +53,12 @@ padding-top:5%;
 		script.println("</script>");
 	} 
 	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
+	DiaryVo diary = new DiaryDAO().getDiary(logId);
 	if(! logId.equals(diary.getLogId())){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다')");
-		script.println("location.href='bbs.jsp'");
+		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 	} 
 %>
@@ -87,7 +87,7 @@ padding-top:5%;
 						</tr>							
 					
 				<tr>
-			<td><input type="file" class="form-control"  name="diaryimages" size="40"></td>
+			<td><input type="file" class="form-control"  name="diaryimages" size="40"><%=diary.getDiaryImagename() %></td>
 			</tr>
 			</tbody>
 			</table>

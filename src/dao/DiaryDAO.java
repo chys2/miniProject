@@ -151,17 +151,17 @@ public class DiaryDAO {
 	}
 
 	public vo.DiaryVo getDiary(String logId) {
-		String SQL = "select DiaryContent,DiaryImagename from diary where logId = ?";
+		String SQL = "select DiaryContent,DiaryImagename from diary where logId = ? and diaryAvailable = 1 and ROWNUM <=3  order by diaryID desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				vo.DiaryVo diary = new vo.DiaryVo();
-				
 				diary.setDiaryContent(rs.getString(1));
-				
 				diary.setDiaryImagename(rs.getString(2));
+				diary.setDiaryId(rs.getInt(3));
+				diary.setLogId(rs.getString(4));
 				return diary;
 			}
 		} catch (Exception e) {

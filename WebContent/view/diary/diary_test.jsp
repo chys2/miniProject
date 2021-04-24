@@ -114,9 +114,22 @@ a, a:hover {
 							src="../../diaryimages/<%=diary.getDiaryImagename()%>" /></td>
 
 					</tr>
+<<<<<<< HEAD
 					<%
 					}
 					%>
+=======
+					<%} %>
+<<<<<<< HEAD
+					</table>
+					
+					
+					
+	
+					<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+				</div>
+=======
+>>>>>>> 040254d7810b375b75bb1e2d2a4c04e5d6afd4a4
 				</table>
 
 				<%
@@ -139,7 +152,12 @@ a, a:hover {
 				}
 				%>
 				<a href="diarywrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> 292e2193914aa51658419f6df0a306d272a5f583
+>>>>>>> 040254d7810b375b75bb1e2d2a4c04e5d6afd4a4
 			</div>
 		</div>
 	</form>

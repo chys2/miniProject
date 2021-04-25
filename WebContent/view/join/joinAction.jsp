@@ -22,6 +22,8 @@ request.setCharacterEncoding("UTF-8");
 <body>
 	<%
 	String logId = null;
+
+	boolean isNumeric = member.getAge().matches("[+-]?\\d*(\\.\\d+)?");
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
@@ -41,6 +43,13 @@ request.setCharacterEncoding("UTF-8");
 		script.println("alert('입력이 안된사항이 있습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
+	} else if (isNumeric != true) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
+		script.println("history.back()");
+		script.println("</script>");
+
 	} else {
 
 		MemberDAO memberDAO = new MemberDAO();

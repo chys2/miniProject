@@ -8,6 +8,7 @@ request.setCharacterEncoding("UTF-8");
 <jsp:useBean id="member" class="vo.MemberVo" scope="page" />
 <jsp:setProperty name="member" property="logid" />
 <jsp:setProperty name="member" property="pwd" />
+<jsp:setProperty name="member" property="pwdcheck" />
 <jsp:setProperty name="member" property="dogname" />
 <jsp:setProperty name="member" property="email" />
 <jsp:setProperty name="member" property="gender" />
@@ -23,7 +24,6 @@ request.setCharacterEncoding("UTF-8");
 	<%
 	String logId = null;
 
-	boolean isNumeric = member.getAge().matches("[+-]?\\d*(\\.\\d+)?");
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
@@ -36,17 +36,28 @@ request.setCharacterEncoding("UTF-8");
 		script.println("</script>");
 	}
 
-	if (member.getLogid() == null || member.getPwd() == null || member.getDogname() == null || member.getEmail() == null
-			|| member.getGender() == null || member.getAge() == null) {
+	if (member.getLogid() == null || member.getPwd() == null || member.getPwdcheck() == null ||
+			member.getDogname() == null || member.getEmail() == null
+			|| member.getGender() == null || member.getAge() == null  ) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('입력이 안된사항이 있습니다.')");
 		script.println("history.back()");
 		script.println("</script>");
-	} else if (isNumeric != true) {
+		
+	} 	else if (!member.getPwd().equals(member.getPwdcheck())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
+		script.println("alert('비밀번호와 비밀번호 확인란이 일치하지 않습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+
+	} 
+	
+	else if (member.getAge().matches("[+-]?\\d*(\\.\\d+)?") != true) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('나이에 숫자만 입력해주세요.')");
 		script.println("history.back()");
 		script.println("</script>");
 

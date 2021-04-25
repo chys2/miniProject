@@ -51,8 +51,8 @@ a, a:hover {
 							<tr>
 								<td> <input type="file" class="form-control"  name="diaryimages" size="40"> <br></td>
 							</tr>
-							<tr><td> <textarea class="form-control"	placeholder="내용을 입력해주세요." name="diaryContent" maxlength="2048"
-										style="height:150px"></textarea></td></tr>
+							<tr><td> <textarea class="form-control"	placeholder="내용을 입력해주세요.(제한글자수 200자)" name="diaryContent" maxlength="200"
+										style="height:350px"></textarea></td></tr>
 
 						</tbody>
 

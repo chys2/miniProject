@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
@@ -20,59 +20,59 @@ request.setCharacterEncoding("UTF-8");
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
-	<%
-	String logId = null;
+   <%
+   String logId = null;
 
-	boolean isNumeric = member.getAge().matches("[+-]?\\d*(\\.\\d+)?");
-	if (session.getAttribute("logId") != null) {
-		logId = (String) session.getAttribute("logId");
-	}
-	if (logId != null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미 로그인이 되어있습니다.')");
-		script.println("location.href ='../main/main.jsp'");
-		script.println("history.back()");
-		script.println("</script>");
-	}
+   boolean isNumeric = member.getAge().matches("[+-]?\\d*(\\.\\d+)?");
+   if (session.getAttribute("logId") != null) {
+      logId = (String) session.getAttribute("logId");
+   }
+   if (logId != null) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('이미 로그인이 되어있습니다.')");
+      script.println("location.href ='../main/main.jsp'");
+      script.println("history.back()");
+      script.println("</script>");
+   }
 
-	if (member.getLogid() == null || member.getPwd() == null || member.getDogname() == null || member.getEmail() == null
-			|| member.getGender() == null || member.getAge() == null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('입력이 안된사항이 있습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	} else if (isNumeric != true) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
-		script.println("history.back()");
-		script.println("</script>");
+   if (member.getLogid() == null || member.getPwd() == null || member.getDogname() == null || member.getEmail() == null
+         || member.getGender() == null || member.getAge() == null) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('입력이 안된사항이 있습니다.')");
+      script.println("history.back()");
+      script.println("</script>");
+   } else if (isNumeric != true) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
+      script.println("history.back()");
+      script.println("</script>");
 
-	} else {
+   } else {
 
-		MemberDAO memberDAO = new MemberDAO();
-		int result = memberDAO.join(member);
-		if (result == -1) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('이미 존재하는 아이디입니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-		}
+      MemberDAO memberDAO = new MemberDAO();
+      int result = memberDAO.join(member);
+      if (result == -1) {
+         PrintWriter script = response.getWriter();
+         script.println("<script>");
+         script.println("alert('이미 존재하는 아이디입니다.')");
+         script.println("history.back()");
+         script.println("</script>");
+      }
 
-		else {
-			session.setAttribute("logId", member.getLogid());
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('회원가입이 되었습니다.')");
-			script.println("location.href='../main/main.jsp'");
-			script.println("</script>");
-		}
+      else {
+         session.setAttribute("logId", member.getLogid());
+         PrintWriter script = response.getWriter();
+         script.println("<script>");
+         script.println("alert('회원가입이 되었습니다.')");
+         script.println("location.href='../main/main.jsp'");
+         script.println("</script>");
+      }
 
-	}
-	%>
+   }
+   %>
 
 
 </body>

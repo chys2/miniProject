@@ -13,81 +13,92 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>강아지를 위한 일기</title>
 <style type="text/css">
-	a, a:hover {
-		color: #000000;
-		text-decoration: none;
-	}
-	
-	#diaryForm {
-		padding-top: 5%;
-		height: 85%;
-		width: 80%;
-		float: right;
-		background: yellow;
-	}
-	
-	#diaryForm_2 {
-		padding-left: 10%;
-		padding-top: 5%;
-		height: 85%;
-		width: 80%;
-		float: right;
-		background: yellow;
-	}
-	*{
-	    /*Remove the margins of all elements*/
-	    /*You can remove the left margin of li in ul to make it beautiful*/
-	    margin:0;
-	    padding:0;
-	}
-	
-	#div-box1{
-	    width: 80%;
-		height: 85%;
-	    text-align: center;
+a, a:hover {
+	color: #000000;
+	text-decoration: none;
+}
 
-	    float:right;
-	}
-	 .faceul{
-	    width: 100%;   
-	    height: 550px;
-	    /*Make ul automatically center horizontally*/
+#diaryForm {
+	padding-top: 5%;
+	height: 85%;
+	width: 80%;
+	float: right;
+	background: yellow;
+}
 
-	    
-	}
-	#div-box1 li{
-	    /*Remove the style in front of li*/
-	    list-style-type:none;
-	    width: 31%;
-	    height: 500px;    
-	    /* border:1px solid red; */
-	    /*To put li in a row, use left and left float*/
-	    float:left; 
-	    margin-top:2%;
-	    margin-left:2%;
-	}
-	.faceul img{
-	    width: 100%;	    
-	}
-	.faceul span{
-	    display: block;         
-	}
-	.faceul a:link{
-	    color:black;
-	    text-decoration:none;
-	}
-	.faceul a:hover{
-	    color:red;
-	    text-decoration:underline;
-	}
-	.info_left {
-		width: 40%;
-		float: left;
-	}
-	.info_right {
-		width: 60%;
-		float: right;
-	}
+#diaryForm_2 {
+	padding-left: 10%;
+	padding-top: 5%;
+	height: 85%;
+	width: 80%;
+	float: right;
+	background: yellow;
+}
+
+* {
+	/*Remove the margins of all elements*/
+	/*You can remove the left margin of li in ul to make it beautiful*/
+	margin: 0;
+	padding: 0;
+}
+
+#div-box1 {
+	width: 80%;
+	height: 85%;
+	text-align: center;
+	float: right;
+}
+
+.faceul {
+	width: 100%;
+	height: 550px;
+	/*Make ul automatically center horizontally*/
+}
+
+#div-box1 li {
+	/*Remove the style in front of li*/
+	list-style-type: none;
+	width: 31%;
+	height: 500px;
+	/* border:1px solid red; */
+	/*To put li in a row, use left and left float*/
+	float: left;
+	margin-top: 2%;
+	margin-left: 2%;
+}
+
+.faceul img {
+	width: 100%;
+}
+
+.faceul span {
+	display: block;
+}
+
+.faceul a:link {
+	color: black;
+	text-decoration: none;
+}
+
+.faceul a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+.info_left {
+	width: 40%;
+	float: left;
+}
+
+.info_right {
+	width: 60%;
+	float: right;
+}
+#content-box{
+
+border: 1px solid #e6e6e6;
+border-radius: 10px;
+}
 
 </style>
 </head>
@@ -97,11 +108,11 @@
 
 
 	<%
-	String logId = null;
+		String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
-	
+
 	int pageNumber = 1;
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -147,18 +158,26 @@
 					<a href="diarydeleteAction.jsp?diaryID=<%=diary.getDiaryId()%>" class="btn btn primary pull-right">삭제</a>
 					<a href="diaryupdate.jsp?diaryID=<%=diary.getDiaryId()%>" class="btn btn primary pull-right">수정</a>
 					
+					
+						<div class="thumbnail">
+							<img src="../../diaryimages/<%=diary.getDiaryImagename()%>" style="height: 300px"/>
+						</div>
+					
+					
 					<div>
-						<img src="../../diaryimages/<%=diary.getDiaryImagename()%>" />
-					</div>
-					<div>
-						<div class="info_left">작성일자</div>
-						<div class="info_right"><%=diary.getDiaryDate().substring(0, 11) + diary.getDiaryDate().substring(11, 13) + " 시"
-							+ diary.getDiaryDate().substring(14, 16) + "분"%>
-						</div>	
-					</div>
-					<div>내용</div>
-					<div><%=diary.getDiaryContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+						<div>
+						<hr>
+							
+							<div class="info_center"><%=diary.getDiaryDate().substring(0, 11) + diary.getDiaryDate().substring(11, 13) + " 시"
+								+ diary.getDiaryDate().substring(14, 16) + "분"%>
+							</div>	
+							
+						</div>
+							<div><%=diary.getDiaryContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 							.replaceAll("\n", "<br>")%></div>
+							</div>
+							<hr>
+					
 				</li>	
 			<% 				
 					}
@@ -166,7 +185,7 @@
 			%>				
 		</ul>
 		
-		<div>
+		<div style="margin-top:50px">
 			<% if(pageNumber != 1) {%>
 				<a href="diary.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left pull-left" style="margin-left:10px;">이전</a>
 			<% } %>

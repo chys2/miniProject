@@ -52,8 +52,9 @@ padding-top:5%;
 		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 	} 
-	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	DiaryVo diary = new DiaryDAO().getDiary(logId);
+ 	
+	//해당 'diaryID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
+	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
 	if(! logId.equals(diary.getLogId())){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");

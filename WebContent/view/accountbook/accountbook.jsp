@@ -64,7 +64,7 @@ a, a:hover {
 	Calendar now  = Calendar.getInstance();
 	int month = now.get(Calendar.MONTH)+1;
 	AccountBookDAO book = new AccountBookDAO();
-	ArrayList<AccountBookVo> list= book.getAccount("test");
+	ArrayList<AccountBookVo> list= book.getAccount(logId);
 	
 	
 	%>

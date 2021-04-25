@@ -28,10 +28,11 @@
 	
 	
 
-	
 	String account =request.getParameter("account");
 	String date =request.getParameter("date");
 	System.out.println(account);
+	//지출 항목
+	
 	String money=request.getParameter("money");
 	boolean isNumeric =  money.matches("[+-]?\\d*(\\.\\d+)?");
 	/* 문자를 숫자로 확인  */
@@ -42,7 +43,7 @@
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	}else{
-		if  (money.equals("") ||money==null) {
+		if  (money.equals("") ||money==null ||date.equals("") ||date ==null ) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안된사항이 있습니다.')");
@@ -69,8 +70,8 @@
 			else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('글을 작성하였습니다.')");
-				script.println("location.href='diary.jsp'");
+				script.println("alert('지출내역을 작성하였습니다.')");
+				script.println("location.href='accountbook.jsp'");
 				script.println("</script>");
 			}
 			

@@ -30,6 +30,8 @@
 
 	String account =request.getParameter("account");
 	String date =request.getParameter("date");
+	String beforedate =request.getParameter("beforedate");
+	String afterdate =request.getParameter("afterdate");
 	System.out.println(account);
 	//지출 항목
 	
@@ -57,8 +59,6 @@
 			script.println("</script>");
 		}else{
 			int result = accountbookDAO.accountinsert(accountbook.getAccountbookID(), logId, account, money, date,accountbook.getAccountbookAvailable() );
-
-			
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

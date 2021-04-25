@@ -3,6 +3,7 @@ package vo;
 public class MemberVo {
 	private String logId;
 	private String pwd;
+	private String pwdcheck;
 	private String dogname;
 	private String email;
 	private String gender;
@@ -38,6 +39,16 @@ public class MemberVo {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	
+	
+	
+	public String getPwdcheck() {
+		return pwdcheck;
+	}
+
+	public void setPwdcheck(String pwdcheck) {
+		this.pwdcheck = pwdcheck;
 	}
 
 	public String getDogname() {

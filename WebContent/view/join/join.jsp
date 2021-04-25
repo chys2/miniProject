@@ -41,7 +41,10 @@ body {
 					<input type="password" class="form-control" placeholder="비밀번호"
 						name="pwd" maxlength="20">
 				</div>
-
+				<div class="form-group">
+					<input type="password" class="form-control" placeholder="비밀번호 확인"
+						name="pwdcheck" maxlength="20">
+				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="댕댕이이름"
 						name="dogname" maxlength="20">

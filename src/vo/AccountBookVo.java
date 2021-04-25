@@ -11,7 +11,9 @@ public class AccountBookVo {
 	private String accountbookdate;
 	private int accountbookAvailable;
 	private String dogname;
-
+	private String beforeDate;
+	private String afterDate;
+	private int total;
 	public AccountBookVo() {
 
 	}
@@ -100,6 +102,30 @@ public class AccountBookVo {
 	public void setDogname(String dogname) {
 		this.dogname = dogname;
 	}
-	
 
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public String getBeforeDate() {
+		return beforeDate;
+	}
+
+	public void setBeforeDate(String beforeDate) {
+		this.beforeDate = beforeDate;
+	}
+
+	public String getAfterDate() {
+		return afterDate;
+	}
+
+	public void setAfterDate(String afterDate) {
+		this.afterDate = afterDate;
+	}
+	
+	
 }

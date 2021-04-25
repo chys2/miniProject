@@ -59,11 +59,16 @@ function back(){
 
 							<tr>
 								<td class="text-center">비밀번호</td>
-								<td><input type="text" class="form-control"
+								<td><input type="password" class="form-control"
 									placeholder="비밀번호" name="pwd" maxlength="20"
 									value=<%=list.get(i).getPwd()%>></td>
 							</tr>
 
+							<tr>
+								<td class="text-center">비밀번호 확인</td>
+								<td><input type="password" class="form-control"
+									placeholder="비밀번호 확인" name="pwdcheck" maxlength="20"></td>
+							</tr>
 							<tr>
 								<td class="text-center">댕댕이이름</td>
 								<td><input type="text" class="form-control"

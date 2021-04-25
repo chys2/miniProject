@@ -42,7 +42,7 @@ a, a:hover {
 		script.println("location.href ='diary.jsp'");
 		script.println("</script>");
 	}
-	DiaryVo diary = new DiaryDAO().getDiary(logId);
+	DiaryVo diary = new DiaryDAO().getDiary(diaryID);
 	%>
 	<jsp:include page="/include/top_menu_2.jsp" flush="false" />
 

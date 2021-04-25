@@ -60,11 +60,16 @@ a, a:hover {
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
+
+	String beforedate = request.getParameter("beforedate");
+	String afterdate = request.getParameter("afterdate");
+	System.out.println(logId);
 	
 	Calendar now  = Calendar.getInstance();
 	int month = now.get(Calendar.MONTH)+1;
 	AccountBookDAO book = new AccountBookDAO();
 	ArrayList<AccountBookVo> list= book.getAccount(logId);
+	ArrayList<AccountBookVo> listsearch= book.getSearchAccount(logId, beforedate, afterdate);
 	
 	
 	%>
@@ -82,7 +87,7 @@ a, a:hover {
 			<div  id="container_3"> 
 			<form action="accountinsertAction.jsp" method="post" class="account">
 			<select name="account" id="account">
-   			<option name="meal" value="meal">식사비</option>
+   			<option value="meal">식사비</option>
     		<option value="clothes">의류비</option>
     		<option value="hospital">병원비</option>
     		<option value="hair">뷰티비</option>
@@ -92,7 +97,37 @@ a, a:hover {
 			 <input type="date" name="date">
 			<input type="submit" value="지출하기">
 			</form>
+			<hr>
+			<%	for (int i = 0; i < list.size(); i++) {
+    			%>
+			<%=list.get(i).getDogname()%>님을 위한 <%=month%>월 지출내역서<br>
+		  [식 비: <%=list.get(i).getMeal()%>]원<br>
+          [의류비: <%=list.get(i).getClothes()%>]원<br>
+          [병원비:<%=list.get(i).getHospital()%>]원<br>
+          [뷰티비: <%=list.get(i).getHair() %>]원<br>
+          [기 타:   <%=list.get(i).getEtc() %>]원<br>
+           [총지출:   <%=list.get(i).getTotal() %>]원<br>
+			<hr>
+			<form action="accountbook.jsp" method="post" class="account">
+			 <input type="date" name="beforedate">  
+			 <input type="date" name="afterdate">
+			 <input type="submit" value="검색하기">
+			 </form>
+			 <%} %>
+			 
+			 <%if(listsearch.size()!=0 ){	
+			 for (int i = 0; i < list.size(); i++) {
+    			%>
+			 <%=beforedate %>에서<%=afterdate %>까지 
+			 <%=listsearch.get(i).getDogname()%>님을 위해 <%=listsearch.get(i).getTotal() %>원을 지출했습니다.
+			 
+			 <%
 			
+			 }
+			
+			 }else { %>
+				검색을 해주세요 
+			 <%} %>
 			</div>
 		</div>
 	</div>

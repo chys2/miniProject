@@ -108,7 +108,7 @@ public class AccountBookDAO {
 	
 	public ArrayList<vo.AccountBookVo> getAccount(String logId) {
 		//이름에 따른 
-		String SQL = "select sum(a.meal) as meal, sum(a.clothes) as clothes,  sum(a.hospital)as hospital, sum(a.hair) as hair, sum(a.etc) as etc, m.dogname from accountbook a, member m where a.logid = m.logid and a.logid= ?  and a.accountbookAvailable = 1 group by a.logid, m.dogname";
+		String SQL = "select sum(a.meal) as meal, sum(a.clothes) as clothes,  sum(a.hospital)as hospital, sum(a.hair) as hair, sum(a.etc) as etc, m.dogname, sum(a.meal+a.clothes+a.hospital+a.hair+a.etc)as total from accountbook a, member m where a.logid = m.logid and a.logid= ?  and a.accountbookAvailable = 1 group by a.logid, m.dogname";
 		
 		ArrayList<vo.AccountBookVo> list = new ArrayList<vo.AccountBookVo>();
 		try {
@@ -123,6 +123,7 @@ public class AccountBookDAO {
 				account.setHair(rs.getInt(4));
 				account.setEtc(rs.getInt(5));
 				account.setDogname(rs.getString(6));
+				account.setTotal(rs.getInt(7));
 				list.add(account);
 			}
 
@@ -132,5 +133,35 @@ public class AccountBookDAO {
 		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
 
+	public ArrayList<vo.AccountBookVo> getSearchAccount(String logId,String beforedate,String afterdate) {
+		//이름에 따른 
+		String SQL = "select sum(a.meal) as meal, sum(a.clothes) as clothes,  sum(a.hospital)as hospital, sum(a.hair) as hair, sum(a.etc) as etc, m.dogname, sum(a.meal+a.clothes+a.hospital+a.hair+a.etc)as total "
+				+ "from accountbook a, member m "
+				+ "where a.logid = m.logid and a.logid= ?  and a.accountbookAvailable = 1 and a.accountbookdate between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')"
+				+ "group by a.logid, m.dogname";
+		
+		ArrayList<vo.AccountBookVo> searchlist = new ArrayList<vo.AccountBookVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logId);
+			pstmt.setString(2, beforedate);
+			pstmt.setString(3, afterdate);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.AccountBookVo account = new vo.AccountBookVo();
+				account.setMeal(rs.getInt(1));
+				account.setClothes(rs.getInt(2));
+				account.setHospital(rs.getInt(3));
+				account.setHair(rs.getInt(4));
+				account.setEtc(rs.getInt(5));
+				account.setDogname(rs.getString(6));
+				account.setTotal(rs.getInt(7));
+				searchlist.add(account);
+			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return searchlist; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
+	}
 }

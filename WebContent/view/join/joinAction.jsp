@@ -52,7 +52,11 @@ request.setCharacterEncoding("UTF-8");
       script.println("history.back()");
       script.println("</script>");
    }
+<<<<<<< HEAD
 	if (session.getAttribute("logid") != null) {
+=======
+	if (session.getAttribute("logId") != null) {
+>>>>>>> d9b3cf6a299f6f2fa8fd04c366901a0cf382c809
 		logId = (String) session.getAttribute("logId");
 		System.out.print(logId);
 	}

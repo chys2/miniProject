@@ -53,6 +53,23 @@ public class AccountBookDAO {
 	}
 	
 	
+	public int change_month(String logId, String now_month_startDay,String now_month_endDay) {
+		String SQL = "update accountbook set accountbookAvailable=0 "
+				+ "where accountbookdate not between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd') and logid=?";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, now_month_startDay);
+			pstmt.setString(2, now_month_endDay);
+			pstmt.setString(3, logId);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return -1; 
+	}
+	
 	public int accountinsert(int accountbookID, String logId, 
 			String category, String price, String accountbookdate, int accountbookAvailable) {
 		String SQL = "insert into accountbook values(?,?,?,?,?,?,?,to_date(?,'yyyy-mm-dd'),?)";
@@ -106,14 +123,19 @@ public class AccountBookDAO {
 		return -1; 
 	}
 	
-	public ArrayList<vo.AccountBookVo> getAccount(String logId) {
+	public ArrayList<vo.AccountBookVo> getAccount(String logId, String now_month_startDay,String now_month_endDay) {
 		//이름에 따른 
-		String SQL = "select sum(a.meal) as meal, sum(a.clothes) as clothes,  sum(a.hospital)as hospital, sum(a.hair) as hair, sum(a.etc) as etc, m.dogname, sum(a.meal+a.clothes+a.hospital+a.hair+a.etc)as total from accountbook a, member m where a.logid = m.logid and a.logid= ?  and a.accountbookAvailable = 1 group by a.logid, m.dogname";
+		String SQL = "select sum(a.meal) as meal, sum(a.clothes) as clothes,  sum(a.hospital)as hospital, sum(a.hair) as hair, sum(a.etc) as etc, m.dogname, sum(a.meal+a.clothes+a.hospital+a.hair+a.etc)as total "
+				+ "from accountbook a, member m "
+				+ "where a.logid = m.logid and a.logid= ?  "
+				+ "and a.accountbookAvailable = 1 and a.accountbookdate between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd') group by a.logid, m.dogname";
 		
 		ArrayList<vo.AccountBookVo> list = new ArrayList<vo.AccountBookVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
+			pstmt.setString(2, now_month_startDay);
+			pstmt.setString(3, now_month_endDay);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo.AccountBookVo account = new vo.AccountBookVo();
@@ -137,7 +159,7 @@ public class AccountBookDAO {
 		//이름에 따른 
 		String SQL = "select sum(a.meal) as meal, sum(a.clothes) as clothes,  sum(a.hospital)as hospital, sum(a.hair) as hair, sum(a.etc) as etc, m.dogname, sum(a.meal+a.clothes+a.hospital+a.hair+a.etc)as total "
 				+ "from accountbook a, member m "
-				+ "where a.logid = m.logid and a.logid= ?  and a.accountbookAvailable = 1 and a.accountbookdate between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')"
+				+ "where a.logid = m.logid and a.logid= ? and a.accountbookdate between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')"
 				+ "group by a.logid, m.dogname";
 		
 		ArrayList<vo.AccountBookVo> searchlist = new ArrayList<vo.AccountBookVo>();

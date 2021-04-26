@@ -66,9 +66,22 @@ a, a:hover {
 	System.out.println(logId);
 	
 	Calendar now  = Calendar.getInstance();
+	int year = now.get ( now.YEAR );
 	int month = now.get(Calendar.MONTH)+1;
+	int startDay = now.getActualMinimum(now.DAY_OF_MONTH);
+	int endDay = now.getActualMaximum(now.DAY_OF_MONTH);
+	String now_month_startDay =year+"-"+month+"-"+startDay;
+	
+	
+	
+	String now_month_endDay=year+"-"+month+"-"+endDay;
+	System.out.println(now_month_startDay);
+	System.out.println(now_month_endDay);
+	
+	
 	AccountBookDAO book = new AccountBookDAO();
-	ArrayList<AccountBookVo> list= book.getAccount(logId);
+	book.change_month(logId, now_month_startDay, now_month_endDay);
+	ArrayList<AccountBookVo> list= book.getAccount(logId,now_month_startDay,now_month_endDay);
 	ArrayList<AccountBookVo> listsearch= book.getSearchAccount(logId, beforedate, afterdate);
 	
 	
@@ -106,15 +119,16 @@ a, a:hover {
 			<input type="submit" value="지출하기" class="btn" style="height:30px;">
 			</form>
 			<hr>
-			<%	for (int i = 0; i < list.size(); i++) {
+			
+				<%for (int i = 0; i < list.size(); i++) {
     			%>
 			<b><%=list.get(i).getDogname()%></b>님을 위한 <b><%=month%></b>월 지출내역서<br>
-		  &#128073; 식&nbsp;&nbsp;&nbsp;비 : <b><%=list.get(i).getMeal()%></b>원<br>
-          의류비 : <b><%=list.get(i).getClothes()%></b>원<br>
-          병원비 : <b><%=list.get(i).getHospital()%></b>원<br>
-         뷰티비 : <b><%=list.get(i).getHair() %></b>원<br>
-          기&nbsp;&nbsp; &nbsp;타 : <b><%=list.get(i).getEtc() %></b>원<br>
-           총지출 : <b>  <%=list.get(i).getTotal() %></b>원<br>
+		 &#128155;  식&nbsp;&nbsp;&nbsp;비 : <b><%=list.get(i).getMeal()%></b>원<br>
+         &#129505; 의류비 : <b><%=list.get(i).getClothes()%></b>원<br>
+       &#128153;  병원비 : <b><%=list.get(i).getHospital()%></b>원<br>
+        &#128154; 뷰티비 : <b><%=list.get(i).getHair() %></b>원<br>
+        &#128156;  기&nbsp;&nbsp; &nbsp;타 : <b><%=list.get(i).getEtc() %></b>원<br>
+         &#128073;   총지출 : <b>  <%=list.get(i).getTotal() %></b>원<br>
 			<hr>
 			
 			<form action="accountbook.jsp" method="post" class="account">
@@ -125,13 +139,16 @@ a, a:hover {
 			
 			 </div>
 			  검색할 날짜를 지정해주세요.
+			  
 			 </form>
 			
-			 <%} %>
+			 <%
+			}%>
 			 
 			 <%if(listsearch.size()!=0 ){	
 			 for (int i = 0; i < list.size(); i++) {
     			%>
+			 <br>
 			 <b><%=beforedate %></b>에서<b><%=afterdate %></b>까지 <br>
 			 <b><%=listsearch.get(i).getDogname()%></b>님을 위해 <b><%=listsearch.get(i).getTotal() %></b>원을 지출했습니다.
 			 

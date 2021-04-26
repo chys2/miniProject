@@ -46,6 +46,7 @@ try {
 } catch (Exception e) {
 	e.printStackTrace();
 }
+System.out.print(im_name);
 %>
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,7 @@ try {
 
 		if (title.view(logId).equals("foot.jpg")) {
 
-			int result = title.insert((String) session.getAttribute("logId"), im_name);
+			int result = title.insert(logId, im_name);
 			if (result == -1) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -84,8 +85,7 @@ try {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미지를 등록하였습니다.')");
-		script.println("history.go(-1)");
-		script.println("location.href = location.href");
+		script.println("location.href='../view/main/main.jsp'");
 		script.println("</script>");
 			}
 
@@ -105,8 +105,7 @@ try {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미지를 수정하였습니다.')");
-		script.println("history.back()");
-		script.println("location.href = location.href");
+		script.println("location.href='../view/main/main.jsp'");
 		script.println("</script>");
 			}
 		}

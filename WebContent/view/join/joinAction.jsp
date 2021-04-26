@@ -21,13 +21,13 @@ request.setCharacterEncoding("UTF-8");
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
-   <%
+<%
    String logId = null;
 
 
    boolean isNumeric = member.getAge().matches("[+-]?\\d*(\\.\\d+)?");
-   if (session.getAttribute("logId") != null) {
-      logId = (String) session.getAttribute("logId");
+   if (session.getAttribute("logid") != null) {
+      logId = (String) session.getAttribute("logid");
    }
    if (logId != null) {
       PrintWriter script = response.getWriter();
@@ -51,9 +51,10 @@ request.setCharacterEncoding("UTF-8");
       script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
       script.println("history.back()");
       script.println("</script>");
-
-	if (session.getAttribute("logId") != null) {
+   }
+	if (session.getAttribute("logid") != null) {
 		logId = (String) session.getAttribute("logId");
+		System.out.print(logId);
 	}
 	if (logId != null) {
 		PrintWriter script = response.getWriter();

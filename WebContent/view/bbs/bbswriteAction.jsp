@@ -42,6 +42,7 @@ try{
         String file1 = (String)files.nextElement();// 파일 input에 지정한 이름을 가져옴
         im_name = multi.getFilesystemName(file1);
     }
+
 }catch(Exception e){
     e.printStackTrace();
 }
@@ -72,15 +73,14 @@ bbs.setBbsImagename(im_name);
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	}else{
-		if (bbs.getBbsTitle().equals("") || bbs.getBbsContent().equals("") || 
+		 if (bbs.getBbsTitle().equals("") || bbs.getBbsContent().equals("") || 
 				bbs.getBbsTitle() == null || bbs.getBbsContent()==null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안된사항이 있습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} 
-		else {
+		} else {
 
 			BbsDAO bbsDAO = new BbsDAO();
 
@@ -103,7 +103,7 @@ bbs.setBbsImagename(im_name);
 				script.println("</script>");
 			}
 
-		}
+		 } 
 	}
 
 	

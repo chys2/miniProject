@@ -44,7 +44,7 @@ a, a:hover {
 }
 
 #container_3 {
-	background: skyblue;
+	
 	height: 100%;
 	width: 40%;
 	float: right;
@@ -79,58 +79,76 @@ a, a:hover {
 			
 			<%if(list.size() == 0){ %>
 			<div  id="container_2" style="padding-top: 10%"><h2>오른쪽에서 지출 내역을 입력해주세요</h2></div>
-	<%}else { %>
-			<div  id="container_2">그래프영역</div>
+			<!-- 가계부에 대한 데이터가 입력한 값이 없을 경우  부분-->
+			<%}else { %>
+			<div  id="container_2">그래프영역
+			<!-- 가계부에 대한 데이터가 입력한 값이 있을 경우  밑에서 그래프를 가져와 출력하는 부분-->
+			</div>
 
 			<%} %>
 
 			<div  id="container_3"> 
 			<form action="accountinsertAction.jsp" method="post" class="account">
-			<select name="account" id="account">
+			
+			 <div class="form-group" >
+    		<input type="date" name="date" class="form-control" style="height:30px; width:150px; margin-bottom: 5px;">
+			<select class="form-control"  name="account" id="account" style="height:30px; width:100px; float:left;" >
    			<option value="meal">식사비</option>
     		<option value="clothes">의류비</option>
     		<option value="hospital">병원비</option>
     		<option value="hair">뷰티비</option>
     		<option value="etc">기타</option>
-			</select>
-			<input type="text" name="money" placeholder="금액을 입력해주세요." maxlength="20">
-			 <input type="date" name="date">
-			<input type="submit" value="지출하기">
+			</select> 
+			<input type="text" class="form-control" name="money" placeholder="금액을 입력해주세요." id="money" 
+			maxlength="20" style="height:30px; width:250px; float:left; margin-left:5px;"><br>
+			</div>
+	
+			<input type="submit" value="지출하기" class="btn" style="height:30px;">
 			</form>
 			<hr>
 			<%	for (int i = 0; i < list.size(); i++) {
     			%>
-			<%=list.get(i).getDogname()%>님을 위한 <%=month%>월 지출내역서<br>
-		  [식 비: <%=list.get(i).getMeal()%>]원<br>
-          [의류비: <%=list.get(i).getClothes()%>]원<br>
-          [병원비:<%=list.get(i).getHospital()%>]원<br>
-          [뷰티비: <%=list.get(i).getHair() %>]원<br>
-          [기 타:   <%=list.get(i).getEtc() %>]원<br>
-           [총지출:   <%=list.get(i).getTotal() %>]원<br>
+			<b><%=list.get(i).getDogname()%></b>님을 위한 <b><%=month%></b>월 지출내역서<br>
+		  &#128073; 식&nbsp;&nbsp;&nbsp;비 : <b><%=list.get(i).getMeal()%></b>원<br>
+          의류비 : <b><%=list.get(i).getClothes()%></b>원<br>
+          병원비 : <b><%=list.get(i).getHospital()%></b>원<br>
+         뷰티비 : <b><%=list.get(i).getHair() %></b>원<br>
+          기&nbsp;&nbsp; &nbsp;타 : <b><%=list.get(i).getEtc() %></b>원<br>
+           총지출 : <b>  <%=list.get(i).getTotal() %></b>원<br>
 			<hr>
+			
 			<form action="accountbook.jsp" method="post" class="account">
-			 <input type="date" name="beforedate">  
-			 <input type="date" name="afterdate">
-			 <input type="submit" value="검색하기">
+			<div class="form-group" >
+			<input type="date" name="beforedate" class="form-control" style="height:30px; width:150px; margin-bottom: 5px;float:left;">
+			<input type="date" name="afterdate" class="form-control" style="height:30px; width:150px; margin-left:5px; margin-bottom: 5px; float:left;">
+			 <input type="submit" value="검색하기" class="btn" style="height:30px; margin-left:5px;">
+			
+			 </div>
+			  검색할 날짜를 지정해주세요.
 			 </form>
+			
 			 <%} %>
 			 
 			 <%if(listsearch.size()!=0 ){	
 			 for (int i = 0; i < list.size(); i++) {
     			%>
-			 <%=beforedate %>에서<%=afterdate %>까지 
-			 <%=listsearch.get(i).getDogname()%>님을 위해 <%=listsearch.get(i).getTotal() %>원을 지출했습니다.
+			 <b><%=beforedate %></b>에서<b><%=afterdate %></b>까지 <br>
+			 <b><%=listsearch.get(i).getDogname()%></b>님을 위해 <b><%=listsearch.get(i).getTotal() %></b>원을 지출했습니다.
 			 
-			 <%
-			
-			 }
+			 <% }
 			
 			 }else { %>
-				검색을 해주세요 
+				
 			 <%} %>
 			</div>
+			
+			
+			
+			
+			
 		</div>
-	</div>
+	</div> <!--<div id="accountForm"> 값  -->
+	<!-- 가계부에 대한 데이터 값이 있을 경우 그래프 출력 -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript"

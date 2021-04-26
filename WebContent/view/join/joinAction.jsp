@@ -51,7 +51,7 @@ request.setCharacterEncoding("UTF-8");
       script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
       script.println("history.back()");
       script.println("</script>");
-
+   }
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}

@@ -145,7 +145,7 @@ public class AccountBookDAO {
 				account.setHair(rs.getInt(4));
 				account.setEtc(rs.getInt(5));
 				account.setDogname(rs.getString(6));
-				account.setTotal(rs.getInt(7));
+				account.setTotal(rs.getString(7));
 				list.add(account);
 			}
 
@@ -177,7 +177,7 @@ public class AccountBookDAO {
 				account.setHair(rs.getInt(4));
 				account.setEtc(rs.getInt(5));
 				account.setDogname(rs.getString(6));
-				account.setTotal(rs.getInt(7));
+				account.setTotal(rs.getString(7));
 				searchlist.add(account);
 			}
 

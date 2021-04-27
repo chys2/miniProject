@@ -13,7 +13,7 @@ public class AccountBookVo {
 	private String dogname;
 	private String beforeDate;
 	private String afterDate;
-	private int total;
+	private String total;
 	public AccountBookVo() {
 
 	}
@@ -103,11 +103,11 @@ public class AccountBookVo {
 		this.dogname = dogname;
 	}
 
-	public int getTotal() {
+	public String getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(String total) {
 		this.total = total;
 	}
 

@@ -117,6 +117,33 @@ public class BbsDAO {
 		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
 
+	
+	public ArrayList<vo.BbsVo> previewgetList(int pageNumber) {
+		// 占쌉시깍옙 1占쏙옙 10占쏙옙占쏙옙占쏙옙 占쏙옙占�
+		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=3 order by bbsID desc";
+		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsgetNext() - (pageNumber - 1) * 2);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo.BbsVo bbs = new vo.BbsVo();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setLogId(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setBbsImagename(rs.getString(7));
+				list.add(bbs);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
+	}
+	
 	public boolean nextPage(int pageNumber) {
 		String SQL = "select * from bbs where bbsId < ? and bbsAvailable = 1 and ROWNUM <=10   order by bbsID desc";
 		try {

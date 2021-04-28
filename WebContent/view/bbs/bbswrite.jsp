@@ -56,16 +56,17 @@ a, a:hover {
 							</tr>
 
 							<tr>
-								<td><textarea class="form-control" placeholder="글 내용"
-										name="bbsContent" maxlength="2048" style="height: 270px;"></textarea>
+								<td><textarea class="form-control" placeholder="글 내용(제한글자수 350자)"
+										name="bbsContent" maxlength="350" style="height: 270px;"></textarea>
 								</td>
+							</tr>
+							<tr><td>	<input type="file" class="form-control" name="bbsimages" size="40">
+							</td>
 							</tr>
 						</tbody>
 					</table>
 					
 					<div style="margin-top:5px">
-					
-					<input type="file" class="form-control" name="bbsimages" size="40">
 					<a href="bbs.jsp" class="btn btn-danger pull-right" style="margin-top:5px;">글쓰기 취소</a> <input
 						type="submit" style="margin:5px;"
 						class="btn btn-primary pull-right" value="글쓰기">

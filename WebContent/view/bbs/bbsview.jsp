@@ -16,7 +16,6 @@ a, a:hover {
 	text-decoration: none;
 }
 #bbsForm {
-padding-top:5%;
 	height: 85%;
 	width: 80%;
 	float:right;
@@ -78,15 +77,15 @@ padding-top:5%;
 					<tr>
 						<td>내용</td>
 						<td colspan="2" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
-
+<%System.out.println(bbs.getBbsContent().length()); %>
 					</tr>
 					
 					<%if(bbs.getBbsImagename()!=null){ 
 					%>
 					<tr>
 						<td>그림</td>
-						<td colspan="2" style="min-height: 200px;">
-						<img src="../../bbsimages/<%=bbs.getBbsImagename()%>"/></td>
+						<td colspan="2" style="height: 100px;">
+						<img src="../../bbsimages/<%=bbs.getBbsImagename()%>" style="height: 238px"/></td>
 
 					</tr>
 					<%} %>

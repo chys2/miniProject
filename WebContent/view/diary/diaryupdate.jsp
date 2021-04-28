@@ -21,8 +21,6 @@ padding-top:5%;
 	height: 85%;
 	width: 80%;
 	float:right;
-	background: yellow;
-
 }
 
 </style>
@@ -84,7 +82,7 @@ padding-top:5%;
 							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50" value="<%=bbs.getBbsTitle() %>"></td>
 						</tr> --%>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="diaryContent" maxlength="204" style="height: 350px;"><%=diary.getDiaryContent() %></textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="diaryContent" maxlength="150" style="height: 350px;"><%=diary.getDiaryContent() %></textarea></td>
 						</tr>							
 					
 				<tr>
@@ -93,7 +91,7 @@ padding-top:5%;
 			</tbody>
 			</table>
 			<!-- 글쓰기 버튼 생성 -->
-			<a href="dairy.jsp"  class="btn btn-primary pull-right">수정취소</a>
+			<a href="diary.jsp"  class="btn btn-danger pull-right">수정취소</a>
 			<input type="submit"   style="margin-right:5px " class="btn btn-primary pull-right" value="수정하기">
 			
 		</form>

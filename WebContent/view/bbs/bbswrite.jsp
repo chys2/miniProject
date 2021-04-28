@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>강아지의 친구 글쓰기</title>
 <style type="text/css">
 a, a:hover {
 	color: #000000;
@@ -20,21 +20,20 @@ a, a:hover {
 	height: 85%;
 	width: 80%;
 	float: right;
-	background: yellow;
 }
 </style>
 </head>
 
 <body>
 	<%
-	String logId = null;
+		String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
 	%>
 	<jsp:include page="/include/top_menu_3.jsp" flush="false" />
 	<div id="bbsForm">
-		<div class="container" style="width: 70%" >
+		<div class="container" style="width: 70%">
 			<div class="row">
 
 				<form method="post" action="bbswriteAction.jsp"
@@ -45,7 +44,7 @@ a, a:hover {
 						style="text-align: center; border: 1px solid #dddddd">
 						<thead>
 							<tr>
-								<th colspan="2"
+								<th 
 									style="background-color: #eeeeee; text-align: center;">게시판
 									글쓰기 양식</th>
 							</tr>
@@ -63,11 +62,14 @@ a, a:hover {
 							</tr>
 						</tbody>
 					</table>
+					
+					<div style="margin-top:5px">
+					
 					<input type="file" class="form-control" name="bbsimages" size="40">
-					<a href="bbs.jsp" class="btn btn-primary pull-right">글쓰기 취소</a> <input
-						type="submit" style="margin-right: 5px"
+					<a href="bbs.jsp" class="btn btn-danger pull-right" style="margin-top:5px;">글쓰기 취소</a> <input
+						type="submit" style="margin:5px;"
 						class="btn btn-primary pull-right" value="글쓰기">
-
+					</div>
 				</form>
 			</div>
 

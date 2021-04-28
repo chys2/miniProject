@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>강아지의 친구 수정</title>
 <style type="text/css">
 a, a:hover {
 	color: #000000;
@@ -21,7 +21,7 @@ padding-top:5%;
 	height: 85%;
 	width: 80%;
 	float:right;
-	background: yellow;
+	
 
 }
 

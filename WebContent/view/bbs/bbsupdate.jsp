@@ -92,7 +92,7 @@ padding-top:5%;
 			</tbody>
 			</table>
 			<!-- 글쓰기 버튼 생성 -->
-			<a href="bbs.jsp"  class="btn btn-primary pull-right">수정취소</a>
+			<a href="bbs.jsp"  class="btn btn-danger pull-right">수정취소</a>
 			<input type="submit"   style="margin-right:5px " class="btn btn-primary pull-right" value="수정하기">
 			
 		</form>

@@ -20,7 +20,7 @@ padding-top:5%;
 	height: 85%;
 	width: 80%;
 	float:right;
-	background: yellow;
+	
 
 }
 

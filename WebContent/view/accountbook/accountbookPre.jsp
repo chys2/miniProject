@@ -36,7 +36,7 @@ a, a:hover {
 }
 
 #container_2 {
-margin-left:8%;
+margin-left:2.7%;
 margin-top:3%;
 	/* background: pink; */ 
 	height: 100%;
@@ -130,11 +130,13 @@ margin-top:3%;
         var options = {
           title: '<%=list.get(i).getDogname()%>님을 위한 <%=month%>월 지출내역',
          	width:'100%',
-         	height :'100%'
+         	height :'100%',
+         		 backgroundColor: '#e1e3ef'
+         
         };
         <%}%>
         var chart = new google.visualization.PieChart(document.getElementById('container_2'));
-
+			
         chart.draw(data, options);
       }
     </script>

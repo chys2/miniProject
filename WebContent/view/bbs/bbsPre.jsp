@@ -43,10 +43,10 @@ a, a:hover {
 	%>
 	<jsp:include page="/include/top_blank.jsp" flush="false" />
 	<form id="bbsForm">
-		<div class="container" style="width: 70%">
+		<div class="container" style="width: 98%">
 			<div class="row">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
+				<table class="table table"
+					style="text-align: center; border: 1px solid #dddddd; background-color: white;">
 					<thead>
 						<tr>
 							<th style="background-color: #eeeeee; text-align: center">번호</th>
@@ -79,7 +79,7 @@ a, a:hover {
 					</tbody>
 				</table>
 				
-				<a href="../bbs/bbs.jsp" class="btn btn-primary pull-right">글 보러가기</a>
+				<a href="../bbs/bbs.jsp" class="btn btn-primary pull-right" >글 보러가기</a>
 			</div>
 
 		</div>

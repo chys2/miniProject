@@ -18,36 +18,40 @@ html, body {
 .header {
 	width: 100%;
 	height: 15%;
-	
 	color: white;
 	
 }
 .section{
+	background-color: #e1e3ef; 
 	width:48%;
 	height:83%;
-	background-color: powderblue;
+ 
 	float:left;
 	margin-left:1%;
-	border: 1px;
+	border: 3px solid #8c8c8c;
 	
 	
 }
 .section_right_top{
 	width:49%;
 	height:41%;
-	background-color: pink;
+	
 	float:left;
 	margin-left:1%;
 	margin-right:1%;
+	border: 5px double #8c8c8c;
+	background-color:#d9dee6;
 }
 .section_right_bottom{
 	width:49%;
 	height:40%;
-	background-color: blue;
+ 
 	float:left;
 	margin-left:1%;
 	margin-right:1%;
 	margin-top: 1%;
+	border: 5px outset #e1e3ef;
+	background-color:#9d9ea3;
 }
 </style>
 </head>

@@ -151,12 +151,28 @@ html, body {
 
 			<%
 			}
+			
+			TitleImageDAO titledao = new TitleImageDAO();
+			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
+
 			%>
-	<form method="post" action="../../profile/testTitleAction.jsp"
+			
+			<form method="post" action="../../profile/testTitleAction.jsp"
 					enctype="multipart/form-data">
-           <br> <br> <input type="submit"  style="margin-center: 0px"
-						class="btn " value="이미지설정">
-						<input type="file" class="btn" name="titleimages">
+						<br><input type="file" class="btn btn primary pull-right" name="titleimages">
+          
+          
+			<% if(check.size() == 0){%>
+           <br> <input type="submit"  style="margin-center: 0px"
+						class="btn btn primary pull-right" value="이미지 등록">
+						
+            <% }else {%>
+           <br> <input type="submit"  style="margin-center: 0px"
+						class="btn btn primary pull-right" value="이미지 수정">
+						
+            <% }%>
+            
+            
            </form>
 		</div>
 

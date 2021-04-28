@@ -15,13 +15,12 @@ public class TitleImageDAO {
 	public TitleImageDAO() {
 		try {
 
-			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-			  String dbID ="c##root"; 
-			  String dbPassword = "root";
-			  Class.forName("oracle.jdbc.OracleDriver"); 
-			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+			String dbID = "c##root";
+			String dbPassword = "root";
+			Class.forName("oracle.jdbc.OracleDriver");
+			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 
-			
 //			 InitialContext ic = new InitialContext();
 //			 
 //			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
@@ -35,6 +34,7 @@ public class TitleImageDAO {
 			System.out.println(e);
 		}
 	}
+
 	public int update(String logid, String imagename) {
 		String SQL = "update titleimage set imagename=? where logId = ? ";
 
@@ -48,8 +48,10 @@ public class TitleImageDAO {
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}return 0;
+		}
+		return 0;
 	}
+
 	public int insert(String logid, String imagename) {
 		String SQL = "INSERT INTO titleimage VALUES (?,?)";
 
@@ -59,38 +61,59 @@ public class TitleImageDAO {
 			pstmt.setString(2, imagename);
 			pstmt.execute();
 			rs = pstmt.executeQuery();
-         return 1;
-			
+			return 1;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
-	
+
 	public String view(String logid) {
 		String SQL = "select imagename from titleimage where logid = ?";
-       String tatleDefault = "foot.jpg";
-       String imagename = null;
+		String tatleDefault = "foot.jpg";
+		String imagename = null;
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logid);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-			imagename = rs.getString(1);
+			while (rs.next()) {
+				imagename = rs.getString(1);
 			}
-			if(imagename==null)
-            return tatleDefault;
+			if (imagename == null)
+				return tatleDefault;
 			else
-			return imagename;
-			
+				return imagename;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return imagename;
 	}
-	public ArrayList<vo.TitleimageVo> titlecheck(String logId) {
-		String SQL = "select count(imagename) from titleimage where logid= ? group by logid" ;
-		ArrayList<vo.TitleimageVo> check = new ArrayList<vo.TitleimageVo>();
+
+	public String viewId(String logid) {
+		String SQL = "select logid from titleimage where logid = ?";
+		String id = null;
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, logid);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				id = rs.getString(1);
+			}
+
+			return id;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+
+	public ArrayList<vo.TitleimageVo> getList(String logId) {
+		String SQL = "select * from titleimage where logid= ?";
+		ArrayList<vo.TitleimageVo> list = new ArrayList<vo.TitleimageVo>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
@@ -99,13 +122,12 @@ public class TitleImageDAO {
 				vo.TitleimageVo title = new vo.TitleimageVo();
 				title.setLogId(rs.getString(1));
 				title.setImagename(rs.getString(2));
-				check.add(title);
+				list.add(title);
 			}
-			System.out.println("test");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return check; // ?ç†?èô?òôÏ≤? ?ç†?åâ?ãúÎ±ÑÏòô ?ç†?èô?òô?ôò
+		return list; // ?ç†?èô?òôÏ≤? ?ç†?åâ?ãúÎ±ÑÏòô ?ç†?èô?òô?ôò
 	}
 }

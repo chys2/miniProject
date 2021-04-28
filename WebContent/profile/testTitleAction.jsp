@@ -67,49 +67,54 @@ System.out.print(im_name);
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	} else {
-		TitleImageDAO titledao = new TitleImageDAO();
-		ArrayList<vo.TitleimageVo> check = titledao.titlecheck(logId);
+		
+		if (im_name == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('이미지가 없습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+		} else {
 
-		if (title.view(logId).equals("foot.jpg")) {
-
-			int result = title.insert(logId, im_name);
-			if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('글쓰기에 실패했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
+			TitleImageDAO titledao = new TitleImageDAO();
+			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
+			
+	
+			if(check.size() ==0){	//등록된 이미지가 없는 경우
+				
+				int result = title.insert(logId, im_name); // 등록을 한다.
+				
+				if(result != -1) {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('등록 완료')");
+					script.println("location.href ='./main/main.jsp'");
+					script.println("</script>");
+				} else {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('발생되어서는 안 되는 케이스')");
+					script.println("</script>");
+				}
+								
+			} else {	// 등록이 된 경우
+				int result = title.update(logId, im_name); // 수정을 한다.
+				
+				if(result != -1) {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('수정 완료')");
+					script.println("location.href ='./main/main.jsp'");
+					script.println("</script>");
+				} else {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('발생되어서는 안 되는 케이스')");
+					script.println("</script>");
+				}
 			}
-
-			else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미지를 등록하였습니다.')");
-		script.println("location.href='../view/main/main.jsp'");
-		script.println("</script>");
-			}
-
 		}
-
-		else {
-			int result = title.update(logId, im_name);
-			if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('글쓰기에 실패했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-			}
-
-			else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미지를 수정하였습니다.')");
-		script.println("location.href='../view/main/main.jsp'");
-		script.println("</script>");
-			}
-		}
-	}
+	}				
 	%>
 </body>
 </html>

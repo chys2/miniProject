@@ -116,8 +116,6 @@ try {
 		script.println("location.href='../view/main/main.jsp'");
 		script.println("</script>");
 
-			TitleImageDAO titledao = new TitleImageDAO();
-			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
 	
 			}
 		}

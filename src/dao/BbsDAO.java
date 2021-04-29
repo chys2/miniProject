@@ -7,8 +7,9 @@ import javax.sql.*;
 import javax.naming.*;
 
 public class BbsDAO {
-	private PreparedStatement pstmt;
+
 	private Connection conn;
+	private PreparedStatement pstmt;
 	private ResultSet rs;
 
 	public BbsDAO() {
@@ -50,8 +51,6 @@ public class BbsDAO {
 			return 1; 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			close(conn, pstmt, rs);
 		}
 		return -1; 
 	}
@@ -72,8 +71,11 @@ public class BbsDAO {
 
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		    if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1;
 	}
 
@@ -100,8 +102,11 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
 
@@ -129,8 +134,11 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return list; 
 	}
 	
@@ -148,8 +156,11 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return false; 
 	}
 
@@ -174,8 +185,11 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return null; 
 	}
 	
@@ -193,8 +207,11 @@ public class BbsDAO {
 			e.printStackTrace();
 			System.out.println(e);
 		}finally {
-			close(conn, pstmt);
-		}
+		   
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; 
 	}
 	public int bbsdelete(int bbsID) {
@@ -207,10 +224,14 @@ public class BbsDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		    
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1;
 	}
+
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
 		try {

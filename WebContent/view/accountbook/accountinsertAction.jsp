@@ -59,6 +59,7 @@
 			script.println("</script>");
 		}else{
 			int result = accountbookDAO.accountinsert(accountbook.getAccountbookID(), logId, account, money, date,accountbook.getAccountbookAvailable() );
+			
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

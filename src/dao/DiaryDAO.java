@@ -7,8 +7,9 @@ import javax.sql.*;
 import javax.naming.*;
 
 public class DiaryDAO {
-	private PreparedStatement pstmt;
+
 	private Connection conn;
+	private PreparedStatement pstmt;
 	private ResultSet rs;
 	final int diaryInPage = 3;
 
@@ -49,8 +50,11 @@ public class DiaryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; // DB Error
 	}
 
@@ -69,8 +73,11 @@ public class DiaryDAO {
 
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		   
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; // DB Error
 	}
 	
@@ -98,8 +105,11 @@ public class DiaryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return list; // DB Error
 	}
 
@@ -118,8 +128,11 @@ public class DiaryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return false; // if not exist next page
 	}	
 		
@@ -143,8 +156,11 @@ public class DiaryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return null; // Invalid
 	}
 
@@ -160,8 +176,11 @@ public class DiaryDAO {
 			e.printStackTrace();
 			System.out.println(e);
 		}finally {
-			close(conn, pstmt);
-		}
+		    
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; // DB Error
 	}
 
@@ -174,8 +193,11 @@ public class DiaryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		    
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; // DB Error
 	}
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
@@ -201,5 +223,7 @@ public class DiaryDAO {
 		}
 
 	}
+
+	
 
 }

@@ -53,8 +53,11 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -2; // 데이터베이스 오류
 	}
 
@@ -74,8 +77,11 @@ public class MemberDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		   
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; // 데이터베이스 오류
 
 	}
@@ -94,8 +100,11 @@ public class MemberDAO {
 			e.printStackTrace();
 			System.out.println(e);
 		}finally {
-			close(conn, pstmt);
-		}
+		  
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1;
 	}
 
@@ -121,8 +130,11 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return mypage;
 	}
 	
@@ -148,8 +160,11 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return pro;
 	}
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
@@ -175,4 +190,5 @@ public class MemberDAO {
 		}
 
 	}
+
 }

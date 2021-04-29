@@ -36,7 +36,7 @@ request.setCharacterEncoding("UTF-8");
 		script.println("</script>");
 		
 	}
-	%>
+	
 
 	if (member.getLogid() == null || member.getPwd() == null || member.getPwdcheck() == null || member.getDogname() == null
 			|| member.getEmail() == null || member.getGender() == null || member.getAge() == null) {
@@ -66,6 +66,7 @@ request.setCharacterEncoding("UTF-8");
 
 		MemberDAO memberDAO = new MemberDAO();
 		int result = memberDAO.modify(member);
+		
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

@@ -53,8 +53,11 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return 0;
 	}
 
@@ -72,8 +75,11 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return 0;
 	}
 
@@ -96,8 +102,11 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return imagename;
 	}
 
@@ -118,8 +127,11 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return id;
 	}
 
@@ -140,8 +152,11 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return list;
 	}
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {

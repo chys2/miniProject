@@ -55,8 +55,11 @@ public class AccountBookDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; 
 	}
 	
@@ -78,8 +81,11 @@ public class AccountBookDAO {
 
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		    
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; 
 	}
 	
@@ -133,8 +139,11 @@ public class AccountBookDAO {
 
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt);
-		}
+		   
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return -1; 
 	}
 	
@@ -167,8 +176,11 @@ public class AccountBookDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
 
@@ -201,12 +213,14 @@ public class AccountBookDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(conn, pstmt, rs);
-		}
+		     if ( rs != null ) try{rs.close();}catch(Exception e){}
+		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+		     if ( conn != null ) try{conn.close();}catch(Exception e){}
+
+		 }
 		return searchlist; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
-	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
-
+	public void close(Connection conn,PreparedStatement pstmt,ResultSet rs) {
 		try {
 			conn.close();
 			pstmt.close();
@@ -218,10 +232,13 @@ public class AccountBookDAO {
 
 	}
 
-	public void close(Connection conn, PreparedStatement pstmt) {
+	 
+	
+	public void close(Connection conn,PreparedStatement pstmt) {
 		try {
 			conn.close();
 			pstmt.close();
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

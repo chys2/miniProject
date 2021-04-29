@@ -1,3 +1,9 @@
+<%@page import="javax.script.ScriptException"%>
+<%@page import="javax.script.ScriptEngine"%>
+<%@page import="javax.script.ScriptEngineManager"%>
+<%@page import="vo.MemberVo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.MemberDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -7,7 +13,10 @@
 <%@ page import="vo.DiaryVo"%>
 <%@ page import="java.sql.*" %> 
 <%@ page import="java.io.PrintWriter"%>
+
+
 <%
+
 DiaryVo diary = new DiaryVo();
 request.setCharacterEncoding("UTF-8");
 
@@ -56,10 +65,11 @@ diary.setDiaryImagename(im_name);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
-
+<link rel = "stylesheet" href = "/Struts2Board/board/css.css" type = "text/css">
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
+
 	<%
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
@@ -72,6 +82,30 @@ diary.setDiaryImagename(im_name);
 		script.println("location.href ='../login/login.jsp'");
 		script.println("</script>");
 	}else{
+		/* ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName("JavaScript");
+		
+		MemberDAO mem = new MemberDAO();
+		ArrayList<MemberVo> m = mem.mypage(logId);
+		String pwd = m.get(0).getPwd();
+		PrintWriter script2 = response.getWriter();
+		mem.close();
+		script2.println("<script>");
+		script2.println(" var pwdin = prompt('비밀번호를 입력');");
+		script2.println("alert(pwdin)");
+		script2.println("</script>");
+		try{
+		 engine.eval("var pwdin2 = '1234'");
+		
+		System.out.print(engine.get("pwdin"));
+	    System.out.print(engine.get("pwdin2"));
+	    }catch(ScriptException e){
+			e.printStackTrace();
+		}
+		System.out.print((String)engine.get("pwdin"));
+		
+		if(pwd.equals((String)engine.get("pwdin"))){ */
+	
 		if  (diary.getDiaryContent().equals("") ||	diary.getDiaryContent()==null || diary.getDiaryImagename()==null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -84,7 +118,8 @@ diary.setDiaryImagename(im_name);
 
 
 			int result = diaryDAO.diarywrite(logId,diary.getDiaryContent(),diary.getDiaryImagename());
-
+			
+            diaryDAO.close();
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -102,6 +137,13 @@ diary.setDiaryImagename(im_name);
 			}
 
 		}
+	/* }else{
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('비밀번호가 틀렸습니다.')");
+		script.println("location.href='diary.jsp'");
+		script.println("</script>");
+	} */
 	}
 
 	

@@ -1,3 +1,5 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,6 +36,15 @@ a, a:hover {
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
+	}else if(session.getAttribute("logId") == null){
+		String msg ="로그인을 먼저 해주세요.";
+		msg=URLEncoder.encode(msg,"UTF-8");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 먼저해주세요.')");
+		script.println("location.href='../login/login.jsp'");
+		script.println("</script>");
+		
 	}
 	%>
 	<jsp:include page="/include/top_menu_2.jsp" flush="false" />

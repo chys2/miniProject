@@ -29,7 +29,7 @@ public class TitleImageDAO {
 //			 conn = ds.getConnection();
 //			
 
-			System.out.println("연결완료");
+			System.out.println("TitleImageDAO DB연결완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
@@ -129,7 +129,7 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list; // ?뜝?룞?삕泥? ?뜝?뙃?떆諭꾩삕 ?뜝?룞?삕?솚
+		return list;
 	}
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
@@ -138,7 +138,7 @@ public class TitleImageDAO {
 			pstmt.close();
 			rs.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

@@ -20,7 +20,7 @@ public class DiaryDAO {
 			 Class.forName("oracle.jdbc.OracleDriver"); 
 			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
-			System.out.println("연결완료");
+			System.out.println("DiaryDAO DB연결완료");
 
 		} catch (Exception e) {
 			e.printStackTrace();

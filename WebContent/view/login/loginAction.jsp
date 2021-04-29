@@ -43,10 +43,10 @@
 		
 		PrintWriter script = response.getWriter();
 		int result = memberDAO.login(member.getLogid(), member.getPwd());
-		System.out.println(result == -1);
+	
 		
 		if (result == 1) {
-			System.out.println("case 1");
+		
 			
 			session.setAttribute("logId",member.getLogid());
 			script.println("<script>");
@@ -54,7 +54,7 @@
 			script.println("location.href = '../main/main.jsp'");
 			script.println("</script>");
 		} else if (result == 0) {
-			System.out.println("case 0");
+			
 			script.println("<script>");
 			script.println("alert('비밀번호가 틀립니다.')");
 			script.println("history.back()");
@@ -72,8 +72,7 @@
 		} 
 		
 		
-		System.out.println(result);
-	}
+		}
 	%>
 
 

@@ -29,7 +29,7 @@ public class AccountBookDAO {
  * conn = ds.getConnection();
  */
 			 
-			System.out.println("연결완료2");
+			System.out.println("AccountBookDAO DB연결완료");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class AccountBookDAO {
 	public int change_month(String logId, String now_month_startDay,String now_month_endDay) {
 		String SQL = "update accountbook set accountbookAvailable=0 "
 				+ "where accountbookdate not between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd') and logid=?";
-
+		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, now_month_startDay);

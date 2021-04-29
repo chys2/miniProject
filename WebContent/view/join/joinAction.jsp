@@ -54,9 +54,7 @@ request.setCharacterEncoding("UTF-8");
    }
 
 	if (session.getAttribute("logid") != null) {
-
 		logId = (String) session.getAttribute("logId");
-		System.out.print(logId);
 	}
 	if (logId != null) {
 		PrintWriter script = response.getWriter();

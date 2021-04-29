@@ -68,7 +68,6 @@ margin-top:3%;
 
 	String beforedate = request.getParameter("beforedate");
 	String afterdate = request.getParameter("afterdate");
-	System.out.println(logId);
 
 	Calendar now = Calendar.getInstance();
 	int year = now.get(now.YEAR);

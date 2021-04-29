@@ -28,7 +28,7 @@ public class MemberDAO {
 //			 conn = ds.getConnection();
 			
 
-			System.out.println("¿¬°á¿Ï·á");
+			System.out.println("MemberDAO DB¿¬°á¿Ï·á");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
@@ -90,7 +90,7 @@ public class MemberDAO {
 			e.printStackTrace();
 			System.out.println(e);
 		}
-		return -1; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		return -1;
 	}
 
 	public ArrayList<vo.MemberVo> mypage(String logId) {

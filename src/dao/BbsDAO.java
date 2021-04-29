@@ -28,7 +28,7 @@ public class BbsDAO {
  * conn = ds.getConnection();
  */
 			 
-			System.out.println("占쏙옙占쏙옙狗占�");
+			System.out.println("BbsDAO DB연결완료");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,23 +36,9 @@ public class BbsDAO {
 		}
 	}
 
-//	public String getDate() { //占쏙옙占쏙옙 占시곤옙 占쌍깍옙
-//		String SQL="select to_char(sysdate, 'YYYY/MM/DD HH24:MI:SS') from dual;";
-//		
-//		try {
-//			PreparedStatement pstmt = conn.prepareStatement(SQL);
-//			rs=pstmt.executeQuery();
-//			if (rs.next()) {
-//				return rs.getString(1);
-//			}
-//		}catch(Exception e){
-//			
-//			e.printStackTrace();
-//		}
-//		return"";
-//	}
 
-	public int bbsgetNext() { // 占쌉쏙옙占쏙옙 占쏙옙호 占쌍깍옙
+	public int bbsgetNext() { 
+		//게시글 번호 부여
 		String SQL = "select bbsID from bbs order by bbsID DESC";
 
 		try {
@@ -61,16 +47,16 @@ public class BbsDAO {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; // 첫 占쏙옙째 占쌉시뱄옙占쏙옙 占쏙옙占�
+			return 1; 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // 占쏙옙占쏙옙占싶븝옙占싱쏙옙 占쏙옙占쏙옙
+		return -1; 
 	}
 
 	public int bbswrite(String bbsTitle, String logId, String bbsContent, String bbsImagename) {
 		String SQL = "insert into bbs values (?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi'),?,?,?)";
-
+		//게시글 작성
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsgetNext());
@@ -84,11 +70,11 @@ public class BbsDAO {
 
 			e.printStackTrace();
 		}
-		return -1; // 占쏙옙占쏙옙占쏙옙 占쏙옙占싱쏙옙 占쏙옙占쏙옙
+		return -1;
 	}
 
 	public ArrayList<vo.BbsVo> getList(int pageNumber) {
-		// 占쌉시깍옙 1占쏙옙 10占쏙옙占쏙옙占쏙옙 占쏙옙占�
+	
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=10 order by bbsID desc";
 		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {
@@ -115,7 +101,7 @@ public class BbsDAO {
 
 	
 	public ArrayList<vo.BbsVo> previewgetList(int pageNumber) {
-		// 占쌉시깍옙 1占쏙옙 10占쏙옙占쏙옙占쏙옙 占쏙옙占�
+	
 		String SQL = "select * from bbs where bbsId < ?  and bbsAvailable = 1 and ROWNUM <=3 order by bbsID desc";
 		ArrayList<vo.BbsVo> list = new ArrayList<vo.BbsVo>();
 		try {
@@ -137,11 +123,13 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
+		return list; 
 	}
 	
 	public boolean nextPage(int pageNumber) {
 		String SQL = "select * from bbs where bbsId < ? and bbsAvailable = 1 and ROWNUM <=10   order by bbsID desc";
+		
+		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsgetNext() - (pageNumber - 1) * 10);
@@ -152,11 +140,12 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false; // 占쏙옙占쏙옙占쏙옙 占쏙옙占싱쏙옙 占쏙옙占쏙옙
+		return false; 
 	}
 
 	public vo.BbsVo getBbs(int bbsID) {
 		String SQL = "select * from bbs where bbsID = ?";
+		//bbsid에 따른 게시글 내용 출력
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
@@ -175,7 +164,7 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null; // 占쏙옙占쏙옙占쏙옙 占쏙옙占싱쏙옙 占쏙옙占쏙옙
+		return null; 
 	}
 	
 	public int bbsupdate(int bbsID, String bbsTitle, String bbsContent, String bbsImagename ) {
@@ -192,10 +181,10 @@ public class BbsDAO {
 			e.printStackTrace();
 			System.out.println(e);
 		}
-		return -1; //占쏙옙占쏙옙占싶븝옙占싱쏙옙 占쏙옙占쏙옙
+		return -1; 
 	}
 	public int bbsdelete(int bbsID) {
-		//占쏙옙占쏙옙 占쏙옙占쏙옙占싶몌옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙 占싣니띰옙 占쌉시깍옙 占쏙옙효占쏙옙占쌘몌옙 '0'占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
+		
 		String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -204,7 +193,7 @@ public class BbsDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //占쏙옙占쏙옙占싶븝옙占싱쏙옙 占쏙옙占쏙옙 
+		return -1;
 	}
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 

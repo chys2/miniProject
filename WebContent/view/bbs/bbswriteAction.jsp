@@ -50,9 +50,6 @@ bbs.setBbsTitle(bbsT);
 bbs.setBbsContent(bbsC);
 bbs.setBbsImagename(im_name); 
 %>
-<%-- <jsp:useBean id="bbs" class="vo.BbsVo" scope="page" />
-<jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent" />  --%>
 <!DOCTYPE html>
 <html>
 <head>

@@ -67,9 +67,7 @@ public class AccountBookDAO {
 			pstmt.setString(1, now_month_startDay);
 			pstmt.setString(2, now_month_endDay);
 			pstmt.setString(3, logId);
-			pstmt.close(); 
-			rs.close();
-			conn.close();
+		
 			
 			return pstmt.executeUpdate();
 			

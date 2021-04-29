@@ -194,7 +194,7 @@ border-radius: 10px;
 			%>				
 		</ul>
 		
-		<div style="margin-top:50px">
+		<div style="margin-top:20px">
 			<% if(pageNumber != 1) {%>
 				<a href="diary.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left pull-left" style="margin-left:10px;">이전</a>
 			<% } %>

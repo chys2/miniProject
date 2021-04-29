@@ -30,41 +30,50 @@
 		script.println("history.back()");
 		script.println("</script>");
 	}
-		MemberDAO memberDAO = new MemberDAO();
-	int result = memberDAO.login(member.getLogid(), member.getPwd());
-	if (result == 1) {
-		session.setAttribute("logId",member.getLogid());
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인 완료')");
-		script.println("location.href = '../main/main.jsp'");
-		script.println("</script>");
-	}
-
-	else if (result == 0) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('비밀번호가 틀립니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	}
-
-	else if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('아이디를 확인해주세요.)");
-		script.println("history.back()");
-		script.println("</script>");
-	}
-
-	else if (result == -2) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('데이터베이스 오류가 발생했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	}
+		
 	
+	if (member.getLogid()==null || member.getPwd()==null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('입력이 안된 사항이있습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+		}else {
+		MemberDAO memberDAO = new MemberDAO();
+		
+		PrintWriter script = response.getWriter();
+		int result = memberDAO.login(member.getLogid(), member.getPwd());
+		System.out.println(result == -1);
+		
+		if (result == 1) {
+			System.out.println("case 1");
+			
+			session.setAttribute("logId",member.getLogid());
+			script.println("<script>");
+			script.println("alert('로그인 완료')");
+			script.println("location.href = '../main/main.jsp'");
+			script.println("</script>");
+		} else if (result == 0) {
+			System.out.println("case 0");
+			script.println("<script>");
+			script.println("alert('비밀번호가 틀립니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+		}else if (result == -1) {
+			script.println("<script>");
+			script.println("alert('아이디를 확인해주세요.')");
+			script.println("history.back()");
+			script.println("</script>");
+		}else if (result == -2) {
+			script.println("<script>");
+			script.println("alert('데이터베이스 오류가 발생했습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+		} 
+		
+		
+		System.out.println(result);
+	}
 	%>
 
 

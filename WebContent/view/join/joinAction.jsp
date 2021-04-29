@@ -94,6 +94,7 @@ request.setCharacterEncoding("UTF-8");
 
       MemberDAO memberDAO = new MemberDAO();
       int result = memberDAO.join(member);
+      memberDAO.close();
       if (result == -1) {
          PrintWriter script = response.getWriter();
          script.println("<script>");

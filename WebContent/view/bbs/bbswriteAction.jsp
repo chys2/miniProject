@@ -83,7 +83,7 @@ bbs.setBbsImagename(im_name);
 
 
 			int result = bbsDAO.bbswrite(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
-
+			bbsDAO.close();
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

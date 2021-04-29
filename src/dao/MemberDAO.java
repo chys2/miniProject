@@ -165,4 +165,14 @@ public class MemberDAO {
 		}
 
 	}
+	public void close() {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }

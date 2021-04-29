@@ -9,6 +9,7 @@ import javax.naming.*;
 public class DiaryDAO {
 
 	private Connection conn;
+	private PreparedStatement pstmt;
 	private ResultSet rs;
 	final int diaryInPage = 3;
 
@@ -173,6 +174,16 @@ public class DiaryDAO {
 		try {
 			conn.close();
 			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public void close() {
+		try {
+			this.conn.close();
+			this.pstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

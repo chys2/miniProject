@@ -13,7 +13,7 @@ public class TitleImageDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	public TitleImageDAO() {
+	public TitleImageDAO() {//DB접속
 		try {
 
 			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -36,7 +36,7 @@ public class TitleImageDAO {
 		}
 	}
 
-	public int update(String logid, String imagename) {
+	public int update(String logid, String imagename) {//프로필사진 업데이트
 		String SQL = "update titleimage set imagename=? where logId = ? ";
 
 		try {
@@ -46,14 +46,14 @@ public class TitleImageDAO {
 			pstmt.execute();
 			rs = pstmt.executeQuery();
 
-			return 1;
+			return 1;//이미지 업데이트가 성공했을때
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return 0;//이미지 업데이트가 실패했을때
 	}
 
-	public int insert(String logid, String imagename) {
+	public int insert(String logid, String imagename) {//새로운 아이디에 이미지 삽입
 		String SQL = "INSERT INTO titleimage VALUES (?,?)";
 
 		try {
@@ -62,17 +62,17 @@ public class TitleImageDAO {
 			pstmt.setString(2, imagename);
 			pstmt.execute();
 			rs = pstmt.executeQuery();
-			return 1;
+			return 1;//이미지 삽입이 성공했을때
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return 0;//이미지 삽입이 실패했을때
 	}
 
-	public String view(String logid) {
+	public String view(String logid) {//이미지이름 가져오기
 		String SQL = "select imagename from titleimage where logid = ?";
-		String tatleDefault = "foot.jpg";
+		String tatleDefault = "foot.jpg";//기본이미지 생성
 		String imagename = null;
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -82,39 +82,24 @@ public class TitleImageDAO {
 				imagename = rs.getString(1);
 			}
 			if (imagename == null)
-				return tatleDefault;
+				return tatleDefault;//이미지 삽입실패시 기본이미지
 			else
-				return imagename;
+				return imagename;//이미지이름 성공적으로 가져왔을때
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return imagename;
+		return imagename;//이미지 삽입실패시 기본이미지
 	}
 
-	public String viewId(String logid) {
-		String SQL = "select logid from titleimage where logid = ?";
-		String id = null;
 
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, logid);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				id = rs.getString(1);
-			}
+	
+	
 
-			return id;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return id;
-	}
-
-	public ArrayList<vo.TitleimageVo> getList(String logId) {
+	public ArrayList<vo.TitleimageVo> getList(String logId) {//TitleimageVo 정보로 가져오기
 		String SQL = "select * from titleimage where logid= ?";
 		ArrayList<vo.TitleimageVo> list = new ArrayList<vo.TitleimageVo>();
+
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
@@ -129,7 +114,10 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list;
+
+		return list; // ArrayList<vo.TitleimageVo>가져오기
+
+
 	}
 	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
@@ -145,6 +133,16 @@ public class TitleImageDAO {
 	}
 
 	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public void close() {
 		try {
 			conn.close();
 			pstmt.close();

@@ -68,7 +68,7 @@ a, a:hover {
 					</table>
 			
 			
-			<a href="diary.jsp" class="btn btn-danger pull-right">글쓰기 취소</a>
+			      <a href="diary.jsp" class="btn btn-danger pull-right">글쓰기 취소</a>
 				
 				<input type="submit" style="margin-right:5px " class="btn btn-primary pull-right" value="글쓰기">
 			

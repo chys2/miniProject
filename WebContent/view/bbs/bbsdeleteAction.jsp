@@ -50,6 +50,7 @@ request.setCharacterEncoding("UTF-8");
 		// 정상적으로 입력이 되었다면 글 수정 로직을 수행한다
 		BbsDAO bbsDAO = new BbsDAO();
 		int result = bbsDAO.bbsdelete(bbsID);
+		bbsDAO.close();
 		// 데이터베이스 오류인 경우
 		if (result == -1) {
 			PrintWriter script = response.getWriter();

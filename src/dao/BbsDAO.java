@@ -9,6 +9,7 @@ import javax.naming.*;
 public class BbsDAO {
 	
 	private Connection conn;
+	private PreparedStatement pstmt;
 	private ResultSet rs;
 
 	public BbsDAO() {
@@ -209,6 +210,16 @@ public class BbsDAO {
 	}
 
 	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public void close() {
 		try {
 			conn.close();
 			pstmt.close();

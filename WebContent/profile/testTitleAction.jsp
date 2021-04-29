@@ -75,8 +75,8 @@ try {
 			script.println("</script>");
 		} else {
 
-
-		if (title.view(logId).equals("") || title.view(logId) == null ) {
+	ArrayList<vo.TitleimageVo> check = title.getList(logId);
+		if (check.size()==0) {
 
 			int result = title.insert(logId, im_name);
 			

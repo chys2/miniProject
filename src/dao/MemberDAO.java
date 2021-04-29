@@ -1,9 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
@@ -30,7 +26,7 @@ public class MemberDAO {
 //			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 //			 
 //			 conn = ds.getConnection();
-//			
+			
 
 			System.out.println("연결완료");
 		} catch (Exception e) {
@@ -145,5 +141,28 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return pro;
+	}
+	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

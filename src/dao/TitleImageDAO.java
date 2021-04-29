@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TitleImageDAO {
@@ -129,5 +130,28 @@ public class TitleImageDAO {
 			e.printStackTrace();
 		}
 		return list; // ? ?™?˜™ì²? ? ?Œ‰?‹œë±„ì˜™ ? ?™?˜™?™˜
+	}
+	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

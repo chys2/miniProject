@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AccountBookDAO {
 	private Connection conn;
 	private ResultSet rs;
-
+	private PreparedStatement pstmt;
+	
 	public AccountBookDAO() {
 		try {
 			
@@ -45,6 +47,9 @@ public class AccountBookDAO {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
+			pstmt.close(); 
+			rs.close();
+			conn.close();
 			return 1; 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +67,12 @@ public class AccountBookDAO {
 			pstmt.setString(1, now_month_startDay);
 			pstmt.setString(2, now_month_endDay);
 			pstmt.setString(3, logId);
+			pstmt.close(); 
+			rs.close();
+			conn.close();
+			
 			return pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -185,5 +195,28 @@ public class AccountBookDAO {
 			e.printStackTrace();
 		}
 		return searchlist; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
+	}
+	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

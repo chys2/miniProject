@@ -1,10 +1,6 @@
 package dao;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
@@ -209,6 +205,29 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return -1; //占쏙옙占쏙옙占싶븝옙占싱쏙옙 占쏙옙占쏙옙 
+	}
+	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

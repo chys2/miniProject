@@ -1,10 +1,6 @@
 package dao;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
@@ -159,6 +155,29 @@ public class DiaryDAO {
 			e.printStackTrace();
 		}
 		return -1; // DB Error
+	}
+	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

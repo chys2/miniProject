@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%
-	
+
 	String logId =null;
 	if(session.getAttribute("logId") != null){
 		logId =(String) session.getAttribute("logId");
@@ -64,6 +64,7 @@
 		script.println("history.back()");
 		script.println("</script>");
 	}
+	
 	%>
 
 

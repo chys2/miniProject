@@ -74,7 +74,6 @@
 				script.println("location.href='accountbook.jsp'");
 				script.println("</script>");
 			}
-			
 		}
 		
 		

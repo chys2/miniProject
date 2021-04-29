@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class TitleImageDAO {
 
 	private Connection conn;
@@ -16,18 +19,18 @@ public class TitleImageDAO {
 	public TitleImageDAO() {
 		try {
 
-			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "c##root";
-			String dbPassword = "root";
-			Class.forName("oracle.jdbc.OracleDriver");
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String dbID = "c##root";
+//			String dbPassword = "root";
+//			Class.forName("oracle.jdbc.OracleDriver");
+//			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 
-//			 InitialContext ic = new InitialContext();
-//			 
-//			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-//			 
-//			 conn = ds.getConnection();
-//			
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
+			
 
 			System.out.println("TitleImageDAO DB연결완료");
 		} catch (Exception e) {
@@ -49,6 +52,8 @@ public class TitleImageDAO {
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return 0;
 	}
@@ -66,6 +71,8 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return 0;
 	}
@@ -88,6 +95,8 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return imagename;
 	}
@@ -108,6 +117,8 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return id;
 	}
@@ -128,6 +139,8 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return list;
 	}

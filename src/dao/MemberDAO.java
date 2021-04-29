@@ -14,18 +14,18 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 
-			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-			  String dbID ="c##root"; 
-			  String dbPassword = "root";
-			  Class.forName("oracle.jdbc.OracleDriver"); 
-			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+//			  String dbID ="c##root"; 
+//			  String dbPassword = "root";
+//			  Class.forName("oracle.jdbc.OracleDriver"); 
+//			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
 			
-//			 InitialContext ic = new InitialContext();
-//			 
-//			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-//			 
-//			 conn = ds.getConnection();
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
 			
 
 			System.out.println("MemberDAO DB연결완료");
@@ -52,6 +52,8 @@ public class MemberDAO {
 			return -1; // 아이디가 없음 존재하지 않는 아이디 입니다.
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return -2; // 데이터베이스 오류
 	}
@@ -68,9 +70,11 @@ public class MemberDAO {
 			pstmt.setString(6, member.getAge());
 			return pstmt.executeUpdate();
 		}
-
+		
 		catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1; // 데이터베이스 오류
 
@@ -89,6 +93,8 @@ public class MemberDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1;
 	}
@@ -114,6 +120,8 @@ public class MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return mypage;
 	}
@@ -139,6 +147,8 @@ public class MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return pro;
 	}

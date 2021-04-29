@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class AccountBookDAO {
 	private Connection conn;
 	private ResultSet rs;
@@ -15,19 +18,19 @@ public class AccountBookDAO {
 	public AccountBookDAO() {
 		try {
 			
-			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-			  String dbID ="c##root"; 
-			  String dbPassword = "root";
-			  Class.forName("oracle.jdbc.OracleDriver"); 
-			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+			/*
+			 * String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; String dbID ="c##root";
+			 * String dbPassword = "root"; Class.forName("oracle.jdbc.OracleDriver"); conn
+			 * =DriverManager.getConnection(dbURL, dbID, dbPassword);
+			 */
 				
-/*
- * InitialContext ic = new InitialContext();
- * 
- * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
- * 
- * conn = ds.getConnection();
- */
+				
+				  InitialContext ic = new InitialContext();
+				  
+				  DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+				  
+				  conn = ds.getConnection();
+				 
 			 
 			System.out.println("AccountBookDAO DB연결완료");
 
@@ -47,12 +50,12 @@ public class AccountBookDAO {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			pstmt.close(); 
-			rs.close();
-			conn.close();
+	
 			return 1; 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return -1; 
 	}
@@ -74,6 +77,8 @@ public class AccountBookDAO {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1; 
 	}
@@ -127,6 +132,8 @@ public class AccountBookDAO {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1; 
 	}
@@ -159,6 +166,8 @@ public class AccountBookDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return list; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
@@ -191,6 +200,8 @@ public class AccountBookDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return searchlist; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}

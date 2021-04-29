@@ -7,7 +7,7 @@ import javax.sql.*;
 import javax.naming.*;
 
 public class DiaryDAO {
-
+	private PreparedStatement pstmt;
 	private Connection conn;
 	private ResultSet rs;
 	final int diaryInPage = 3;
@@ -15,11 +15,19 @@ public class DiaryDAO {
 	public DiaryDAO() {
 		try {
 
-			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-			 String dbID ="c##root"; String dbPassword = "root";
-			 Class.forName("oracle.jdbc.OracleDriver"); 
-			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+//			 String dbID ="c##root"; 
+//			 String dbPassword = "root";
+//			 Class.forName("oracle.jdbc.OracleDriver"); 
+//			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
+
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
+			
 			System.out.println("DiaryDAO DB연결완료");
 
 		} catch (Exception e) {
@@ -40,6 +48,8 @@ public class DiaryDAO {
 			return 1; // if not exist
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return -1; // DB Error
 	}
@@ -58,6 +68,8 @@ public class DiaryDAO {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1; // DB Error
 	}
@@ -85,6 +97,8 @@ public class DiaryDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return list; // DB Error
 	}
@@ -103,6 +117,8 @@ public class DiaryDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return false; // if not exist next page
 	}	
@@ -126,6 +142,8 @@ public class DiaryDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
 		}
 		return null; // Invalid
 	}
@@ -141,6 +159,8 @@ public class DiaryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1; // DB Error
 	}
@@ -153,6 +173,8 @@ public class DiaryDAO {
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(conn, pstmt);
 		}
 		return -1; // DB Error
 	}

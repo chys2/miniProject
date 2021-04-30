@@ -1,7 +1,11 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="Jdbc.JdbcUtil" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -17,7 +21,9 @@
 </head>
 <body>
 	<%
-
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
 	String logId =null;
 	if(session.getAttribute("logId") != null){
 		logId =(String) session.getAttribute("logId");
@@ -73,6 +79,7 @@
 		
 		
 		}
+	JdbcUtil.close(conn, pstmt, rs);
 	%>
 
 

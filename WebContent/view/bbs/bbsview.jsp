@@ -1,3 +1,7 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="Jdbc.JdbcUtil"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -28,6 +32,10 @@ a, a:hover {
 </head>
 <body>
 	<%
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -119,5 +127,7 @@ a, a:hover {
 	</form>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	
+	<%	JdbcUtil.close(conn, pstmt, rs); %>
 </body>
 </html>

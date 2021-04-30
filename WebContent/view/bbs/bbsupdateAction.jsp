@@ -1,3 +1,7 @@
+<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -7,6 +11,10 @@
 <%@ page import="vo.BbsVo"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+Connection conn = null;
+
 BbsVo bbs2 = new BbsVo();
 request.setCharacterEncoding("UTF-8");
 String im_address = request.getRealPath("/bbsimages");
@@ -122,6 +130,8 @@ bbs2.setBbsImagename(im_name);
 			}
 		}
 	}
+	
+	JdbcUtil.close(conn, pstmt, rs);
 	%>
 
 

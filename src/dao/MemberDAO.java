@@ -3,6 +3,9 @@ package dao;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
+
+import Jdbc.JdbcUtil;
+
 import javax.naming.*;
 
 public class MemberDAO {
@@ -12,6 +15,7 @@ public class MemberDAO {
 	private ResultSet rs;
 
 	public MemberDAO() {
+		
 		try {
 
 //			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
@@ -52,12 +56,7 @@ public class MemberDAO {
 			return -1; // 아이디가 없음 존재하지 않는 아이디 입니다.
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return -2; // 데이터베이스 오류
 	}
 
@@ -76,12 +75,7 @@ public class MemberDAO {
 		
 		catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		   
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return -1; // 데이터베이스 오류
 
 	}
@@ -99,12 +93,7 @@ public class MemberDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
-		}finally {
-		  
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return -1;
 	}
 
@@ -129,12 +118,7 @@ public class MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return mypage;
 	}
 	
@@ -159,36 +143,8 @@ public class MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return pro;
-	}
-	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
-
-		try {
-			conn.close();
-			pstmt.close();
-			rs.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public void close(Connection conn, PreparedStatement pstmt) {
-		try {
-			conn.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 }

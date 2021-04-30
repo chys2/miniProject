@@ -1,3 +1,7 @@
+<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -58,6 +62,9 @@ html, body {
 </head>
 <body>
 <%
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+Connection conn = null;
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -69,8 +76,8 @@ html, body {
 		script.println("alert('로그인을 먼저해주세요.')");
 		script.println("location.href='../login/login.jsp'");
 		script.println("</script>");
-		
 	}
+		
 	%>
 <header class="header">
 <jsp:include page="/include/top_main.jsp" flush="false"/>
@@ -90,5 +97,6 @@ html, body {
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+		<%JdbcUtil.close(conn, pstmt, rs);%>
 </body>
 </html>

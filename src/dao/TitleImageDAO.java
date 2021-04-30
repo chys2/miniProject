@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import Jdbc.JdbcUtil;
+
 public class TitleImageDAO {
 
 	private Connection conn;
@@ -52,12 +54,7 @@ public class TitleImageDAO {
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return 0;
 	}
 
@@ -74,12 +71,7 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return 0;
 	}
 
@@ -101,12 +93,7 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return imagename;
 	}
 
@@ -126,12 +113,7 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return id;
 	}
 
@@ -151,35 +133,8 @@ public class TitleImageDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		     if ( rs != null ) try{rs.close();}catch(Exception e){}
-		     if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
-		     if ( conn != null ) try{conn.close();}catch(Exception e){}
-
-		 }
+		}
 		return list;
 	}
-	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 
-		try {
-			conn.close();
-			pstmt.close();
-			rs.close();
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-
-	}
-
-	public void close(Connection conn, PreparedStatement pstmt) {
-		try {
-			conn.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 }

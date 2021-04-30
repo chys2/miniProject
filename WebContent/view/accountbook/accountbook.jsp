@@ -1,3 +1,7 @@
+<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -54,6 +58,10 @@ a, a:hover {
 </head>
 <body>
 	<%
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -224,26 +232,8 @@ a, a:hover {
         chart.draw(data, options);
       }
     </script>
-	<script>
-
-<%-- function search() {
-	alert('<%=beforedate %>'+'<%=afterdate %>');
-	<%if(listsearch.size()!=0 ){	
-		 for (int i = 0; i < list.size(); i++) {
-			%>
-			alert('테스트');
-			 alert(<%=beforedate %>);
-		
-			 
-			 alert('<%=beforedate %>에서<%=afterdate %>까지<%=listsearch.get(i).getDogname()%>님을 위해 <%=listsearch.get(i).getTotal() %>원을 지출했습니다.);
-		 
-		 
-		 <% }
-		
-		 }else { %>
-			
-		 <%} %>  
-} --%>
-</script>
+<%
+JdbcUtil.close(conn, pstmt, rs);
+	%>
 </body>
 </html>

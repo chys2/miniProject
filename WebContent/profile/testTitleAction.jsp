@@ -76,53 +76,9 @@ System.out.print(im_name);
 			script.println("</script>");
 		} else {
 
-<<<<<<< HEAD
 			TitleImageDAO titledao = new TitleImageDAO();
 			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
 			
-=======
-	ArrayList<vo.TitleimageVo> check = title.getList(logId);
-		if (check.size()==0) {
-
-			int result = title.insert(logId, im_name);
-			
-			if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('글쓰기에 실패했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-			}
-
-			else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미지를 등록하였습니다.')");
-		script.println("location.href='../view/main/main.jsp'");
-		script.println("</script>");
-			}
-
-		}
-
-		else {
-			int result = title.update(logId, im_name);
-			
-			if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('글쓰기에 실패했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-			}
-
-			else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미지를 수정하였습니다.')");
-		script.println("location.href='../view/main/main.jsp'");
-		script.println("</script>");
-
->>>>>>> 03f074fd22bb0d39b42955adc36c110b209eec70
 	
 			if(check.size() ==0){	//등록된 이미지가 없는 경우
 				
@@ -132,7 +88,7 @@ System.out.print(im_name);
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('등록 완료')");
-					script.println("location.href ='./main/main.jsp'");
+					script.println("location.href ='../view/main/main.jsp'");
 					script.println("</script>");
 				} else {
 					PrintWriter script = response.getWriter();
@@ -148,7 +104,7 @@ System.out.print(im_name);
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('수정 완료')");
-					script.println("location.href ='./main/main.jsp'");
+					script.println("location.href ='../view/main/main.jsp'");
 					script.println("</script>");
 				} else {
 					PrintWriter script = response.getWriter();

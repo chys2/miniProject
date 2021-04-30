@@ -1,3 +1,4 @@
+<%@page import="Jdbc.JdbcUtil"%>
 <%@page import="vo.AccountBookVo"%>
 <%@page import="dao.AccountBookDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -19,6 +20,10 @@
 </head>
 <body>
 	<%
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -80,7 +85,7 @@
 		
 	}
 
-	
+	JdbcUtil.close(conn, pstmt, rs);
 	%>
 
 

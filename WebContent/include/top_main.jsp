@@ -1,3 +1,7 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="Jdbc.JdbcUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="dao.MemberDAO"%>
@@ -29,6 +33,9 @@ html, body {
 </head>
 <body>
 	<%
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -62,10 +69,11 @@ html, body {
 					</li>
 						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
 					</ul>
-			</ul>
+			
 			<%
 			}
 			%>
+				<%JdbcUtil.close(conn, pstmt, rs);%>
   </div>
 </nav>
 </header>

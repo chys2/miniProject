@@ -129,6 +129,7 @@ diary2.setDiaryImagename(im_name);
 		script.println("location.href='diary.jsp'");
 		script.println("</script>");
 			}
+		diaryDAO.close();
 		}
 	}
 

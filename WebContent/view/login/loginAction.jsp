@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="Jdbc.JdbcUtil" %>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 
 <title>JSP 게시판 웹 사이트</title>
 </head>
@@ -77,7 +77,7 @@
 			script.println("</script>");
 		} 
 		
-		memberDAO.close();
+	
 		
 		}
 

@@ -1,4 +1,4 @@
-<%@page import="Jdbc.JdbcUtil"%>
+
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -117,7 +117,7 @@ Connection conn = null;
          script.println("location.href='../main/main.jsp'");
          script.println("</script>");
       }
-      memberDAO.close();
+     
 
    }
 

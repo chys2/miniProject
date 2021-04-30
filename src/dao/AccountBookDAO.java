@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import Jdbc.JdbcUtil;
+
 
 public class AccountBookDAO {
 	private Connection conn;
@@ -20,18 +20,20 @@ public class AccountBookDAO {
 	public AccountBookDAO() {
 		try {
 			
-			/*
-			 * String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; String dbID ="c##root";
-			 * String dbPassword = "root"; Class.forName("oracle.jdbc.OracleDriver"); conn
-			 * =DriverManager.getConnection(dbURL, dbID, dbPassword);
-			 */
+			
+			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; String dbID ="c##root";
+			  String dbPassword = "root"; Class.forName("oracle.jdbc.OracleDriver"); conn
+			  =DriverManager.getConnection(dbURL, dbID, dbPassword);
+			 
 				
 				
-				  InitialContext ic = new InitialContext();
-				  
-				  DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-				  
-				  conn = ds.getConnection();
+				/*
+				 * InitialContext ic = new InitialContext();
+				 * 
+				 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+				 * 
+				 * conn = ds.getConnection();
+				 */
 				 
 			 
 			System.out.println("AccountBookDAO DB연결완료");
@@ -197,7 +199,5 @@ public class AccountBookDAO {
 		}
 		return searchlist; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
-	public void close() {
-		JdbcUtil.close(conn, pstmt, rs);
-	}
+	
 }

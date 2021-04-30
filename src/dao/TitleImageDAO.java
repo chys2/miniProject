@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import Jdbc.JdbcUtil;
+
 
 public class TitleImageDAO {
 
@@ -21,17 +21,19 @@ public class TitleImageDAO {
 	public TitleImageDAO() {
 		try {
 
-//			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-//			String dbID = "c##root";
-//			String dbPassword = "root";
-//			Class.forName("oracle.jdbc.OracleDriver");
-//			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+		String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+			String dbID = "c##root";
+			String dbPassword = "root";
+		Class.forName("oracle.jdbc.OracleDriver");
+		conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 
-			 InitialContext ic = new InitialContext();
-			 
-			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-			 
-			 conn = ds.getConnection();
+		/*
+		 * InitialContext ic = new InitialContext();
+		 * 
+		 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+		 * 
+		 * conn = ds.getConnection();
+		 */
 			
 
 			System.out.println("TitleImageDAO DB연결완료");
@@ -116,8 +118,6 @@ public class TitleImageDAO {
 		}
 		return list;
 	}
-	public void close() {
-		JdbcUtil.close(conn, pstmt, rs);
-	}
+	
 
 }

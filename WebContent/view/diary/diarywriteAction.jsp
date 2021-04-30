@@ -1,4 +1,4 @@
-<%@page import="Jdbc.JdbcUtil"%>
+
 <%@page import="javax.script.ScriptException"%>
 <%@page import="javax.script.ScriptEngine"%>
 <%@page import="javax.script.ScriptEngineManager"%>

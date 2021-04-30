@@ -105,11 +105,11 @@ bbs.setBbsImagename(im_name);
 				script.println("location.href='bbs.jsp'");
 				script.println("</script>");
 			}
-
+			bbsDAO.close();
 		 } 
 	}
 
-	JdbcUtil.close(conn, pstmt, rs);
+
 	%>
 
 

@@ -112,7 +112,6 @@ padding-top:5%;
 <!-- 부트스트랩 참조 영역 -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<%JdbcUtil.close(conn, pstmt, rs);
-	%>
+
 </body>
 </html>

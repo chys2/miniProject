@@ -160,8 +160,8 @@ html, body {
 			<%
 			}
 			
-			TitleImageDAO titledao = new TitleImageDAO();
-			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
+		
+			ArrayList<vo.TitleimageVo> check = title.getList(logId);
 
 			%>
 			
@@ -186,6 +186,7 @@ html, body {
 
 	</aside>
 
-<%JdbcUtil.close(conn, pstmt, rs);%>
+<%title.close();
+profile.close();%>
 </body>
 </html>

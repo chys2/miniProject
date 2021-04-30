@@ -117,9 +117,10 @@ Connection conn = null;
          script.println("location.href='../main/main.jsp'");
          script.println("</script>");
       }
+      memberDAO.close();
 
    }
-	JdbcUtil.close(conn, pstmt, rs);
+
    %>
 
 

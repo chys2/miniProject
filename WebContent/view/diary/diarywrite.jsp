@@ -86,6 +86,6 @@ a, a:hover {
 			
 		</div>
 	</div>
-<%JdbcUtil.close(conn, pstmt, rs);%>
+
 </body>
 </html>

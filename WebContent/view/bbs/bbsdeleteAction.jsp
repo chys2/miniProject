@@ -74,9 +74,9 @@ request.setCharacterEncoding("UTF-8");
 			script.println("location.href='bbs.jsp'");
 			script.println("</script>");
 		}
+	bbsDAO.close();
 	}
 	
-	JdbcUtil.close(conn, pstmt, rs);
 	%>
 
 

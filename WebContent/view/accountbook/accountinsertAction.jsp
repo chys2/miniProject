@@ -85,7 +85,7 @@
 		
 	}
 
-	JdbcUtil.close(conn, pstmt, rs);
+	accountbookDAO.close();
 	%>
 
 

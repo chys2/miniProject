@@ -200,6 +200,8 @@ public class BbsDAO {
 		return -1;
 	}
 
-	
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 
 }

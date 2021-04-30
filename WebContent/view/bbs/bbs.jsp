@@ -98,7 +98,7 @@ a, a:hover {
 					</tbody>
 				</table>
 				<%
-				BbsDAO bbsDAO_re = new BbsDAO();
+				
 				if (pageNumber != 1) {
 				%>
 				<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
@@ -120,6 +120,6 @@ a, a:hover {
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	
-	<%JdbcUtil.close(conn, pstmt, rs); %>
+	<%bbsDAO.close(); %>
 </body>
 </html>

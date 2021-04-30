@@ -157,8 +157,6 @@ margin-top:3%;
         chart.draw(data, options);
       }
     </script>
-    <%
-JdbcUtil.close(conn, pstmt, rs);
-	%>
+   <%book.close(); %>
 </body>
 </html>

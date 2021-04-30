@@ -197,4 +197,7 @@ public class AccountBookDAO {
 		}
 		return searchlist; // 占쏙옙체 占쌉시뱄옙 占쏙옙환
 	}
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 }

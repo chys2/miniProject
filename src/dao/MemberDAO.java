@@ -146,5 +146,7 @@ public class MemberDAO {
 		}
 		return pro;
 	}
-
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 }

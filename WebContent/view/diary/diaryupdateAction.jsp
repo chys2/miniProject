@@ -131,8 +131,7 @@ diary2.setDiaryImagename(im_name);
 			}
 		}
 	}
-	
-	JdbcUtil.close(conn, pstmt, rs);
+
 	%>
 
 

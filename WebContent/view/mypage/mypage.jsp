@@ -167,6 +167,7 @@ function back(){
 
 									<%
 										}
+						mypage.close();
 									%></td>
 							</tr>
 						</table>

@@ -73,7 +73,7 @@ html, body {
 			<%
 			}
 			%>
-				<%JdbcUtil.close(conn, pstmt, rs);%>
+				
   </div>
 </nav>
 </header>

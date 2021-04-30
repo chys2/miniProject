@@ -170,4 +170,7 @@ public class DiaryDAO {
 		}
 		return -1; // DB Error
 	}
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 }

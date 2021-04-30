@@ -77,9 +77,10 @@
 			script.println("</script>");
 		} 
 		
+		memberDAO.close();
 		
 		}
-	JdbcUtil.close(conn, pstmt, rs);
+
 	%>
 
 

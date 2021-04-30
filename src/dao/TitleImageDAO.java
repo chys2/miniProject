@@ -97,26 +97,6 @@ public class TitleImageDAO {
 		return imagename;
 	}
 
-	public String viewId(String logid) {
-		String SQL = "select logid from titleimage where logid = ?";
-		String id = null;
-
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, logid);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				id = rs.getString(1);
-			}
-
-			return id;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return id;
-	}
-
 	public ArrayList<vo.TitleimageVo> getList(String logId) {
 		String SQL = "select * from titleimage where logid= ?";
 		ArrayList<vo.TitleimageVo> list = new ArrayList<vo.TitleimageVo>();
@@ -135,6 +115,9 @@ public class TitleImageDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
 	}
 
 }

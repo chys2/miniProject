@@ -83,6 +83,8 @@ request.setCharacterEncoding("UTF-8");
 			script.println("location.href='../main/main.jsp'");
 			script.println("</script>");
 		}
+		
+		memberDAO.close();
 
 	}
 	%>

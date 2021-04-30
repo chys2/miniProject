@@ -232,8 +232,6 @@ a, a:hover {
         chart.draw(data, options);
       }
     </script>
-<%
-JdbcUtil.close(conn, pstmt, rs);
-	%>
+<%book.close(); %>
 </body>
 </html>

@@ -83,7 +83,20 @@ html, body {
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
+	
+	MemberDAO mem = new MemberDAO();
+	ArrayList<MemberVo> m = mem.mypage(logId);
+	String pwd = m.get(0).getPwd();
 	%>
+		<script>
+function move_mypage() {
+	var pwdCheck = prompt("비밀번호를 입력해주세요");
+	if(pwdCheck == <%=pwd%>){
+		alert("확인되었습니다.");
+	}else{ alert("비밀번호가 올바르지 않습니다."); history.back();}
+}
+
+</script>
 	<header class="header">
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
@@ -110,7 +123,7 @@ html, body {
 				%>
 				<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><b><%=logId %></b>님 접속중</a></li>
-					<li><a href="../mypage/mypage.jsp"><span
+					<li><a href="../mypage/mypage.jsp" onclick=move_mypage()><span
 							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
 					<li><a href="../login/loginOutAction.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>

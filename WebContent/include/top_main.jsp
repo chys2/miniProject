@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -5,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="dao.MemberDAO"%>
+     <%@ page import="vo.MemberVo"%>
 <%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
@@ -30,16 +32,31 @@ html, body {
 }
 
 </style>
-</head>
-<body>
-	<%
+<%
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Connection conn = null;
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
-		logId = (String) session.getAttribute("logId");
-	} %>
+	logId = (String) session.getAttribute("logId");
+	}
+	MemberDAO mem = new MemberDAO();
+	ArrayList<MemberVo> m = mem.mypage(logId);
+	String pwd = m.get(0).getPwd();
+	%>
+
+<script>
+function move_mypage() {
+	var pwdCheck = prompt("비밀번호를 입력해주세요");
+	if(pwdCheck == <%=pwd%>){
+		alert("확인되었습니다.");
+	}else{ alert("비밀번호가 올바르지 않습니다."); history.back();}
+}
+
+</script>
+</head>
+<body>
+	
 <header class="header">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -65,7 +82,7 @@ html, body {
 			%>
 				<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><b><%=logId %></b>님 접속중</a></li>
-					<li><a href="../mypage/mypage.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a>
+					<li><a href="../mypage/mypage.jsp" onclick=move_mypage()><span class="glyphicon glyphicon-user"></span>&nbsp마이페이지</a>
 					</li>
 						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp로그아웃</a></li>
 					</ul>

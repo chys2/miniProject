@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
 
-
+import Jdbc.JdbcUtil;
 
 import javax.naming.*;
 
@@ -19,19 +19,17 @@ public class BbsDAO {
 		try {
 			
 			
-			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; String dbID ="c##root";
-			 String dbPassword = "root"; Class.forName("oracle.jdbc.OracleDriver");
-			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; String dbID ="c##root";
+//			 String dbPassword = "root"; Class.forName("oracle.jdbc.OracleDriver");
+//			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 			 
 				
 				
-				/*
-				 * InitialContext ic = new InitialContext();
-				 * 
-				 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-				 * 
-				 * conn = ds.getConnection();
-				 */
+				 InitialContext ic = new InitialContext();
+				 
+				 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+				 
+				 conn = ds.getConnection();
 				
 			 
 			System.out.println("BbsDAO DB연결완료");
@@ -202,6 +200,8 @@ public class BbsDAO {
 		return -1;
 	}
 
-	
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
 
+import Jdbc.JdbcUtil;
 
 import javax.naming.*;
 
@@ -17,18 +18,18 @@ public class MemberDAO {
 		
 		try {
 
-			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-		  String dbID ="c##root"; 
-			  String dbPassword = "root";
-			  Class.forName("oracle.jdbc.OracleDriver"); 
-			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			  String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+//			  String dbID ="c##root"; 
+//			  String dbPassword = "root";
+//			  Class.forName("oracle.jdbc.OracleDriver"); 
+//			  conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
 			
-			/* InitialContext ic = new InitialContext();
+			 InitialContext ic = new InitialContext();
 			 
 			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 			 
-			 conn = ds.getConnection();*/
+			 conn = ds.getConnection();
 			
 
 			System.out.println("MemberDAO DB연결완료");
@@ -145,5 +146,7 @@ public class MemberDAO {
 		}
 		return pro;
 	}
-	
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 }

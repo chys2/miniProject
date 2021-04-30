@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
 
-
+import Jdbc.JdbcUtil;
 
 import javax.naming.*;
 
@@ -19,20 +19,18 @@ public class DiaryDAO {
 	public DiaryDAO() {
 		try {
 
-			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-		 String dbID ="c##root"; 
-			 String dbPassword = "root";
-			 Class.forName("oracle.jdbc.OracleDriver"); 
-			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+//			 String dbID ="c##root"; 
+//			 String dbPassword = "root";
+//			 Class.forName("oracle.jdbc.OracleDriver"); 
+//			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
 
-				/*
-				 * InitialContext ic = new InitialContext();
-				 * 
-				 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-				 * 
-				 * conn = ds.getConnection();
-				 */
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
 			
 			System.out.println("DiaryDAO DB연결완료");
 
@@ -72,6 +70,8 @@ public class DiaryDAO {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn, pstmt, rs);
 		}
 		return -1; // DB Error
 	}
@@ -170,5 +170,7 @@ public class DiaryDAO {
 		}
 		return -1; // DB Error
 	}
-	
+	public void close() {
+		JdbcUtil.close(conn, pstmt, rs);
+	}
 }

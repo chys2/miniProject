@@ -1,3 +1,7 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="Jdbc.JdbcUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.BbsDAO"%>
@@ -15,6 +19,10 @@ request.setCharacterEncoding("UTF-8");
 </head>
 <body>
 	<%
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -50,7 +58,7 @@ request.setCharacterEncoding("UTF-8");
 		// 정상적으로 입력이 되었다면 글 수정 로직을 수행한다
 		BbsDAO bbsDAO = new BbsDAO();
 		int result = bbsDAO.bbsdelete(bbsID);
-		bbsDAO.close();
+	
 		// 데이터베이스 오류인 경우
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
@@ -66,7 +74,9 @@ request.setCharacterEncoding("UTF-8");
 			script.println("location.href='bbs.jsp'");
 			script.println("</script>");
 		}
+	bbsDAO.close();
 	}
+	
 	%>
 
 

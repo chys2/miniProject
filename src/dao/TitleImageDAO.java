@@ -7,27 +7,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import Jdbc.JdbcUtil;
+
 public class TitleImageDAO {
 
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	public TitleImageDAO() {//DB접속
+	public TitleImageDAO() {
 		try {
 
-			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "c##root";
-			String dbPassword = "root";
-			Class.forName("oracle.jdbc.OracleDriver");
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String dbID = "c##root";
+//			String dbPassword = "root";
+//			Class.forName("oracle.jdbc.OracleDriver");
+//			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 
-//			 InitialContext ic = new InitialContext();
-//			 
-//			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-//			 
-//			 conn = ds.getConnection();
-//			
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
+			
 
 			System.out.println("TitleImageDAO DB연결완료");
 		} catch (Exception e) {
@@ -36,7 +41,7 @@ public class TitleImageDAO {
 		}
 	}
 
-	public int update(String logid, String imagename) {//프로필사진 업데이트
+	public int update(String logid, String imagename) {
 		String SQL = "update titleimage set imagename=? where logId = ? ";
 
 		try {
@@ -46,14 +51,14 @@ public class TitleImageDAO {
 			pstmt.execute();
 			rs = pstmt.executeQuery();
 
-			return 1;//이미지 업데이트가 성공했을때
+			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;//이미지 업데이트가 실패했을때
+		return 0;
 	}
 
-	public int insert(String logid, String imagename) {//새로운 아이디에 이미지 삽입
+	public int insert(String logid, String imagename) {
 		String SQL = "INSERT INTO titleimage VALUES (?,?)";
 
 		try {
@@ -62,17 +67,17 @@ public class TitleImageDAO {
 			pstmt.setString(2, imagename);
 			pstmt.execute();
 			rs = pstmt.executeQuery();
-			return 1;//이미지 삽입이 성공했을때
+			return 1;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;//이미지 삽입이 실패했을때
+		return 0;
 	}
 
-	public String view(String logid) {//이미지이름 가져오기
+	public String view(String logid) {
 		String SQL = "select imagename from titleimage where logid = ?";
-		String tatleDefault = "foot.jpg";//기본이미지 생성
+		String tatleDefault = "foot.jpg";
 		String imagename = null;
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -82,24 +87,19 @@ public class TitleImageDAO {
 				imagename = rs.getString(1);
 			}
 			if (imagename == null)
-				return tatleDefault;//이미지 삽입실패시 기본이미지
+				return tatleDefault;
 			else
-				return imagename;//이미지이름 성공적으로 가져왔을때
+				return imagename;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return imagename;//이미지 삽입실패시 기본이미지
+		return imagename;
 	}
 
-
-	
-	
-
-	public ArrayList<vo.TitleimageVo> getList(String logId) {//TitleimageVo 정보로 가져오기
+	public ArrayList<vo.TitleimageVo> getList(String logId) {
 		String SQL = "select * from titleimage where logid= ?";
 		ArrayList<vo.TitleimageVo> list = new ArrayList<vo.TitleimageVo>();
-
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
@@ -114,42 +114,10 @@ public class TitleImageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return list; // ArrayList<vo.TitleimageVo>가져오기
-
-
-	}
-	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
-
-		try {
-			conn.close();
-			pstmt.close();
-			rs.close();
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-
-	}
-
-	public void close(Connection conn, PreparedStatement pstmt) {
-		try {
-			conn.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		return list;
 	}
 	public void close() {
-		try {
-			conn.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		JdbcUtil.close(conn, pstmt, rs);
 	}
+
 }

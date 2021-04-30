@@ -66,7 +66,7 @@ request.setCharacterEncoding("UTF-8");
 
 		MemberDAO memberDAO = new MemberDAO();
 		int result = memberDAO.modify(member);
-		memberDAO.close();
+		
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -83,6 +83,8 @@ request.setCharacterEncoding("UTF-8");
 			script.println("location.href='../main/main.jsp'");
 			script.println("</script>");
 		}
+		
+		memberDAO.close();
 
 	}
 	%>

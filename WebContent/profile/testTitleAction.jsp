@@ -46,6 +46,7 @@ try {
 } catch (Exception e) {
 	e.printStackTrace();
 }
+System.out.print(im_name);
 %>
 <!DOCTYPE html>
 <html>
@@ -54,7 +55,7 @@ try {
 <title>Insert title here</title>
 </head>
 <body>
-<%
+	<%
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -75,53 +76,45 @@ try {
 			script.println("</script>");
 		} else {
 
-	ArrayList<vo.TitleimageVo> check = title.getList(logId);
-		if (check.size()==0) {
-
-			int result = title.insert(logId, im_name);
+			TitleImageDAO titledao = new TitleImageDAO();
+			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
 			
-			if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('글쓰기에 실패했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-			}
-
-			else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미지를 등록하였습니다.')");
-		script.println("location.href='../view/main/main.jsp'");
-		script.println("</script>");
-			}
-
-		}
-
-		else {
-			int result = title.update(logId, im_name);
-			
-			if (result == -1) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('글쓰기에 실패했습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-			}
-
-			else {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미지를 수정하였습니다.')");
-		script.println("location.href='../view/main/main.jsp'");
-		script.println("</script>");
-
 	
+			if(check.size() ==0){	//등록된 이미지가 없는 경우
+				
+				int result = title.insert(logId, im_name); // 등록을 한다.
+				
+				if(result != -1) {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('등록 완료')");
+					script.println("location.href ='../view/main/main.jsp'");
+					script.println("</script>");
+				} else {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('발생되어서는 안 되는 케이스')");
+					script.println("</script>");
+				}
+								
+			} else {	// 등록이 된 경우
+				int result = title.update(logId, im_name); // 수정을 한다.
+				
+				if(result != -1) {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('수정 완료')");
+					script.println("location.href ='../view/main/main.jsp'");
+					script.println("</script>");
+				} else {
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('발생되어서는 안 되는 케이스')");
+					script.println("</script>");
+				}
 			}
 		}
-		}
-	}
-		
+	}				
 	%>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="Jdbc.JdbcUtil"%>
 <%@page import="javax.script.ScriptException"%>
 <%@page import="javax.script.ScriptEngine"%>
 <%@page import="javax.script.ScriptEngineManager"%>
@@ -16,6 +17,9 @@
 
 
 <%
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+Connection conn = null;
 
 DiaryVo diary = new DiaryVo();
 request.setCharacterEncoding("UTF-8");
@@ -97,7 +101,7 @@ diary.setDiaryImagename(im_name);
 
 			int result = diaryDAO.diarywrite(logId,diary.getDiaryContent(),diary.getDiaryImagename());
 			
-            diaryDAO.close();
+      
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -118,7 +122,6 @@ diary.setDiaryImagename(im_name);
 	}
 	
 
-	
 	%>
 
 

@@ -178,6 +178,7 @@ if(pwdCheck == <%=pwd%>){
 
 									<%
 										}
+						mypage.close();
 									%></td>
 							</tr>
 						</table>

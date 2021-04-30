@@ -1,3 +1,7 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="Jdbc.JdbcUtil"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,6 +56,10 @@ margin-top:3%;
 </head>
 <body>
 	<%
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Connection conn = null;
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -149,5 +157,6 @@ margin-top:3%;
         chart.draw(data, options);
       }
     </script>
+   <%book.close(); %>
 </body>
 </html>

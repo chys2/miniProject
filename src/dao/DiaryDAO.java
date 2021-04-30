@@ -4,6 +4,9 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
+
+import Jdbc.JdbcUtil;
+
 import javax.naming.*;
 
 public class DiaryDAO {
@@ -16,11 +19,19 @@ public class DiaryDAO {
 	public DiaryDAO() {
 		try {
 
-			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
-			 String dbID ="c##root"; String dbPassword = "root";
-			 Class.forName("oracle.jdbc.OracleDriver"); 
-			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
+//			 String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+//			 String dbID ="c##root"; 
+//			 String dbPassword = "root";
+//			 Class.forName("oracle.jdbc.OracleDriver"); 
+//			 conn =DriverManager.getConnection(dbURL, dbID, dbPassword);
 
+
+			 InitialContext ic = new InitialContext();
+			 
+			 DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			 
+			 conn = ds.getConnection();
+			
 			System.out.println("DiaryDAO DB연결완료");
 
 		} catch (Exception e) {
@@ -59,6 +70,8 @@ public class DiaryDAO {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn, pstmt, rs);
 		}
 		return -1; // DB Error
 	}
@@ -157,38 +170,7 @@ public class DiaryDAO {
 		}
 		return -1; // DB Error
 	}
-	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
-
-		try {
-			conn.close();
-			pstmt.close();
-			rs.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public void close(Connection conn, PreparedStatement pstmt) {
-		try {
-			conn.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 	public void close() {
-		try {
-			this.conn.close();
-			this.pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		JdbcUtil.close(conn, pstmt, rs);
 	}
-
 }

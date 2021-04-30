@@ -1,3 +1,4 @@
+<%@page import="Jdbc.JdbcUtil"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -9,6 +10,11 @@
 <%@ page import="java.sql.*" %> 
 <%@ page import="java.io.*, java.util.*" %>
 <%
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+Connection conn = null;
+
+
 BbsVo bbs = new BbsVo();
 request.setCharacterEncoding("UTF-8");
 
@@ -83,7 +89,7 @@ bbs.setBbsImagename(im_name);
 
 
 			int result = bbsDAO.bbswrite(bbs.getBbsTitle(),logId,bbs.getBbsContent(),bbs.getBbsImagename());
-			bbsDAO.close();
+		
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -99,11 +105,11 @@ bbs.setBbsImagename(im_name);
 				script.println("location.href='bbs.jsp'");
 				script.println("</script>");
 			}
-
+			bbsDAO.close();
 		 } 
 	}
 
-	
+
 	%>
 
 

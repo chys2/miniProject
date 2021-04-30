@@ -1,3 +1,4 @@
+<%@page import="javax.script.ScriptEngineManager"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -21,15 +22,25 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>마이페이지</title>
 </head>
+<%
+String logId = (String) session.getAttribute("logId");
+MemberDAO mem = new MemberDAO();
+ArrayList<MemberVo> m = mem.mypage(logId);
+String pwd = m.get(0).getPwd();
+%>
 <script>
 function back(){
 	history.back();
 }
+var pwdCheck = prompt("비밀번호를 입력해주세요");
+if(pwdCheck == <%=pwd%>){
+	alert("확인되었습니다.");
+}else{ alert("비밀번호가 올바르지 않습니다."); history.back();}
 </script>
 <body>
 	<jsp:include page="/include/top_main.jsp" flush="false" />
 	<%
-		String logId = null;
+	
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
 	}else if(session.getAttribute("logId") == null){

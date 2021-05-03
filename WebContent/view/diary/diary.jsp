@@ -104,10 +104,9 @@ border-radius: 10px;
 }
 
 div{
-word-wrap: break-word;
+ word-wrap: break-word;
 -webkit-line-clamp: 2;
 -webkit-box-orient: vertical
-
 }
 
 </style>

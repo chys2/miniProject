@@ -32,11 +32,39 @@ Connection conn = null;
    String logId = null;
 
 
+
+   if (session.getAttribute("logid") != null) {
+      logId = (String) session.getAttribute("logId");
+   }
+   if (logId != null) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('이미 로그인이 되어있습니다.')");
+      script.println("location.href ='../main/main.jsp'");
+      script.println("history.back()");
+      script.println("</script>");
+   }
+
+   if (member.getLogid() == null || member.getPwd() == null || member.getPwdcheck() == null ||
+         member.getDogname() == null || member.getEmail() == null
+         || member.getGender() == null || member.getAge() == null  ) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('입력이 안된사항이 있습니다.')");
+      script.println("history.back()");
+      script.println("</script>");
+      
+   }    else if (!member.getPwd().equals(member.getPwdcheck())) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('비밀번호와 비밀번호 확인란이 일치하지 않습니다.')");
+      script.println("history.back()");
+      script.println("</script>");
+
 	if (session.getAttribute("logid") != null) {
 		logId = (String) session.getAttribute("logId");
 	}
 	if (logId != null) {
-		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미 로그인이 되어있습니다.')");
 		script.println("location.href ='../main/main.jsp'");
@@ -44,30 +72,15 @@ Connection conn = null;
 		script.println("</script>");
 	}
 
-	if (member.getLogid() == null || member.getPwd() == null || member.getPwdcheck() == null ||
-			member.getDogname() == null || member.getEmail() == null
-			|| member.getGender() == null || member.getAge() == null  ) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('입력이 안된사항이 있습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-		
-	} 	else if (!member.getPwd().equals(member.getPwdcheck())) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('비밀번호와 비밀번호 확인란이 일치하지 않습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
 
-	} 
-	
-	else if (member.getAge().matches("[+-]?\\d*(\\.\\d+)?") != true) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('나이에 숫자만 입력해주세요.')");
-		script.println("history.back()");
-		script.println("</script>");
+   } 
+   
+   else if (member.getAge().matches("[+-]?\\d*(\\.\\d+)?") != true) {
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('나이에 숫자만 입력해주세요.')");
+      script.println("history.back()");
+      script.println("</script>");
 
    } else {
 

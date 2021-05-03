@@ -61,13 +61,10 @@ function move_mypage() {
 	if(pwdCheck == <%=pwd%>){
 		alert("확인되었습니다.");
 		location.href = "../mypage/mypage.jsp"
-	}else{ 
-		alert("비밀번호가 올바르지 않습니다.");
-	location.href ="../main/main.jsp"
+	}else{ alert("비밀번호가 올바르지 않습니다.");
+	location.href = "../main/main.jsp"
 	}
-	
 }
-
 </script>
 </head>
 <body>

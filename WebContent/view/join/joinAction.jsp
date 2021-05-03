@@ -32,34 +32,6 @@ Connection conn = null;
    String logId = null;
 
 
-   boolean isNumeric = member.getAge().matches("[+-]?\\d*(\\.\\d+)?");
-   if (session.getAttribute("logid") != null) {
-      logId = (String) session.getAttribute("logid");
-   }
-   if (logId != null) {
-      PrintWriter script = response.getWriter();
-      script.println("<script>");
-      script.println("alert('이미 로그인이 되어있습니다.')");
-      script.println("location.href ='../main/main.jsp'");
-      script.println("history.back()");
-      script.println("</script>");
-   }
-
-   if (member.getLogid() == null || member.getPwd() == null || member.getDogname() == null || member.getEmail() == null
-         || member.getGender() == null || member.getAge() == null) {
-      PrintWriter script = response.getWriter();
-      script.println("<script>");
-      script.println("alert('입력이 안된사항이 있습니다.')");
-      script.println("history.back()");
-      script.println("</script>");
-   } else if (isNumeric != true) {
-      PrintWriter script = response.getWriter();
-      script.println("<script>");
-      script.println("alert('비밀번호부분에 숫자만 입력해주세요.')");
-      script.println("history.back()");
-      script.println("</script>");
-   }
-
 	if (session.getAttribute("logid") != null) {
 		logId = (String) session.getAttribute("logId");
 	}

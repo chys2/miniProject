@@ -1,4 +1,4 @@
-<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="Jdbc.*"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>

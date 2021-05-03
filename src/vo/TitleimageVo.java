@@ -1,7 +1,5 @@
 package vo;
 
-import java.io.*;
-
 
 public class TitleimageVo {
 	private String logId;

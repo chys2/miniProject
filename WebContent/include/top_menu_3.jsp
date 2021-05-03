@@ -1,4 +1,5 @@
-<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="Jdbc.*"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -82,6 +83,15 @@ html, body {
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
+	}else if(session.getAttribute("logId") == null){
+		String msg ="로그인을 먼저 해주세요.";
+		msg=URLEncoder.encode(msg,"UTF-8");
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 먼저해주세요.')");
+		script.println("location.href='../login/login.jsp'");
+		script.println("</script>");
+		
 	}
 	
 	MemberDAO mem = new MemberDAO();

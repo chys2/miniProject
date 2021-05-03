@@ -2,7 +2,7 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="Jdbc.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="dao.MemberDAO"%>
@@ -51,13 +51,10 @@ function move_mypage() {
 	if(pwdCheck == <%=pwd%>){
 		alert("확인되었습니다.");
 		location.href = "../mypage/mypage.jsp"
-	}else{ 
-		alert("비밀번호가 올바르지 않습니다.");
-	location.href ="../main/main.jsp"
+	}else{ alert("비밀번호가 올바르지 않습니다.");
+	location.href = "../main/main.jsp"
 	}
-	
 }
-
 </script>
 </head>
 <body>

@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.MemberDAO"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="Jdbc.JdbcUtil" %>
+<%@ page import="Jdbc.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>

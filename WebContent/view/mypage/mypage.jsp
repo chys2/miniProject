@@ -33,7 +33,7 @@ function back(){
 
 </script>
 <body>
-	<jsp:include page="/include/top_main_mypage.jsp" flush="false" />
+	<jsp:include page="../../include/top_main_mypage.jsp" flush="false" />
 	<%
 	
 	if (session.getAttribute("logId") != null) {

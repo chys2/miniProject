@@ -1,4 +1,4 @@
-<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="Jdbc.*"%>
 <%@page import="vo.AccountBookVo"%>
 <%@page import="dao.AccountBookDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>

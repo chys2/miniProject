@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="Jdbc.JdbcUtil"%>
+<%@page import="Jdbc.*"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

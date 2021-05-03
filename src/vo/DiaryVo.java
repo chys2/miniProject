@@ -1,6 +1,5 @@
 package vo;
 
-import java.io.*;
 
 
 public class DiaryVo {

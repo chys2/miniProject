@@ -103,6 +103,13 @@ border: 1px solid #e6e6e6;
 border-radius: 10px;
 }
 
+div{
+word-wrap: break-word;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical
+
+}
+
 </style>
 </head>
 <body>

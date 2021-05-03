@@ -85,8 +85,9 @@ request.setCharacterEncoding("UTF-8");
 		}
 		
 		
-
+		memberDAO.close();
 	}
+	
 	%>
 
 

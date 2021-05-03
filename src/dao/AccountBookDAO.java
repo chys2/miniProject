@@ -199,5 +199,6 @@ public class AccountBookDAO {
 	}
 	public void close() {
 		JdbcUtil.close(conn, pstmt, rs);
+		System.out.println("accountbookclose");
 	}
 }

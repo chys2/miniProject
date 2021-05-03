@@ -167,6 +167,8 @@ public class BbsDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close();
 		}
 		return null; 
 	}
@@ -202,6 +204,7 @@ public class BbsDAO {
 
 	public void close() {
 		JdbcUtil.close(conn, pstmt, rs);
+		System.out.println("bbsclose");
 	}
 
 }

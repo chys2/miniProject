@@ -76,8 +76,8 @@ System.out.print(im_name);
 			script.println("</script>");
 		} else {
 
-			TitleImageDAO titledao = new TitleImageDAO();
-			ArrayList<vo.TitleimageVo> check = titledao.getList(logId);
+			
+			ArrayList<vo.TitleimageVo> check = title.getList(logId);
 			
 	
 			if(check.size() ==0){	//등록된 이미지가 없는 경우
@@ -96,7 +96,7 @@ System.out.print(im_name);
 					script.println("alert('발생되어서는 안 되는 케이스')");
 					script.println("</script>");
 				}
-								
+				title.close();				
 			} else {	// 등록이 된 경우
 				int result = title.update(logId, im_name); // 수정을 한다.
 				
@@ -112,9 +112,13 @@ System.out.print(im_name);
 					script.println("alert('발생되어서는 안 되는 케이스')");
 					script.println("</script>");
 				}
+				title.close();
 			}
+		
+	
 		}
 	}				
+			title.close();
 	%>
 </body>
 </html>

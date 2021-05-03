@@ -1,3 +1,6 @@
+<%@page import="dao.BbsDAO"%>
+<%@page import="dao.AccountBookDAO"%>
+<%@page import="dao.DiaryDAO"%>
 <%@page import="Jdbc.JdbcUtil"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
@@ -97,6 +100,17 @@ Connection conn = null;
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+		<%
+		DiaryDAO diaryDAO = new DiaryDAO();
+		AccountBookDAO book = new AccountBookDAO();
+		BbsDAO bbsDAO = new BbsDAO();
 		
+		System.out.println("ㅡㅡㅡㅡㅡ");
+		
+		diaryDAO.close();
+		book.close();
+		bbsDAO.close();
+		
+		%>
 </body>
 </html>

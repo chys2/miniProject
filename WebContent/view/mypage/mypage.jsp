@@ -33,7 +33,7 @@ function back(){
 
 </script>
 <body>
-	<jsp:include page="/include/top_main.jsp" flush="false" />
+	<jsp:include page="/include/top_main_mypage.jsp" flush="false" />
 	<%
 	
 	if (session.getAttribute("logId") != null) {
@@ -78,7 +78,7 @@ function back(){
 								<td class="text-center">비밀번호</td>
 								<td><input type="password" class="form-control"
 									placeholder="비밀번호" name="pwd" maxlength="20"
-									value=<%=list.get(i).getPwd()%>></td>
+									></td>
 							</tr>
 
 							<tr>
@@ -191,5 +191,8 @@ function back(){
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<%mypage.close();
+	mypage.close();
+	%>
 </body>
 </html>

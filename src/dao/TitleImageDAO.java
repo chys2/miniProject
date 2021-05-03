@@ -49,7 +49,7 @@ public class TitleImageDAO {
 			pstmt.setString(1, imagename);
 			pstmt.setString(2, logid);
 			pstmt.execute();
-			rs = pstmt.executeQuery();
+		
 
 			return 1;
 		} catch (Exception e) {
@@ -66,7 +66,6 @@ public class TitleImageDAO {
 			pstmt.setString(1, logid);
 			pstmt.setString(2, imagename);
 			pstmt.execute();
-			rs = pstmt.executeQuery();
 			return 1;
 
 		} catch (Exception e) {
@@ -118,6 +117,7 @@ public class TitleImageDAO {
 	}
 	public void close() {
 		JdbcUtil.close(conn, pstmt, rs);
+		System.out.println("imageclose");
 	}
 
 }

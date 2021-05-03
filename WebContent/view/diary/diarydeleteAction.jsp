@@ -76,9 +76,11 @@ request.setCharacterEncoding("UTF-8");
 			script.println("location.href='diary.jsp'");
 			script.println("</script>");
 		}
+	
+		diaryDAO.close();
 	}
 
-
+	JdbcUtil.close(conn, pstmt, rs);
 	%>
 
 

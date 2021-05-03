@@ -105,7 +105,8 @@ a, a:hover {
 						<img src="../../bbsimages/<%=bbs.getBbsImagename()%>" style="height: 238px"/></td>
 
 					</tr>
-					<%} %>
+					<%} 
+					%>
 				</tbody>
 			</table>
 			<a href="bbs.jsp" class="btn btn-primary">목록</a>
@@ -129,6 +130,6 @@ a, a:hover {
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	
-	
+
 </body>
 </html>

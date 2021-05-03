@@ -59,6 +59,7 @@
 			script.println("alert('로그인 완료')");
 			script.println("location.href = '../main/main.jsp'");
 			script.println("</script>");
+			memberDAO.close();
 		} else if (result == 0) {
 			
 			script.println("<script>");

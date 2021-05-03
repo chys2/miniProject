@@ -88,12 +88,15 @@ html, body {
 	ArrayList<MemberVo> m = mem.mypage(logId);
 	String pwd = m.get(0).getPwd();
 	%>
-		<script>
+<script>
 function move_mypage() {
 	var pwdCheck = prompt("비밀번호를 입력해주세요");
 	if(pwdCheck == <%=pwd%>){
 		alert("확인되었습니다.");
-	}else{ alert("비밀번호가 올바르지 않습니다."); history.back();}
+		location.href = "../mypage/mypage.jsp"
+	}else{ alert("비밀번호가 올바르지 않습니다.");
+	location.href = "../diary/diary.jsp"
+	}
 }
 
 </script>
@@ -122,9 +125,9 @@ function move_mypage() {
 				} else { //로그인 했을때
 				%>
 				<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><b><%=logId %></b>님 접속중</a></li>
-					<li><a href="../mypage/mypage.jsp" onclick=move_mypage()><span
-							class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a></li>
+				<li class="active"><a href="#"><b><%=logId %></b>님 접속중</a></li>
+				<li><a href="#"  onclick=move_mypage()><span class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a>
+					</li>
 					<li><a href="../login/loginOutAction.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 				</ul>
@@ -197,7 +200,9 @@ function move_mypage() {
 
 	</aside>
 
-<%title.close();
-profile.close();%>
+<%
+profile.close();
+mem.close();
+title.close();%>
 </body>
 </html>

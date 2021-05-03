@@ -140,6 +140,8 @@ public class DiaryDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close();
 		}
 		return null; // Invalid
 	}
@@ -172,5 +174,6 @@ public class DiaryDAO {
 	}
 	public void close() {
 		JdbcUtil.close(conn, pstmt, rs);
+		System.out.println("diaryclose");
 	}
 }

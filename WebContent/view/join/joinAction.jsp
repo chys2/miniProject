@@ -32,6 +32,7 @@ Connection conn = null;
    String logId = null;
 
 
+<<<<<<< HEAD
    if (session.getAttribute("logid") != null) {
       logId = (String) session.getAttribute("logId");
    }
@@ -59,6 +60,19 @@ Connection conn = null;
       script.println("alert('비밀번호와 비밀번호 확인란이 일치하지 않습니다.')");
       script.println("history.back()");
       script.println("</script>");
+=======
+	if (session.getAttribute("logid") != null) {
+		logId = (String) session.getAttribute("logId");
+	}
+	if (logId != null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('이미 로그인이 되어있습니다.')");
+		script.println("location.href ='../main/main.jsp'");
+		script.println("history.back()");
+		script.println("</script>");
+	}
+>>>>>>> 23aa14b8d9b3d159f08faac70177178f53de4db7
 
    } 
    

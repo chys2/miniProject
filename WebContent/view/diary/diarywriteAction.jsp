@@ -70,7 +70,7 @@ diary.setDiaryImagename(im_name);
 <head>
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 <link rel = "stylesheet" href = "/Struts2Board/board/css.css" type = "text/css">
-<title>JSP 게시판 웹 사이트</title>
+<title>강아지를 위한 일기</title>
 </head>
 <body>
 

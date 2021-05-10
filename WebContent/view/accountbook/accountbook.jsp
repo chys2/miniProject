@@ -18,7 +18,7 @@
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 <meta name="viewprot" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>강아지의 지출</title>
+<title>JSP 게시판 웹 사이트</title>
 
 
 <style type="text/css">

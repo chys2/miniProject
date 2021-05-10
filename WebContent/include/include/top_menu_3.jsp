@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>top_menu_2</title>
+<title>top_menu_3</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -53,8 +53,7 @@ html, body {
 	width: 100%;
 	height: 40%;
 	float: left;
-	
-	
+		
 }
 
 #profile {
@@ -77,12 +76,10 @@ html, body {
 </head>
 <body>
 	<%
-	
-	
-	
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Connection conn = null;
+	
 	String logId = null;
 	if (session.getAttribute("logId") != null) {
 		logId = (String) session.getAttribute("logId");
@@ -101,15 +98,14 @@ html, body {
 	ArrayList<MemberVo> m = mem.mypage(logId);
 	String pwd = m.get(0).getPwd();
 	%>
-<script>
+	<script>
 function move_mypage() {
 	var pwdCheck = prompt("비밀번호를 입력해주세요");
-	
-	if(pwdCheck=='<%=pwd%>'){
+	if(pwdCheck == <%=pwd%>){
 		alert("확인되었습니다.");
 		location.href = "../mypage/mypage.jsp"
 	}else{ alert("비밀번호가 올바르지 않습니다.");
-	location.href = "../diary/diary.jsp"
+	location.href = "../bbs/bbs.jsp"
 	}
 }
 
@@ -123,8 +119,8 @@ function move_mypage() {
 				<ul class="nav navbar-nav">
 					<li><a href="../main/main.jsp">홈</a></li>
 					<li><a href="../accountbook/accountbook.jsp">강아지에 의한 지출</a></li>
-					<li class="active"><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
-					<li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
+					<li><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
+					<li class="active"><a href="../bbs/bbs.jsp">강아지의친구</a></li>
 				</ul>
 				<%
 				if (logId == null) { //로그인 안 했을때
@@ -140,7 +136,7 @@ function move_mypage() {
 				%>
 				<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#"><b><%=logId %></b>님 접속중</a></li>
-				<li><a href="#"  onclick=move_mypage()><span class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a>
+					<li><a href="#"  onclick=move_mypage()><span class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a>
 					</li>
 					<li><a href="../login/loginOutAction.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
@@ -175,7 +171,6 @@ function move_mypage() {
 			<%
 			System.out.println("출력");
 			%>
-			
 			<span class="glyphicon glyphicon-heart"></span>&nbsp;댕댕이름:
 			<%=list.get(i).getDogname()%>
 			<br> <br> <span class="glyphicon glyphicon-heart-empty"></span>
@@ -187,7 +182,7 @@ function move_mypage() {
 			&nbsp;이메일:
 			<%=list.get(i).getEmail()%>
 
-<%
+		<%
 			}
 			
 			

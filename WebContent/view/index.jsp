@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INDEX PAGE</title>
+<title>JSP 게시판 웹 사이트</title>
 </head>
 <%
 session.invalidate();

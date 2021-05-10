@@ -104,8 +104,7 @@ html, body {
 <script>
 function move_mypage() {
 	var pwdCheck = prompt("비밀번호를 입력해주세요");
-	
-	if(pwdCheck=='<%=pwd%>'){
+	if(pwdCheck == <%=pwd%>){
 		alert("확인되었습니다.");
 		location.href = "../mypage/mypage.jsp"
 	}else{ alert("비밀번호가 올바르지 않습니다.");

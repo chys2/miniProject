@@ -60,7 +60,7 @@ diary2.setDiaryImagename(im_name);
 <head>
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 
-<title>강아지를 위한 일기</title>
+<title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
 	<%

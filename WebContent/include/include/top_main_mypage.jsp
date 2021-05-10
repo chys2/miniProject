@@ -3,7 +3,7 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="Jdbc.*"%>
+<%@page import="Jdbc.JdbcUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="dao.MemberDAO"%>
@@ -53,20 +53,16 @@ html, body {
 	MemberDAO mem = new MemberDAO();
 	ArrayList<MemberVo> m = mem.mypage(logId);
 	String pwd = m.get(0).getPwd();
-	System.out.println(pwd);
 	%>
 
 <script>
 function move_mypage() {
-	var pwdCheck = prompt("비밀번호를 입력해주세요");
-	
-	if(pwdCheck=='<%=pwd%>'){
-		alert("확인되었습니다.");
+
 		location.href = "../mypage/mypage.jsp"
-	}else{ alert("비밀번호가 올바르지 않습니다.");
-	location.href = "../main/main.jsp"
-	}
+
+	
 }
+
 </script>
 </head>
 <body>
@@ -78,7 +74,7 @@ function move_mypage() {
       <a class="navbar-brand" href="#"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="../main/main.jsp">홈</a></li>
+      <li ><a href="../main/main.jsp">홈</a></li>
       <li><a href="../accountbook/accountbook.jsp">강아지에 의한 지출</a></li>
       <li><a href="../diary/diary.jsp">강아지를 위한 일기</a></li>
       <li><a href="../bbs/bbs.jsp">강아지의친구</a></li>
@@ -96,7 +92,7 @@ function move_mypage() {
 			%>
 				<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#"><b><%=logId %></b>님 접속중</a></li>
-					<li><a href="javascript:move_mypage();"><span class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a>
+					<li class="active"><a href="#"  onclick=move_mypage()><span class="glyphicon glyphicon-user"></span>&nbsp;마이페이지</a>
 					</li>
 						<li><a href="../login/loginOutAction.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;로그아웃</a></li>
 					</ul>
